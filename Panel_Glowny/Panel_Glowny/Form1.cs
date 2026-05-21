@@ -6,14 +6,11 @@ namespace Panel_Glowny
         {
             InitializeComponent();
         }
-<<<<<<< HEAD
-        //komentarze testore
-=======
 
-        private void label2_Click(object sender, EventArgs e)
-        {
 
-        }
->>>>>>> main panel
+        //private void label2_Click(object sender, EventArgs e)
+        //{
+
+        //}
     }
 }
