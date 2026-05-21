@@ -6,5 +6,6 @@ namespace Projekt
         {
             InitializeComponent();
         }
+        //komentarze testore
     }
 }
