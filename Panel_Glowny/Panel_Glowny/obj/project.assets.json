@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\warsztaty1\\januszbyt\\zarzadzanie_hotelem_2026_C-\\Panel_Glowny\\Panel_Glowny\\Panele_Glowne.csproj",
+      "projectUniqueName": "C:\\warsztaty2\\januszbyt\\zarzadzanie_hotelem_2026_C-\\Panel_Glowny\\Panel_Glowny\\Panele_Glowne.csproj",
       "projectName": "Panele_Glowne",
-      "projectPath": "C:\\warsztaty1\\januszbyt\\zarzadzanie_hotelem_2026_C-\\Panel_Glowny\\Panel_Glowny\\Panele_Glowne.csproj",
+      "projectPath": "C:\\warsztaty2\\januszbyt\\zarzadzanie_hotelem_2026_C-\\Panel_Glowny\\Panel_Glowny\\Panele_Glowne.csproj",
       "packagesPath": "C:\\Users\\kubah\\.nuget\\packages\\",
-      "outputPath": "C:\\warsztaty1\\januszbyt\\zarzadzanie_hotelem_2026_C-\\Panel_Glowny\\Panel_Glowny\\obj\\",
+      "outputPath": "C:\\warsztaty2\\januszbyt\\zarzadzanie_hotelem_2026_C-\\Panel_Glowny\\Panel_Glowny\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
