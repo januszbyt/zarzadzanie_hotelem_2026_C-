@@ -27,5 +27,9 @@ namespace Panele_Glowne
         {
             Console.WriteLine("Witaj2");
         }
+        private void fun2()
+        {
+            Console.WriteLine("FUN2");
+        }
     }
 }
