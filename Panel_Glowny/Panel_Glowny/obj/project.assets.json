@@ -8,26 +8,35 @@
     "net8.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\kubao\\.nuget\\packages\\": {}
+    "C:\\Users\\bytnarj\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kubao\\Documents\\Warsztaty_Repos\\januszbyt\\zarzadzanie_hotelem_2026_C-\\Panel_Glowny\\Panel_Glowny\\Panele_Glowne.csproj",
+      "projectUniqueName": "C:\\Users\\bytnarj\\Source\\Repos\\zarzadzanie_hotelem_2026_C-\\Panel_Glowny\\Panel_Glowny\\Panele_Glowne.csproj",
       "projectName": "Panele_Glowne",
-      "projectPath": "C:\\Users\\kubao\\Documents\\Warsztaty_Repos\\januszbyt\\zarzadzanie_hotelem_2026_C-\\Panel_Glowny\\Panel_Glowny\\Panele_Glowne.csproj",
-      "packagesPath": "C:\\Users\\kubao\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kubao\\Documents\\Warsztaty_Repos\\januszbyt\\zarzadzanie_hotelem_2026_C-\\Panel_Glowny\\Panel_Glowny\\obj\\",
+      "projectPath": "C:\\Users\\bytnarj\\Source\\Repos\\zarzadzanie_hotelem_2026_C-\\Panel_Glowny\\Panel_Glowny\\Panele_Glowne.csproj",
+      "packagesPath": "C:\\Users\\bytnarj\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\bytnarj\\Source\\Repos\\zarzadzanie_hotelem_2026_C-\\Panel_Glowny\\Panel_Glowny\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\kubao\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\bytnarj\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0-windows"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -46,7 +55,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -70,7 +79,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.314/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.116/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
