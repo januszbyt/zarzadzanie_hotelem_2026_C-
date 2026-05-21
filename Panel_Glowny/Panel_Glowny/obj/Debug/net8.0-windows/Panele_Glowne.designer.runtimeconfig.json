@@ -12,13 +12,10 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\bytnarj\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\bytnarj\\.nuget\\packages",
-      "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-      "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet"
+      "C:\\Users\\patry\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\patry\\.nuget\\packages"
     ],
     "configProperties": {
-      "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": true,
       "CSWINRT_USE_WINDOWS_UI_XAML_PROJECTIONS": false,
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true
     }
