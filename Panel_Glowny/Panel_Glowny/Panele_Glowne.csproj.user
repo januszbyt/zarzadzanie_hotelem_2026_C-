@@ -22,5 +22,8 @@
     <Compile Update="Form_Klient.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="HistoriaGoscia.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
