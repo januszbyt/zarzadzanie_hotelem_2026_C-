@@ -1,0 +1,13 @@
+1. Utwórz wstepny projekt
+2. Utwórz repozytorium GIt
+3. w okienku"Tworzenie repozutorium Git" (Visual Studio) zaloguj się na swoje konto (GitHub)->Utwórz i wypchnij
+4. Sprawdź na stronie Github. Czy jest dodane repozytorium
+5. Można dodać uzytkowników repozytorium (publiczne) ->Settings->Collaborators
+6. Dodaj widoczność zakładki "Zmiany git" (Visual Studio). Widok->Zmiany git
+7. Sprawdź poprawność danych kona git hub ->Git->Ustawienia->Ustawienia globalne git oraz ustawienia repozytorium git (nazwa użytkownika i email)
+8. Zrób zmiany w projekcie i w oknie "zmiany git" -> wpisz komentarz zmian-> Zatwierdź wszystko->Wypchnij
+9. Sprawdź zmiany na stronie github
+
+Usuwanie i klonowanie projektu Visual studio
+1. Usuń projekt z dysku 
+2. Klonuj repozytorium-> podaj adres ->Klonuj
