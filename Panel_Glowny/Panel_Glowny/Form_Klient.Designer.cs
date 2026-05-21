@@ -30,20 +30,20 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Klient));
             panel1 = new Panel();
-            panel3 = new Panel();
             label2 = new Label();
             label1 = new Label();
-            panel2 = new Panel();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            pictureBox1 = new PictureBox();
+            panel3 = new Panel();
             label3 = new Label();
+            pictureBox1 = new PictureBox();
+            panel2 = new Panel();
+            button4 = new Button();
+            button3 = new Button();
+            button2 = new Button();
+            button1 = new Button();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
-            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -55,16 +55,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(183, 100);
             panel1.TabIndex = 0;
-            // 
-            // panel3
-            // 
-            panel3.BackColor = SystemColors.ButtonFace;
-            panel3.Controls.Add(label3);
-            panel3.Controls.Add(pictureBox1);
-            panel3.Location = new Point(201, 12);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(454, 450);
-            panel3.TabIndex = 2;
             // 
             // label2
             // 
@@ -86,53 +76,25 @@
             label1.TabIndex = 2;
             label1.Text = "Witaj ! ";
             // 
-            // panel2
+            // panel3
             // 
-            panel2.BackColor = SystemColors.ButtonFace;
-            panel2.Controls.Add(button4);
-            panel2.Controls.Add(button3);
-            panel2.Controls.Add(button2);
-            panel2.Controls.Add(button1);
-            panel2.Location = new Point(12, 118);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(183, 344);
-            panel2.TabIndex = 1;
+            panel3.BackColor = SystemColors.ButtonFace;
+            panel3.Controls.Add(label3);
+            panel3.Controls.Add(pictureBox1);
+            panel3.Location = new Point(201, 12);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(454, 450);
+            panel3.TabIndex = 2;
             // 
-            // button1
+            // label3
             // 
-            button1.Location = new Point(29, 15);
-            button1.Name = "button1";
-            button1.Size = new Size(111, 42);
-            button1.TabIndex = 0;
-            button1.Text = "Panel Glowny";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(29, 79);
-            button2.Name = "button2";
-            button2.Size = new Size(111, 42);
-            button2.TabIndex = 1;
-            button2.Text = "Stworz rezerwacje";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(29, 150);
-            button3.Name = "button3";
-            button3.Size = new Size(111, 42);
-            button3.TabIndex = 2;
-            button3.Text = "Usun rezerwacje";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(29, 226);
-            button4.Name = "button4";
-            button4.Size = new Size(111, 42);
-            button4.TabIndex = 3;
-            button4.Text = "Wyloguj sie";
-            button4.UseVisualStyleBackColor = true;
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label3.Location = new Point(6, 16);
+            label3.Name = "label3";
+            label3.Size = new Size(205, 20);
+            label3.TabIndex = 5;
+            label3.Text = "Witamy w hotelu Paradise !!!";
             // 
             // pictureBox1
             // 
@@ -145,15 +107,54 @@
             pictureBox1.TabIndex = 4;
             pictureBox1.TabStop = false;
             // 
-            // label3
+            // panel2
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label3.Location = new Point(6, 16);
-            label3.Name = "label3";
-            label3.Size = new Size(205, 20);
-            label3.TabIndex = 5;
-            label3.Text = "Witamy w hotelu Paradise !!!";
+            panel2.BackColor = SystemColors.ButtonFace;
+            panel2.Controls.Add(button4);
+            panel2.Controls.Add(button3);
+            panel2.Controls.Add(button2);
+            panel2.Controls.Add(button1);
+            panel2.Location = new Point(12, 118);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(183, 344);
+            panel2.TabIndex = 1;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(29, 226);
+            button4.Name = "button4";
+            button4.Size = new Size(111, 42);
+            button4.TabIndex = 3;
+            button4.Text = "Wyloguj sie";
+            button4.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(29, 150);
+            button3.Name = "button3";
+            button3.Size = new Size(111, 42);
+            button3.TabIndex = 2;
+            button3.Text = "Usun rezerwacje";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(29, 79);
+            button2.Name = "button2";
+            button2.Size = new Size(111, 42);
+            button2.TabIndex = 1;
+            button2.Text = "Stworz rezerwacje";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(29, 15);
+            button1.Name = "button1";
+            button1.Size = new Size(111, 42);
+            button1.TabIndex = 0;
+            button1.Text = "Panel Glowny";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // Form_Klient
             // 
@@ -170,8 +171,8 @@
             panel1.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
