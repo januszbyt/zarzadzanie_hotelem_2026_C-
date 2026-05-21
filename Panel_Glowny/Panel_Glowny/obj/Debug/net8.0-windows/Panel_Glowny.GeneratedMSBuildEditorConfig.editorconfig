@@ -1,0 +1,30 @@
+is_global = true
+build_property.ApplicationManifest = 
+build_property.StartupObject = 
+build_property.ApplicationDefaultFont = 
+build_property.ApplicationHighDpiMode = 
+build_property.ApplicationUseCompatibleTextRendering = 
+build_property.ApplicationVisualStyles = 
+build_property.TargetFramework = net8.0-windows
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v8.0
+build_property.TargetPlatformMinVersion = 7.0
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EntryPointFilePath = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+<<<<<<< HEAD:Projekt/obj/Release/net8.0-windows/Projekt.GeneratedMSBuildEditorConfig.editorconfig
+build_property.RootNamespace = Projekt
+build_property.ProjectDir = C:\Users\kubao\source\repos\januszbyt\zarzadzanie_hotelem_2026_C-\Projekt\
+=======
+build_property.RootNamespace = Panel_Glowny
+build_property.ProjectDir = C:\Users\s41732\source\repos\Panel_Glowny\Panel_Glowny\
+>>>>>>> main panel:Projekt/obj/Debug/net8.0-windows/Panel_Glowny.GeneratedMSBuildEditorConfig.editorconfig
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTUseWindowsUIXamlProjections = false
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
