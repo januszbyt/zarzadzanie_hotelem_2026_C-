@@ -36,9 +36,9 @@
             label1.AutoSize = true;
             label1.Location = new Point(536, 233);
             label1.Name = "label1";
-            label1.Size = new Size(76, 15);
+            label1.Size = new Size(77, 15);
             label1.TabIndex = 0;
-            label1.Text = "klaustrofobia";
+            label1.Text = "Phasmofobia";
             label1.Click += label1_Click;
             // 
             // Form2
