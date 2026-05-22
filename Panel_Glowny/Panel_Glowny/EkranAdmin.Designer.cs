@@ -30,8 +30,8 @@ namespace Panele_Glowne
         private void InitializeComponent()
         {
             panel2 = new Panel();
-            button3 = new Button();
             button4 = new Button();
+            button3 = new Button();
             button2 = new Button();
             panel1 = new Panel();
             label3 = new Label();
@@ -63,16 +63,6 @@ namespace Panele_Glowne
             panel2.Size = new Size(183, 442);
             panel2.TabIndex = 4;
             // 
-            // button3
-            // 
-            button3.Location = new Point(552, 29);
-            button3.Name = "button3";
-            button3.Size = new Size(111, 35);
-            button3.TabIndex = 5;
-            button3.Text = "Usuń Pracownika";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
-            // 
             // button4
             // 
             button4.Location = new Point(34, 376);
@@ -82,6 +72,16 @@ namespace Panele_Glowne
             button4.Text = "Wyloguj sie";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(552, 29);
+            button3.Name = "button3";
+            button3.Size = new Size(111, 35);
+            button3.TabIndex = 5;
+            button3.Text = "Usuń Pracownika";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button2
             // 

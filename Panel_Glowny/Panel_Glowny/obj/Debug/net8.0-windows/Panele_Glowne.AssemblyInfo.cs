@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Panele_Glowne")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7713102d852e990bebf75de27e23204aff10d31f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7f173b2dfc5c06a8355f35878fcc8239b47dc482")]
 [assembly: System.Reflection.AssemblyProductAttribute("Panele_Glowne")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Panele_Glowne")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

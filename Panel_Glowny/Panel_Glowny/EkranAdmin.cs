@@ -19,10 +19,7 @@ namespace Panele_Glowne
 
         private void button4_Click(object sender, EventArgs e)
         {
-            EkranAdmin EkranAdminPowrot = new EkranAdmin();
-            EkranAdminPowrot.Show();
-
-            this.Hide();
+            Application.Exit();
         }
 
         private void button2_Click(object sender, EventArgs e)
