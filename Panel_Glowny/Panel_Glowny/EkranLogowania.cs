@@ -9,16 +9,20 @@ public partial class EkranLogowania : Form
     }
     private void button3_Click(object sender, EventArgs e)
     {
+        EkranRejestracji przejscieDoRejestracji = new EkranRejestracji();
+        przejscieDoRejestracji.Show();
 
+        this.Hide();
     }
     private void button2_Click(object sender, EventArgs e)
     {
-        this.Close();
+        Application.Exit();
     }
 
     private void button1_Click(object sender, EventArgs e)
     {
 
     }
+
 }
 

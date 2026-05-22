@@ -1,3 +1,5 @@
+using Panele_Glowne;
+
 namespace Panel_Glowny
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace Panel_Glowny
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new EkranLogowania());
         }
     }
 }
