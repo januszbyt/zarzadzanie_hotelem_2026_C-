@@ -235,7 +235,7 @@ namespace Panele_Glowne
             Controls.Add(panel1);
             Controls.Add(panel3);
             Name = "EkranAdmin";
-            Text = "Form_Admin";
+            Text = "Admin";
             panel2.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
