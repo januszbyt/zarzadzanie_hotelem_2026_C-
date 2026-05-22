@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Panel_Glowny;
 
 namespace Panele_Glowne
 {
@@ -49,7 +50,23 @@ namespace Panele_Glowne
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Form1 powrotDoOknaPracownika = new Form1();
+            powrotDoOknaPracownika.Show();
 
+            this.Hide();
+        }
+
+        private void EkranPokoje_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            OknoSzczegolowPokoju OknoSzczegolow = new OknoSzczegolowPokoju();
+            OknoSzczegolow.Show();
+
+            this.Hide();
         }
     }
 }
