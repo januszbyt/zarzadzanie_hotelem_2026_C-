@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EkranRejestracji));
             panel1 = new Panel();
-            button3 = new Button();
+            wroc_button = new Button();
             pictureBox1 = new PictureBox();
             label5 = new Label();
-            button2 = new Button();
+            rejestruj_button = new Button();
             textBox3 = new TextBox();
             label4 = new Label();
             textBox2 = new TextBox();
@@ -50,10 +50,10 @@
             // 
             panel1.BackColor = SystemColors.ButtonFace;
             panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(button3);
+            panel1.Controls.Add(wroc_button);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(label5);
-            panel1.Controls.Add(button2);
+            panel1.Controls.Add(rejestruj_button);
             panel1.Controls.Add(textBox3);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(textBox2);
@@ -62,34 +62,31 @@
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(button1);
-            panel1.Location = new Point(157, 35);
-            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Location = new Point(137, 26);
             panel1.Name = "panel1";
-            panel1.Size = new Size(517, 650);
+            panel1.Size = new Size(453, 488);
             panel1.TabIndex = 0;
             // 
-            // button3
+            // wroc_button
             // 
-            button3.BackColor = SystemColors.ControlLight;
-            button3.FlatAppearance.MouseDownBackColor = SystemColors.GradientInactiveCaption;
-            button3.FlatAppearance.MouseOverBackColor = SystemColors.GradientInactiveCaption;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Location = new Point(90, 488);
-            button3.Margin = new Padding(3, 4, 3, 4);
-            button3.Name = "button3";
-            button3.Size = new Size(112, 47);
-            button3.TabIndex = 11;
-            button3.Text = "Wróć";
-            button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
+            wroc_button.BackColor = SystemColors.ControlLight;
+            wroc_button.FlatAppearance.MouseDownBackColor = SystemColors.GradientInactiveCaption;
+            wroc_button.FlatAppearance.MouseOverBackColor = SystemColors.GradientInactiveCaption;
+            wroc_button.FlatStyle = FlatStyle.Flat;
+            wroc_button.Location = new Point(79, 366);
+            wroc_button.Name = "wroc_button";
+            wroc_button.Size = new Size(98, 35);
+            wroc_button.TabIndex = 11;
+            wroc_button.Text = "Wróć";
+            wroc_button.UseVisualStyleBackColor = false;
+            wroc_button.Click += button3_Click;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(134, 35);
-            pictureBox1.Margin = new Padding(3, 4, 3, 4);
+            pictureBox1.Location = new Point(117, 26);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(257, 249);
+            pictureBox1.Size = new Size(225, 187);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 10;
             pictureBox1.TabStop = false;
@@ -98,63 +95,62 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Sitka Small", 14.25F, FontStyle.Bold);
-            label5.Location = new Point(90, 288);
+            label5.Location = new Point(79, 216);
             label5.Name = "label5";
-            label5.Size = new Size(236, 35);
+            label5.Size = new Size(187, 28);
             label5.TabIndex = 9;
             label5.Text = "System Hotelowy";
             label5.Click += label5_Click;
             // 
-            // button2
+            // rejestruj_button
             // 
-            button2.BackColor = SystemColors.ControlLight;
-            button2.FlatAppearance.MouseDownBackColor = SystemColors.GradientInactiveCaption;
-            button2.FlatAppearance.MouseOverBackColor = SystemColors.GradientInactiveCaption;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Location = new Point(229, 488);
-            button2.Margin = new Padding(3, 4, 3, 4);
-            button2.Name = "button2";
-            button2.Size = new Size(115, 47);
-            button2.TabIndex = 8;
-            button2.Text = "Zarejestruj się";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            rejestruj_button.BackColor = SystemColors.ControlLight;
+            rejestruj_button.FlatAppearance.MouseDownBackColor = SystemColors.GradientInactiveCaption;
+            rejestruj_button.FlatAppearance.MouseOverBackColor = SystemColors.GradientInactiveCaption;
+            rejestruj_button.FlatStyle = FlatStyle.Flat;
+            rejestruj_button.Location = new Point(200, 366);
+            rejestruj_button.Name = "rejestruj_button";
+            rejestruj_button.Size = new Size(101, 35);
+            rejestruj_button.TabIndex = 8;
+            rejestruj_button.Text = "Zarejestruj się";
+            rejestruj_button.UseVisualStyleBackColor = false;
+            rejestruj_button.Click += button2_Click;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(149, 433);
-            textBox3.Margin = new Padding(3, 4, 3, 4);
+            textBox3.Location = new Point(130, 325);
             textBox3.Name = "textBox3";
             textBox3.PasswordChar = '*';
-            textBox3.Size = new Size(195, 27);
+            textBox3.Size = new Size(171, 23);
             textBox3.TabIndex = 7;
+            textBox3.TextChanged += textBox3_TextChanged;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label4.Location = new Point(15, 437);
+            label4.Location = new Point(13, 328);
             label4.Name = "label4";
-            label4.Size = new Size(139, 20);
+            label4.Size = new Size(111, 15);
             label4.TabIndex = 6;
             label4.Text = "POWTORZ HASLO:";
             label4.Click += label4_Click;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(149, 387);
-            textBox2.Margin = new Padding(3, 4, 3, 4);
+            textBox2.Location = new Point(130, 290);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(195, 27);
+            textBox2.Size = new Size(171, 23);
             textBox2.TabIndex = 5;
+            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label3.Location = new Point(88, 391);
+            label3.Location = new Point(77, 293);
             label3.Name = "label3";
-            label3.Size = new Size(62, 20);
+            label3.Size = new Size(49, 15);
             label3.TabIndex = 4;
             label3.Text = "HASLO:";
             // 
@@ -162,27 +158,27 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label2.Location = new Point(90, 345);
+            label2.Location = new Point(79, 259);
             label2.Name = "label2";
-            label2.Size = new Size(60, 20);
+            label2.Size = new Size(47, 15);
             label2.TabIndex = 3;
             label2.Text = "LOGIN:";
             label2.Click += label2_Click;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(149, 341);
-            textBox1.Margin = new Padding(3, 4, 3, 4);
+            textBox1.Location = new Point(130, 256);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(195, 27);
+            textBox1.Size = new Size(171, 23);
             textBox1.TabIndex = 2;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(57, 588);
+            label1.Location = new Point(50, 441);
             label1.Name = "label1";
-            label1.Size = new Size(50, 20);
+            label1.Size = new Size(38, 15);
             label1.TabIndex = 1;
             label1.Text = "label1";
             // 
@@ -193,10 +189,9 @@
             button1.FlatAppearance.MouseOverBackColor = SystemColors.GradientInactiveCaption;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            button1.Location = new Point(373, 579);
-            button1.Margin = new Padding(3, 4, 3, 4);
+            button1.Location = new Point(326, 434);
             button1.Name = "button1";
-            button1.Size = new Size(86, 39);
+            button1.Size = new Size(75, 29);
             button1.TabIndex = 0;
             button1.Text = "Zamknij";
             button1.UseVisualStyleBackColor = false;
@@ -204,12 +199,11 @@
             // 
             // EkranRejestracji
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(831, 757);
+            ClientSize = new Size(727, 568);
             Controls.Add(panel1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "EkranRejestracji";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "EkranRejestracji";
@@ -230,9 +224,9 @@
         private Label label4;
         private TextBox textBox2;
         private Label label3;
-        private Button button2;
+        private Button rejestruj_button;
         private Label label5;
         private PictureBox pictureBox1;
-        private Button button3;
+        private Button wroc_button;
     }
 }
