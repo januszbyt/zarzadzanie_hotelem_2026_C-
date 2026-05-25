@@ -11,3 +11,5 @@ bin/
 obj/
 *.user
 *.bin
+/.vs/slnx.sqlite
+/Panel_Glowny/Panel_Glowny/Panele_Glowne.csproj.user
