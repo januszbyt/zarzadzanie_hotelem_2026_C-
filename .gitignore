@@ -13,3 +13,6 @@ obj/
 *.bin
 /.vs/slnx.sqlite
 /Panel_Glowny/Panel_Glowny/Panele_Glowne.csproj.user
+/Panel_Glowny/.vs/ProjectEvaluation/panel_glowny.metadata.v10.bin
+/Panel_Glowny/.vs/ProjectEvaluation/panel_glowny.projects.v10.bin
+/Panel_Glowny/.vs/ProjectEvaluation/panel_glowny.strings.v10.bin

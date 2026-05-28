@@ -1,7 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
+using Panel_Glowny;
 
 namespace Panele_Glowne;
-
 
 public partial class EkranLogowania : Form
 {
@@ -9,13 +9,15 @@ public partial class EkranLogowania : Form
     {
         InitializeComponent();
     }
+
     private void button3_Click(object sender, EventArgs e)
     {
-        EkranRejestracji przejscieDoRejestracji = new EkranRejestracji();
-        przejscieDoRejestracji.Show();
+        EkranRejestracji rejestracja = new EkranRejestracji();
+        rejestracja.Show();
 
         this.Hide();
     }
+
     private void button2_Click(object sender, EventArgs e)
     {
         Application.Exit();
@@ -34,22 +36,37 @@ public partial class EkranLogowania : Form
             {
                 conn.Open();
 
-                string query = "SELECT Haslo FROM Uzytkownicy WHERE Login = @login LIMIT 1";
+                string query = "SELECT Haslo, Rola FROM Uzytkownicy WHERE Login = @login";
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@login", login);
 
-                var result = cmd.ExecuteScalar();
+                MySqlDataReader reader = cmd.ExecuteReader();
 
-                if (result != null)
+                if (reader.Read())
                 {
-                    string hasloZBazy = result.ToString();
+                    string hasloZBazy = reader["Haslo"].ToString();
+                    string rola = reader["Rola"].ToString();
 
                     if (haslo == hasloZBazy)
                     {
-                        label5.Text = "Zalogowano poprawnie";
-                        label5.ForeColor = Color.Green;
+                        if (rola == "Administrator")
+                        {
+                            Form_Admin admin = new Form_Admin();
+                            admin.Show();
+                        }
+                        else if (rola == "Recepcjonista")
+                        {
+                            Form1 recepcja = new Form1();
+                            recepcja.Show();
+                        }
+                        else if (rola == "klient")
+                        {
+                            Form_Klient klient = new Form_Klient();
+                            klient.Show();
+                        }
 
+                        this.Hide();
                     }
                     else
                     {
@@ -70,6 +87,4 @@ public partial class EkranLogowania : Form
             }
         }
     }
-
 }
-
