@@ -16,5 +16,30 @@ namespace Panele_Glowne
         {
             InitializeComponent();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            EkranAdmin ekranAdmin2 = new EkranAdmin();
+            ekranAdmin2.Show();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            EkranPokoje ekranPokoje2 = new EkranPokoje();
+            ekranPokoje2.Show();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            EkranGoscie ekranGoscie2 = new EkranGoscie();
+            ekranGoscie2.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            EkranLogowania ekranLogowania2 = new EkranLogowania();
+            ekranLogowania2.Show();
+            this.Hide();
+        }
     }
 }
