@@ -75,9 +75,8 @@ namespace Panele_Glowne
             label5.AutoSize = true;
             label5.Location = new Point(51, 575);
             label5.Name = "label5";
-            label5.Size = new Size(50, 20);
+            label5.Size = new Size(0, 20);
             label5.TabIndex = 10;
-            label5.Text = "label5";
             // 
             // label4
             // 
