@@ -45,13 +45,13 @@
             StatusWolne = new DataGridViewTextBoxColumn();
             tabPage3 = new TabPage();
             dataGridView3 = new DataGridView();
-            panel1 = new Panel();
-            label1 = new Label();
             IdPokojuZajete = new DataGridViewTextBoxColumn();
             NumerPokojuZajete = new DataGridViewTextBoxColumn();
             TypPokojuZajete = new DataGridViewTextBoxColumn();
             CenaZaNocZajete = new DataGridViewTextBoxColumn();
             StatusZajete = new DataGridViewTextBoxColumn();
+            panel1 = new Panel();
+            label1 = new Label();
             button1 = new Button();
             button2 = new Button();
             tabControl1.SuspendLayout();
@@ -74,6 +74,7 @@
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(991, 478);
             tabControl1.TabIndex = 0;
+            tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
             // 
             // tabPage1
             // 
@@ -88,6 +89,8 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { IdPokoju, NumerPokoju, TypPokoju, CenaZaNoc, Status });
             dataGridView1.Location = new Point(0, 0);
@@ -99,6 +102,7 @@
             // 
             // IdPokoju
             // 
+            IdPokoju.DataPropertyName = "IdPokoju";
             IdPokoju.HeaderText = "IdPokoju";
             IdPokoju.MinimumWidth = 6;
             IdPokoju.Name = "IdPokoju";
@@ -106,6 +110,7 @@
             // 
             // NumerPokoju
             // 
+            NumerPokoju.DataPropertyName = "NumerPokoju";
             NumerPokoju.HeaderText = "NumerPokoju";
             NumerPokoju.MinimumWidth = 6;
             NumerPokoju.Name = "NumerPokoju";
@@ -113,6 +118,7 @@
             // 
             // TypPokoju
             // 
+            TypPokoju.DataPropertyName = "TypPokoju";
             TypPokoju.HeaderText = "TypPokoju";
             TypPokoju.MinimumWidth = 6;
             TypPokoju.Name = "TypPokoju";
@@ -120,6 +126,7 @@
             // 
             // CenaZaNoc
             // 
+            CenaZaNoc.DataPropertyName = "CenaZaNoc";
             CenaZaNoc.HeaderText = "CenaZaNoc";
             CenaZaNoc.MinimumWidth = 6;
             CenaZaNoc.Name = "CenaZaNoc";
@@ -127,6 +134,7 @@
             // 
             // Status
             // 
+            Status.DataPropertyName = "Status";
             Status.HeaderText = "Status";
             Status.MinimumWidth = 6;
             Status.Name = "Status";
@@ -146,6 +154,8 @@
             // 
             // dataGridView2
             // 
+            dataGridView2.AllowUserToResizeColumns = false;
+            dataGridView2.AllowUserToResizeRows = false;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Columns.AddRange(new DataGridViewColumn[] { IdPokojuWolne, NumerPokojuWolne, TypPokojuWolne, CenaZaNocWolne, StatusWolne });
             dataGridView2.Location = new Point(1, 1);
@@ -157,6 +167,7 @@
             // 
             // IdPokojuWolne
             // 
+            IdPokojuWolne.DataPropertyName = "IdPokoju";
             IdPokojuWolne.HeaderText = "IdPokoju";
             IdPokojuWolne.MinimumWidth = 6;
             IdPokojuWolne.Name = "IdPokojuWolne";
@@ -164,6 +175,7 @@
             // 
             // NumerPokojuWolne
             // 
+            NumerPokojuWolne.DataPropertyName = "NumerPokoju";
             NumerPokojuWolne.HeaderText = "NumerPokoju";
             NumerPokojuWolne.MinimumWidth = 6;
             NumerPokojuWolne.Name = "NumerPokojuWolne";
@@ -171,6 +183,7 @@
             // 
             // TypPokojuWolne
             // 
+            TypPokojuWolne.DataPropertyName = "TypPokoju";
             TypPokojuWolne.HeaderText = "TypPokoju";
             TypPokojuWolne.MinimumWidth = 6;
             TypPokojuWolne.Name = "TypPokojuWolne";
@@ -178,6 +191,7 @@
             // 
             // CenaZaNocWolne
             // 
+            CenaZaNocWolne.DataPropertyName = "CenaZaNoc";
             CenaZaNocWolne.HeaderText = "CenaZaNoc";
             CenaZaNocWolne.MinimumWidth = 6;
             CenaZaNocWolne.Name = "CenaZaNocWolne";
@@ -185,6 +199,7 @@
             // 
             // StatusWolne
             // 
+            StatusWolne.DataPropertyName = "Status";
             StatusWolne.HeaderText = "Status";
             StatusWolne.MinimumWidth = 6;
             StatusWolne.Name = "StatusWolne";
@@ -212,6 +227,46 @@
             dataGridView3.TabIndex = 0;
             dataGridView3.CellContentClick += dataGridView3_CellContentClick;
             // 
+            // IdPokojuZajete
+            // 
+            IdPokojuZajete.DataPropertyName = "IdPokoju";
+            IdPokojuZajete.HeaderText = "IdPokoju";
+            IdPokojuZajete.MinimumWidth = 6;
+            IdPokojuZajete.Name = "IdPokojuZajete";
+            IdPokojuZajete.Width = 175;
+            // 
+            // NumerPokojuZajete
+            // 
+            NumerPokojuZajete.DataPropertyName = "NumerPokoju";
+            NumerPokojuZajete.HeaderText = "NumerPokoju";
+            NumerPokojuZajete.MinimumWidth = 6;
+            NumerPokojuZajete.Name = "NumerPokojuZajete";
+            NumerPokojuZajete.Width = 175;
+            // 
+            // TypPokojuZajete
+            // 
+            TypPokojuZajete.DataPropertyName = "TypPokoju";
+            TypPokojuZajete.HeaderText = "TypPokoju";
+            TypPokojuZajete.MinimumWidth = 6;
+            TypPokojuZajete.Name = "TypPokojuZajete";
+            TypPokojuZajete.Width = 200;
+            // 
+            // CenaZaNocZajete
+            // 
+            CenaZaNocZajete.DataPropertyName = "CenaZaNoc";
+            CenaZaNocZajete.HeaderText = "CenaZaNoc";
+            CenaZaNocZajete.MinimumWidth = 6;
+            CenaZaNocZajete.Name = "CenaZaNocZajete";
+            CenaZaNocZajete.Width = 175;
+            // 
+            // StatusZajete
+            // 
+            StatusZajete.DataPropertyName = "Status";
+            StatusZajete.HeaderText = "Status";
+            StatusZajete.MinimumWidth = 6;
+            StatusZajete.Name = "StatusZajete";
+            StatusZajete.Width = 205;
+            // 
             // panel1
             // 
             panel1.BackColor = SystemColors.ControlLightLight;
@@ -232,41 +287,6 @@
             label1.TabIndex = 0;
             label1.Text = "Ekran - Pokoje";
             label1.Click += label1_Click;
-            // 
-            // IdPokojuZajete
-            // 
-            IdPokojuZajete.HeaderText = "IdPokoju";
-            IdPokojuZajete.MinimumWidth = 6;
-            IdPokojuZajete.Name = "IdPokojuZajete";
-            IdPokojuZajete.Width = 175;
-            // 
-            // NumerPokojuZajete
-            // 
-            NumerPokojuZajete.HeaderText = "NumerPokoju";
-            NumerPokojuZajete.MinimumWidth = 6;
-            NumerPokojuZajete.Name = "NumerPokojuZajete";
-            NumerPokojuZajete.Width = 175;
-            // 
-            // TypPokojuZajete
-            // 
-            TypPokojuZajete.HeaderText = "TypPokoju";
-            TypPokojuZajete.MinimumWidth = 6;
-            TypPokojuZajete.Name = "TypPokojuZajete";
-            TypPokojuZajete.Width = 200;
-            // 
-            // CenaZaNocZajete
-            // 
-            CenaZaNocZajete.HeaderText = "CenaZaNoc";
-            CenaZaNocZajete.MinimumWidth = 6;
-            CenaZaNocZajete.Name = "CenaZaNocZajete";
-            CenaZaNocZajete.Width = 175;
-            // 
-            // StatusZajete
-            // 
-            StatusZajete.HeaderText = "Status";
-            StatusZajete.MinimumWidth = 6;
-            StatusZajete.Name = "StatusZajete";
-            StatusZajete.Width = 205;
             // 
             // button1
             // 
@@ -322,24 +342,24 @@
         private Panel panel1;
         private Label label1;
         private DataGridView dataGridView1;
+        private DataGridView dataGridView2;
+        private DataGridView dataGridView3;
+        private Button button1;
+        private Button button2;
         private DataGridViewTextBoxColumn IdPokoju;
         private DataGridViewTextBoxColumn NumerPokoju;
         private DataGridViewTextBoxColumn TypPokoju;
         private DataGridViewTextBoxColumn CenaZaNoc;
         private DataGridViewTextBoxColumn Status;
-        private DataGridView dataGridView2;
         private DataGridViewTextBoxColumn IdPokojuWolne;
         private DataGridViewTextBoxColumn NumerPokojuWolne;
         private DataGridViewTextBoxColumn TypPokojuWolne;
         private DataGridViewTextBoxColumn CenaZaNocWolne;
         private DataGridViewTextBoxColumn StatusWolne;
-        private DataGridView dataGridView3;
         private DataGridViewTextBoxColumn IdPokojuZajete;
         private DataGridViewTextBoxColumn NumerPokojuZajete;
         private DataGridViewTextBoxColumn TypPokojuZajete;
         private DataGridViewTextBoxColumn CenaZaNocZajete;
         private DataGridViewTextBoxColumn StatusZajete;
-        private Button button1;
-        private Button button2;
     }
 }
