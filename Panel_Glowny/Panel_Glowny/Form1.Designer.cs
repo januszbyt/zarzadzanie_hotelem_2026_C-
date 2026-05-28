@@ -68,7 +68,6 @@
             label2.Size = new Size(52, 21);
             label2.TabIndex = 0;
             label2.Text = "label2";
-            //label2.Click += label2_Click;
             // 
             // label1
             // 
@@ -79,7 +78,6 @@
             label1.Size = new Size(74, 25);
             label1.TabIndex = 0;
             label1.Text = "Witaj ! ";
-            //label1.Click += this.label1_Click;
             // 
             // panel2
             // 
@@ -94,7 +92,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(189, 390);
             panel2.TabIndex = 1;
-            //panel2.Paint += this.panel2_Paint;
             // 
             // button6
             // 
@@ -104,7 +101,6 @@
             button6.TabIndex = 5;
             button6.Text = "Wyloguj sie";
             button6.UseVisualStyleBackColor = true;
-            //button6.Click += this.button6_Click;
             // 
             // button5
             // 
@@ -114,7 +110,6 @@
             button5.TabIndex = 4;
             button5.Text = "Nowa Rezerwacja";
             button5.UseVisualStyleBackColor = true;
-            //button5.Click += this.button5_Click;
             // 
             // button4
             // 
@@ -124,7 +119,7 @@
             button4.TabIndex = 3;
             button4.Text = "Goscie";
             button4.UseVisualStyleBackColor = true;
-            //button4.Click += this.button4_Click;
+            button4.Click += button4_Click;
             // 
             // button3
             // 
@@ -134,7 +129,6 @@
             button3.TabIndex = 2;
             button3.Text = "Rezerwacje";
             button3.UseVisualStyleBackColor = true;
-            //button3.Click += this.button3_Click;
             // 
             // button2
             // 
@@ -144,7 +138,6 @@
             button2.TabIndex = 1;
             button2.Text = "Pokoje";
             button2.UseVisualStyleBackColor = true;
-            //button2.Click += this.button2_Click;
             // 
             // button1
             // 
@@ -154,7 +147,6 @@
             button1.TabIndex = 0;
             button1.Text = "Panel Glowny";
             button1.UseVisualStyleBackColor = true;
-            //button1.Click += this.button1_Click;
             // 
             // panel3
             // 
@@ -166,7 +158,6 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(569, 496);
             panel3.TabIndex = 2;
-            //panel3.Paint += this.panel3_Paint;
             // 
             // pictureBox1
             // 
@@ -178,7 +169,6 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
-            //pictureBox1.Click += this.pictureBox1_Click;
             // 
             // label3
             // 
