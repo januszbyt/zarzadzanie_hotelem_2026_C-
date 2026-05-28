@@ -39,11 +39,21 @@
             button4 = new Button();
             button3 = new Button();
             button2 = new Button();
-            button1 = new Button();
+            dataGridView1 = new DataGridView();
+            IdRezerwacji = new DataGridViewTextBoxColumn();
+            IdKlienta = new DataGridViewTextBoxColumn();
+            IdPokoju = new DataGridViewTextBoxColumn();
+            DataPrzyjazdu = new DataGridViewTextBoxColumn();
+            DataWyjazdu = new DataGridViewTextBoxColumn();
+            LiczbaNocy = new DataGridViewTextBoxColumn();
+            KwotaLaczna = new DataGridViewTextBoxColumn();
+            StatusRezerwacji = new DataGridViewTextBoxColumn();
+            Uwagi = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -79,18 +89,19 @@
             // panel3
             // 
             panel3.BackColor = SystemColors.ButtonFace;
+            panel3.Controls.Add(dataGridView1);
             panel3.Controls.Add(label3);
             panel3.Controls.Add(pictureBox1);
             panel3.Location = new Point(201, 12);
             panel3.Name = "panel3";
-            panel3.Size = new Size(454, 450);
+            panel3.Size = new Size(1004, 450);
             panel3.TabIndex = 2;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label3.Location = new Point(6, 16);
+            label3.Location = new Point(379, 21);
             label3.Name = "label3";
             label3.Size = new Size(205, 20);
             label3.TabIndex = 5;
@@ -100,9 +111,9 @@
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.ImageLocation = "";
-            pictureBox1.Location = new Point(217, 3);
+            pictureBox1.Location = new Point(789, 16);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(234, 431);
+            pictureBox1.Size = new Size(173, 99);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 4;
             pictureBox1.TabStop = false;
@@ -113,7 +124,6 @@
             panel2.Controls.Add(button4);
             panel2.Controls.Add(button3);
             panel2.Controls.Add(button2);
-            panel2.Controls.Add(button1);
             panel2.Location = new Point(12, 118);
             panel2.Name = "panel2";
             panel2.Size = new Size(183, 344);
@@ -127,19 +137,21 @@
             button4.TabIndex = 3;
             button4.Text = "Wyloguj sie";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // button3
             // 
-            button3.Location = new Point(29, 150);
+            button3.Location = new Point(29, 78);
             button3.Name = "button3";
             button3.Size = new Size(111, 42);
             button3.TabIndex = 2;
-            button3.Text = "Usun rezerwacje";
+            button3.Text = "Edytuj rezerwacje";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button2
             // 
-            button2.Location = new Point(29, 79);
+            button2.Location = new Point(29, 21);
             button2.Name = "button2";
             button2.Size = new Size(111, 42);
             button2.TabIndex = 1;
@@ -147,22 +159,67 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
-            // button1
+            // dataGridView1
             // 
-            button1.Location = new Point(29, 15);
-            button1.Name = "button1";
-            button1.Size = new Size(111, 42);
-            button1.TabIndex = 0;
-            button1.Text = "Panel Glowny";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { IdRezerwacji, IdKlienta, IdPokoju, DataPrzyjazdu, DataWyjazdu, LiczbaNocy, KwotaLaczna, StatusRezerwacji, Uwagi });
+            dataGridView1.Location = new Point(24, 137);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(948, 292);
+            dataGridView1.TabIndex = 6;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // IdRezerwacji
+            // 
+            IdRezerwacji.HeaderText = "Id_Rezerwacji";
+            IdRezerwacji.Name = "IdRezerwacji";
+            // 
+            // IdKlienta
+            // 
+            IdKlienta.HeaderText = "Id_Klienta";
+            IdKlienta.Name = "IdKlienta";
+            // 
+            // IdPokoju
+            // 
+            IdPokoju.HeaderText = "NrPokoju";
+            IdPokoju.Name = "IdPokoju";
+            // 
+            // DataPrzyjazdu
+            // 
+            DataPrzyjazdu.HeaderText = "DataPrzyjazdu";
+            DataPrzyjazdu.Name = "DataPrzyjazdu";
+            // 
+            // DataWyjazdu
+            // 
+            DataWyjazdu.HeaderText = "DataWyjazdu";
+            DataWyjazdu.Name = "DataWyjazdu";
+            // 
+            // LiczbaNocy
+            // 
+            LiczbaNocy.HeaderText = "CzasPobytu";
+            LiczbaNocy.Name = "LiczbaNocy";
+            // 
+            // KwotaLaczna
+            // 
+            KwotaLaczna.HeaderText = "KwotaCalosciowa";
+            KwotaLaczna.Name = "KwotaLaczna";
+            // 
+            // StatusRezerwacji
+            // 
+            StatusRezerwacji.HeaderText = "StatusRezerwacji";
+            StatusRezerwacji.Name = "StatusRezerwacji";
+            // 
+            // Uwagi
+            // 
+            Uwagi.HeaderText = "Uwagi";
+            Uwagi.Name = "Uwagi";
             // 
             // Form_Klient
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(800, 474);
+            ClientSize = new Size(1376, 461);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -174,6 +231,7 @@
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -187,8 +245,17 @@
         private Button button4;
         private Button button3;
         private Button button2;
-        private Button button1;
         private PictureBox pictureBox1;
         private Label label3;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn IdRezerwacji;
+        private DataGridViewTextBoxColumn IdKlienta;
+        private DataGridViewTextBoxColumn IdPokoju;
+        private DataGridViewTextBoxColumn DataPrzyjazdu;
+        private DataGridViewTextBoxColumn DataWyjazdu;
+        private DataGridViewTextBoxColumn LiczbaNocy;
+        private DataGridViewTextBoxColumn KwotaLaczna;
+        private DataGridViewTextBoxColumn StatusRezerwacji;
+        private DataGridViewTextBoxColumn Uwagi;
     }
 }
