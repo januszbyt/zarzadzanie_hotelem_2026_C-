@@ -30,6 +30,10 @@
         {
             label1 = new Label();
             panel1 = new Panel();
+            button6 = new Button();
+            button5 = new Button();
+            button4 = new Button();
+            button3 = new Button();
             button2 = new Button();
             panel2 = new Panel();
             dataGridView1 = new DataGridView();
@@ -51,6 +55,7 @@
             label3 = new Label();
             textBox1 = new TextBox();
             label2 = new Label();
+            button7 = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -74,6 +79,11 @@
             // 
             panel1.BackColor = SystemColors.ButtonFace;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(button7);
+            panel1.Controls.Add(button6);
+            panel1.Controls.Add(button5);
+            panel1.Controls.Add(button4);
+            panel1.Controls.Add(button3);
             panel1.Controls.Add(button2);
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(button1);
@@ -93,9 +103,49 @@
             panel1.Size = new Size(1118, 529);
             panel1.TabIndex = 1;
             // 
+            // button6
+            // 
+            button6.Location = new Point(983, 230);
+            button6.Name = "button6";
+            button6.Size = new Size(85, 43);
+            button6.TabIndex = 17;
+            button6.Text = "Edytuj";
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(1009, 472);
+            button5.Name = "button5";
+            button5.Size = new Size(85, 47);
+            button5.TabIndex = 16;
+            button5.Text = "Powrot";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(983, 177);
+            button4.Name = "button4";
+            button4.Size = new Size(85, 47);
+            button4.TabIndex = 15;
+            button4.Text = "Anuluj";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(983, 124);
+            button3.Name = "button3";
+            button3.Size = new Size(85, 47);
+            button3.TabIndex = 14;
+            button3.Text = "Usun";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
             // button2
             // 
-            button2.Location = new Point(869, 484);
+            button2.Location = new Point(87, 484);
             button2.Name = "button2";
             button2.Size = new Size(167, 23);
             button2.TabIndex = 13;
@@ -109,7 +159,7 @@
             panel2.Controls.Add(dataGridView1);
             panel2.Location = new Point(87, 71);
             panel2.Name = "panel2";
-            panel2.Size = new Size(949, 407);
+            panel2.Size = new Size(845, 407);
             panel2.TabIndex = 12;
             panel2.Paint += panel2_Paint;
             // 
@@ -122,7 +172,7 @@
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Id, Imie, Nazwisko, NrTelefonu, Email, Liczba_rezerwacji });
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(949, 407);
+            dataGridView1.Size = new Size(845, 407);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -130,7 +180,7 @@
             // 
             Id.HeaderText = "Id";
             Id.Name = "Id";
-            Id.Width = 150;
+            Id.Width = 50;
             // 
             // Imie
             // 
@@ -164,12 +214,13 @@
             // 
             // button1
             // 
-            button1.Location = new Point(1020, 32);
+            button1.Location = new Point(983, 71);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
+            button1.Size = new Size(85, 47);
             button1.TabIndex = 11;
             button1.Text = "Dodaj";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // textBox5
             // 
@@ -267,6 +318,16 @@
             label2.TabIndex = 0;
             label2.Text = "Dodaj gościa:";
             // 
+            // button7
+            // 
+            button7.Location = new Point(1009, 18);
+            button7.Name = "button7";
+            button7.Size = new Size(85, 47);
+            button7.TabIndex = 18;
+            button7.Text = "Zatwierdz";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
             // EkranGoscie
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -306,11 +367,16 @@
         private Label label7;
         private DataGridView dataGridView1;
         private Button button2;
+        private Button button6;
+        private Button button5;
+        private Button button4;
+        private Button button3;
         private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn Imie;
         private DataGridViewTextBoxColumn Nazwisko;
         private DataGridViewTextBoxColumn NrTelefonu;
         private DataGridViewTextBoxColumn Email;
         private DataGridViewTextBoxColumn Liczba_rezerwacji;
+        private Button button7;
     }
 }
