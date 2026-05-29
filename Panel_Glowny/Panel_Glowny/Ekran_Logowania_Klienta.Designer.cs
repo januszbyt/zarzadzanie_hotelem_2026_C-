@@ -45,14 +45,17 @@ namespace Panele_Glowne
             textBox1 = new TextBox();
             pictureBox1 = new PictureBox();
             label1 = new Label();
+            pictureBox2 = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.ButtonFace;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(button3);
@@ -193,7 +196,17 @@ namespace Panele_Glowne
             label1.TabIndex = 0;
             label1.Text = "System Hotelowy";
             // 
-            // EkranLogowania
+            // pictureBox2
+            // 
+            pictureBox2.Location = new Point(310, 427);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(27, 27);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 11;
+            pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
+            // 
+            // Ekran_Logowania_Klienta
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -201,12 +214,13 @@ namespace Panele_Glowne
             ClientSize = new Size(858, 773);
             Controls.Add(panel1);
             Margin = new Padding(3, 4, 3, 4);
-            Name = "EkranLogowania";
+            Name = "Ekran_Logowania_Klienta";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
 
@@ -224,5 +238,6 @@ namespace Panele_Glowne
         private Label label3;
         private Label label4;
         private Label label5;
+        private PictureBox pictureBox2;
     }
 }
