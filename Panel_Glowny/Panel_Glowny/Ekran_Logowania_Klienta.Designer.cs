@@ -34,6 +34,8 @@ namespace Panele_Glowne
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ekran_Logowania_Klienta));
             panel1 = new Panel();
+            linkLabel1 = new LinkLabel();
+            pictureBox2 = new PictureBox();
             label5 = new Label();
             label4 = new Label();
             button3 = new Button();
@@ -45,16 +47,16 @@ namespace Panele_Glowne
             textBox1 = new TextBox();
             pictureBox1 = new PictureBox();
             label1 = new Label();
-            pictureBox2 = new PictureBox();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.ButtonFace;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(linkLabel1);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label4);
@@ -72,6 +74,32 @@ namespace Panele_Glowne
             panel1.Name = "panel1";
             panel1.Size = new Size(453, 639);
             panel1.TabIndex = 0;
+            // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Cursor = Cursors.Hand;
+            linkLabel1.LinkColor = SystemColors.ControlDarkDark;
+            linkLabel1.Location = new Point(51, 530);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(140, 20);
+            linkLabel1.TabIndex = 12;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Zapomniałem hasła";
+            linkLabel1.VisitedLinkColor = SystemColors.ControlDarkDark;
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            linkLabel1.MouseEnter += linkForgotPassword_MouseEnter;
+            linkLabel1.MouseLeave += linkForgotPassword_MouseLeave;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Location = new Point(310, 427);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(27, 27);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 11;
+            pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // label5
             // 
@@ -196,16 +224,6 @@ namespace Panele_Glowne
             label1.TabIndex = 0;
             label1.Text = "System Hotelowy";
             // 
-            // pictureBox2
-            // 
-            pictureBox2.Location = new Point(310, 427);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(27, 27);
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox2.TabIndex = 11;
-            pictureBox2.TabStop = false;
-            pictureBox2.Click += pictureBox2_Click;
-            // 
             // Ekran_Logowania_Klienta
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -219,8 +237,8 @@ namespace Panele_Glowne
             Text = "Form1";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -239,5 +257,6 @@ namespace Panele_Glowne
         private Label label4;
         private Label label5;
         private PictureBox pictureBox2;
+        private LinkLabel linkLabel1;
     }
 }

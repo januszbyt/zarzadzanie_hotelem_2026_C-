@@ -109,4 +109,22 @@ public partial class Ekran_Logowania_Klienta : Form
             pokazHaslo = false;
         }
     }
+
+    private void linkForgotPassword_MouseEnter(object sender, EventArgs e)
+    {
+        linkLabel1.LinkColor = Color.CornflowerBlue;
+    }
+
+    private void linkForgotPassword_MouseLeave(object sender, EventArgs e)
+    {
+        linkLabel1.LinkColor = SystemColors.ControlDarkDark;
+    }
+
+    private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+        Ekran_Zapomnialem_Hasla zapomnialem = new Ekran_Zapomnialem_Hasla();
+        zapomnialem.Show();
+
+        this.Hide();
+    }
 }
