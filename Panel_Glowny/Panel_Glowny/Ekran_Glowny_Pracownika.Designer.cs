@@ -34,7 +34,6 @@
             label1 = new Label();
             panel2 = new Panel();
             button6 = new Button();
-            button5 = new Button();
             button4 = new Button();
             button3 = new Button();
             button2 = new Button();
@@ -82,7 +81,6 @@
             // 
             panel2.BackColor = SystemColors.ButtonFace;
             panel2.Controls.Add(button6);
-            panel2.Controls.Add(button5);
             panel2.Controls.Add(button4);
             panel2.Controls.Add(button3);
             panel2.Controls.Add(button2);
@@ -101,21 +99,11 @@
             button6.UseVisualStyleBackColor = true;
             button6.Click += button6_Click;
             // 
-            // button5
-            // 
-            button5.Location = new Point(12, 223);
-            button5.Name = "button5";
-            button5.Size = new Size(160, 54);
-            button5.TabIndex = 4;
-            button5.Text = "Nowa Rezerwacja";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += button5_Click;
-            // 
             // button4
             // 
-            button4.Location = new Point(12, 152);
+            button4.Location = new Point(12, 201);
             button4.Name = "button4";
-            button4.Size = new Size(160, 54);
+            button4.Size = new Size(160, 75);
             button4.TabIndex = 3;
             button4.Text = "Goscie";
             button4.UseVisualStyleBackColor = true;
@@ -123,9 +111,9 @@
             // 
             // button3
             // 
-            button3.Location = new Point(12, 80);
+            button3.Location = new Point(12, 108);
             button3.Name = "button3";
-            button3.Size = new Size(160, 54);
+            button3.Size = new Size(160, 75);
             button3.TabIndex = 2;
             button3.Text = "Rezerwacje";
             button3.UseVisualStyleBackColor = true;
@@ -133,9 +121,9 @@
             // 
             // button2
             // 
-            button2.Location = new Point(12, 13);
+            button2.Location = new Point(12, 18);
             button2.Name = "button2";
-            button2.Size = new Size(160, 54);
+            button2.Size = new Size(160, 75);
             button2.TabIndex = 1;
             button2.Text = "Pokoje";
             button2.UseVisualStyleBackColor = true;

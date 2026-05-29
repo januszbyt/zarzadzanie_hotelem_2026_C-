@@ -19,7 +19,6 @@ namespace Panel_Glowny
         {
             Lista_Wszystkich_Pokojow pokoje = new Lista_Wszystkich_Pokojow();
             pokoje.Show();
-            this.Hide();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -38,6 +37,7 @@ namespace Panel_Glowny
         {
             Ekran_Logowania_Klienta wyloguj = new Ekran_Logowania_Klienta();
             wyloguj.Show();
+            this.Hide();
         }
 
 
