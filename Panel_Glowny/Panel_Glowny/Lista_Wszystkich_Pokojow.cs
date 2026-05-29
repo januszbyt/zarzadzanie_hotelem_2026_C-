@@ -45,17 +45,17 @@ namespace Panele_Glowne
 
             if (wybranyIndeks == 0)
             {
-                query = "SELECT IdPokoju, NumerPokoju, TypPokoju, CenaZaNoc, Status FROM Pokoje";
+                query = "SELECT IdPokoju, NumerPokoju, TypPokoju, CenaZaNoc, IloscOsob FROM Pokoje";
                 LadujDaneZHotelu(query, dataGridView1);
             }
             else if (wybranyIndeks == 1)
             {
-                query = "SELECT IdPokoju, NumerPokoju, TypPokoju, CenaZaNoc, Status FROM Pokoje WHERE Status = 'Wolny'";
+                query = "SELECT IdPokoju, NumerPokoju, TypPokoju, CenaZaNoc, IloscOsob FROM Pokoje WHERE IloscOsob = 2";
                 LadujDaneZHotelu(query, dataGridView2);
             }
             else if (wybranyIndeks == 2)
             {
-                query = "SELECT IdPokoju, NumerPokoju, TypPokoju, CenaZaNoc, Status FROM Pokoje WHERE Status = 'Zajety'";
+                query = "SELECT IdPokoju, NumerPokoju, TypPokoju, CenaZaNoc, IloscOsob FROM Pokoje WHERE IloscOsob = 4";
                 LadujDaneZHotelu(query, dataGridView3);
             }
         }
