@@ -5,9 +5,15 @@ namespace Panele_Glowne;
 
 public partial class Ekran_Logowania_Klienta : Form
 {
+    bool pokazHaslo = false;
+
     public Ekran_Logowania_Klienta()
     {
         InitializeComponent();
+        this.AcceptButton = button1;
+        textBox2.PasswordChar = '*';
+        pictureBox2.Image = Image.FromFile("Zdjecia/okowidac.png");
+
     }
 
     private void button3_Click(object sender, EventArgs e)
@@ -85,6 +91,22 @@ public partial class Ekran_Logowania_Klienta : Form
                 label5.Text = "Błąd połączenia z bazą";
                 MessageBox.Show(ex.Message);
             }
+        }
+    }
+
+    private void pictureBox2_Click(object sender, EventArgs e)
+    {
+        if (!pokazHaslo)
+        {
+            textBox2.PasswordChar = '\0';
+            pictureBox2.Image = Image.FromFile("Zdjecia/okoniewidac.png");
+            pokazHaslo = true;
+        }
+        else
+        {
+            textBox2.PasswordChar = '*';
+            pictureBox2.Image = Image.FromFile("Zdjecia/okowidac.png");
+            pokazHaslo = false;
         }
     }
 }
