@@ -201,7 +201,6 @@ namespace Panele_Glowne
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(700, 245);
             dataGridView1.TabIndex = 0;
-            //dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // Id_pracownika
             // 

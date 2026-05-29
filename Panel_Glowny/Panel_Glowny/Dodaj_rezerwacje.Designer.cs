@@ -42,13 +42,16 @@
             textBox2 = new TextBox();
             textBox3 = new TextBox();
             textBox6 = new TextBox();
-            textBox7 = new TextBox();
             textBox8 = new TextBox();
             textBox9 = new TextBox();
-            dateTimePicker1 = new DateTimePicker();
-            dateTimePicker2 = new DateTimePicker();
+            przyjazd = new DateTimePicker();
+            odjazd = new DateTimePicker();
             dodaj = new Button();
             powrot = new Button();
+            label10 = new Label();
+            Standard = new RadioButton();
+            Deluxe = new RadioButton();
+            comboBox1 = new ComboBox();
             SuspendLayout();
             // 
             // label
@@ -146,68 +149,63 @@
             // 
             textBox1.Location = new Point(147, 93);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
+            textBox1.Size = new Size(121, 23);
             textBox1.TabIndex = 10;
             // 
             // textBox2
             // 
             textBox2.Location = new Point(147, 122);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 23);
+            textBox2.Size = new Size(121, 23);
             textBox2.TabIndex = 11;
             // 
             // textBox3
             // 
             textBox3.Location = new Point(147, 151);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(100, 23);
+            textBox3.Size = new Size(121, 23);
             textBox3.TabIndex = 12;
             // 
             // textBox6
             // 
             textBox6.Location = new Point(147, 238);
             textBox6.Name = "textBox6";
-            textBox6.Size = new Size(100, 23);
+            textBox6.ReadOnly = true;
+            textBox6.Size = new Size(121, 23);
             textBox6.TabIndex = 15;
-            // 
-            // textBox7
-            // 
-            textBox7.Location = new Point(147, 264);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(100, 23);
-            textBox7.TabIndex = 16;
             // 
             // textBox8
             // 
             textBox8.Location = new Point(147, 290);
             textBox8.Name = "textBox8";
-            textBox8.Size = new Size(100, 23);
+            textBox8.Size = new Size(121, 23);
             textBox8.TabIndex = 17;
             // 
             // textBox9
             // 
             textBox9.Location = new Point(147, 319);
             textBox9.Name = "textBox9";
-            textBox9.Size = new Size(100, 23);
+            textBox9.Size = new Size(121, 23);
             textBox9.TabIndex = 18;
             // 
-            // dateTimePicker1
+            // przyjazd
             // 
-            dateTimePicker1.Location = new Point(147, 180);
-            dateTimePicker1.MaxDate = new DateTime(2026, 5, 20, 0, 0, 0, 0);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(200, 23);
-            dateTimePicker1.TabIndex = 19;
-            dateTimePicker1.Value = new DateTime(2026, 5, 20, 0, 0, 0, 0);
+            przyjazd.Location = new Point(147, 180);
+            przyjazd.Name = "przyjazd";
+            przyjazd.Size = new Size(200, 23);
+            przyjazd.TabIndex = 19;
+            przyjazd.MinDate = DateTime.Today.AddDays(0);
+            przyjazd.Value = DateTime.Today.AddDays(0);
             // 
-            // dateTimePicker2
+            // odjazd
             // 
-            dateTimePicker2.CustomFormat = "";
-            dateTimePicker2.Enabled = false;
-            dateTimePicker2.Location = new Point(147, 209);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(200, 23);
-            dateTimePicker2.TabIndex = 20;
+            odjazd.CustomFormat = "";
+            odjazd.Location = new Point(147, 209);
+            odjazd.Name = "odjazd";
+            odjazd.Size = new Size(200, 23);
+            odjazd.TabIndex = 20;
+            odjazd.MinDate = DateTime.Today.AddDays(1);
+            odjazd.Value = DateTime.Today.AddDays(1);
             // 
             // dodaj
             // 
@@ -228,18 +226,59 @@
             powrot.UseVisualStyleBackColor = true;
             powrot.Click += button2_Click;
             // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(46, 351);
+            label10.Name = "label10";
+            label10.Size = new Size(65, 15);
+            label10.TabIndex = 23;
+            label10.Text = "Typ pokoju";
+            // 
+            // Standard
+            // 
+            Standard.AutoSize = true;
+            Standard.Location = new Point(147, 349);
+            Standard.Name = "Standard";
+            Standard.Size = new Size(72, 19);
+            Standard.TabIndex = 25;
+            Standard.Text = "Standard";
+            Standard.UseVisualStyleBackColor = true;
+            // 
+            // Deluxe
+            // 
+            Deluxe.AutoSize = true;
+            Deluxe.Location = new Point(234, 349);
+            Deluxe.Name = "Deluxe";
+            Deluxe.Size = new Size(61, 19);
+            Deluxe.TabIndex = 26;
+            Deluxe.Text = "Deluxe";
+            Deluxe.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "1", "2", "3", "4", "5" });
+            comboBox1.Location = new Point(147, 264);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(121, 23);
+            comboBox1.TabIndex = 27;
+            // 
             // Dodaj_rezerwacje
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(comboBox1);
+            Controls.Add(Deluxe);
+            Controls.Add(Standard);
+            Controls.Add(label10);
             Controls.Add(powrot);
             Controls.Add(dodaj);
-            Controls.Add(dateTimePicker2);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(odjazd);
+            Controls.Add(przyjazd);
             Controls.Add(textBox9);
             Controls.Add(textBox8);
-            Controls.Add(textBox7);
             Controls.Add(textBox6);
             Controls.Add(textBox3);
             Controls.Add(textBox2);
@@ -276,12 +315,15 @@
         private TextBox textBox2;
         private TextBox textBox3;
         private TextBox textBox6;
-        private TextBox textBox7;
         private TextBox textBox8;
         private TextBox textBox9;
-        private DateTimePicker dateTimePicker1;
-        private DateTimePicker dateTimePicker2;
+        private DateTimePicker przyjazd;
+        private DateTimePicker odjazd;
         private Button dodaj;
         private Button powrot;
+        private Label label10;
+        private RadioButton Standard;
+        private RadioButton Deluxe;
+        private ComboBox comboBox1;
     }
 }

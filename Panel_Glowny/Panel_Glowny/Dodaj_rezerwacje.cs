@@ -23,5 +23,12 @@ namespace Panele_Glowne
             powrot.Show();
             this.Hide();
         }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }
