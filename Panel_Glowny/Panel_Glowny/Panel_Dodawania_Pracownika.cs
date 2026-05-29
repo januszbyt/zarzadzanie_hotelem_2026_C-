@@ -102,8 +102,6 @@ namespace Panele_Glowne
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            Form_Admin formAdmin = new Form_Admin();
-            formAdmin.Show();
             this.Hide();
         }
 
@@ -112,9 +110,9 @@ namespace Panele_Glowne
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e) { }
         private void textBox2_TextChanged(object sender, EventArgs e) { }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+        //private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //{
 
-        }
+       // }
     }
 }

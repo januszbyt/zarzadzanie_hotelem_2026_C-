@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Panele_Glowne
 {
-    public partial class Rezerwacje : Form
+    public partial class Okno_Rezerwacji_Obslugiwane_Przez_Pracownika : Form
     {
-        public Rezerwacje()
+        public Okno_Rezerwacji_Obslugiwane_Przez_Pracownika()
         {
             InitializeComponent();
         }

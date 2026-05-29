@@ -1,6 +1,6 @@
 ﻿namespace Panele_Glowne
 {
-    partial class OknoSzczegolowPokoju
+    partial class Okno_Szczegolowych_Informacji_Pokoju
     {
         /// <summary>
         /// Required designer variable.

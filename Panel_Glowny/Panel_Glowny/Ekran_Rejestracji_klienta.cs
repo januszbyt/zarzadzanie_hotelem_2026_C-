@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Panele_Glowne
 {
-    public partial class EkranRejestracji : Form
+    public partial class Ekran_Rejestracji_klienta : Form
     {
-        public EkranRejestracji()
+        public Ekran_Rejestracji_klienta()
         {
             InitializeComponent();
         }
@@ -29,7 +29,7 @@ namespace Panele_Glowne
 
         private void button3_Click(object sender, EventArgs e)
         {
-            EkranLogowania powrotDoLogowania = new EkranLogowania();
+            Ekran_Logowania_Klienta powrotDoLogowania = new Ekran_Logowania_Klienta();
             powrotDoLogowania.Show();
 
             this.Hide();

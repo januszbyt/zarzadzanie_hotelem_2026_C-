@@ -1,6 +1,6 @@
 ﻿namespace Panele_Glowne
 {
-    partial class EkranRejestracji
+    partial class Ekran_Rejestracji_klienta
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EkranRejestracji));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ekran_Rejestracji_klienta));
             panel1 = new Panel();
             button3 = new Button();
             pictureBox1 = new PictureBox();

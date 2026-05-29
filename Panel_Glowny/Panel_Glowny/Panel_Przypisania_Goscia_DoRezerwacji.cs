@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace Panele_Glowne
 {
-    public partial class EkranGoscie : Form
+    public partial class Panel_Przypisania_Goscia_DoRezerwacji : Form
     {
         private DataGridViewRow? _edytowanyWiersz = null;
-        public EkranGoscie()
+        public Panel_Przypisania_Goscia_DoRezerwacji()
         {
             InitializeComponent();
             button7.Location = button1.Location; // Ustawia "Zatwierdź" dokładnie w miejscu "Dodaj"
@@ -48,7 +48,7 @@ namespace Panele_Glowne
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            HistoriaGoscia HistoriaGoscia2 = new HistoriaGoscia();
+            Panel_Informacji_Histori_Pobytu HistoriaGoscia2 = new Panel_Informacji_Histori_Pobytu();
             HistoriaGoscia2.Show();
 
             this.Hide();

@@ -12,16 +12,16 @@ using Panel_Glowny;
 
 namespace Panele_Glowne
 {
-    public partial class OknoSzczegolowPokoju : Form
+    public partial class Okno_Szczegolowych_Informacji_Pokoju : Form
     {
         private HotelContext db = new HotelContext();
         private int idPokoju2;
 
-        public OknoSzczegolowPokoju()
+        public Okno_Szczegolowych_Informacji_Pokoju()
         {
             InitializeComponent();
         }
-        public OknoSzczegolowPokoju(int idPokoju)
+        public Okno_Szczegolowych_Informacji_Pokoju(int idPokoju)
         {
             InitializeComponent();
             this.idPokoju2 = idPokoju;
@@ -59,7 +59,7 @@ namespace Panele_Glowne
 
         private void button1_Click(object sender, EventArgs e)
         {
-            EkranPokoje powrotDoEkranuPokoje = new EkranPokoje();
+            Lista_Wszystkich_Pokojow powrotDoEkranuPokoje = new Lista_Wszystkich_Pokojow();
             powrotDoEkranuPokoje.Show();
 
             this.Hide();

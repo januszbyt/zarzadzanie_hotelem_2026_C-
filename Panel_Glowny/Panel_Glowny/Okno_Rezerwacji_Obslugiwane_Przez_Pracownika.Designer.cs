@@ -1,6 +1,6 @@
 ﻿namespace Panele_Glowne
 {
-    partial class Rezerwacje
+    partial class Okno_Rezerwacji_Obslugiwane_Przez_Pracownika
     {
         /// <summary>
         /// Required designer variable.

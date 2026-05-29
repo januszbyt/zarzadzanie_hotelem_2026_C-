@@ -3,16 +3,16 @@ using Panel_Glowny;
 
 namespace Panele_Glowne;
 
-public partial class EkranLogowania : Form
+public partial class Ekran_Logowania_Klienta : Form
 {
-    public EkranLogowania()
+    public Ekran_Logowania_Klienta()
     {
         InitializeComponent();
     }
 
     private void button3_Click(object sender, EventArgs e)
     {
-        EkranRejestracji rejestracja = new EkranRejestracji();
+        Ekran_Rejestracji_klienta rejestracja = new Ekran_Rejestracji_klienta();
         rejestracja.Show();
 
         this.Hide();
@@ -57,12 +57,12 @@ public partial class EkranLogowania : Form
                         }
                         else if (rola == "Recepcjonista")
                         {
-                            Form1 recepcja = new Form1();
+                            Ekran_Glowny_Pracownika recepcja = new Ekran_Glowny_Pracownika();
                             recepcja.Show();
                         }
                         else if (rola == "klient")
                         {
-                            Form_Klient klient = new Form_Klient();
+                            Panel_Glowny_Klienta klient = new Panel_Glowny_Klienta();
                             klient.Show();
                         }
 
