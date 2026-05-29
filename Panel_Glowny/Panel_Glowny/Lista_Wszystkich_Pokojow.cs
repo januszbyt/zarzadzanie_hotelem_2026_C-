@@ -81,22 +81,31 @@ namespace Panele_Glowne
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Błąd podczas pobierania pokoi: " + ex.Message, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Błąd pobierania pokoi - " + ex.Message, "Blad", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Ekran_Glowny_Pracownika powrotDoOknaPracownika = new Ekran_Glowny_Pracownika();
+            powrotDoOknaPracownika.Show();
+
             this.Hide();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             DataGridView aktywneGrid = dataGridView1;
-            MessageBox.Show("Wybrano ID pokoju: " + aktywneGrid.CurrentRow.Cells[0].Value.ToString());
-            if (tabControl1.SelectedIndex == 1) aktywneGrid = dataGridView2;
-            else if (tabControl1.SelectedIndex == 2) aktywneGrid = dataGridView3;
+
+            if (tabControl1.SelectedIndex == 1)
+            {
+                aktywneGrid = dataGridView2;
+            }
+            else if (tabControl1.SelectedIndex == 2)
+            {
+                aktywneGrid = dataGridView3;
+            }
             if (aktywneGrid.CurrentRow != null && aktywneGrid.CurrentRow.Index >= 0)
             {
                 int idPokoju = Convert.ToInt32(aktywneGrid.CurrentRow.Cells[0].Value);

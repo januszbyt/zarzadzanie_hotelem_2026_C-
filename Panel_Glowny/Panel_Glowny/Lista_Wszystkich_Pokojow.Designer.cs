@@ -1,4 +1,8 @@
-﻿namespace Panele_Glowne
+﻿using Org.BouncyCastle.Asn1.Crmf;
+using static System.Net.Mime.MediaTypeNames;
+using System.Xml.Linq;
+
+namespace Panele_Glowne
 {
     partial class Lista_Wszystkich_Pokojow
     {
@@ -280,7 +284,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Georgia", 12F, FontStyle.Italic, GraphicsUnit.Point, 238);
+            label1.Font = new System.Drawing.Font("Georgia", 12F, FontStyle.Italic, GraphicsUnit.Point, 238);
             label1.Location = new Point(39, 13);
             label1.Name = "label1";
             label1.Size = new Size(143, 24);
@@ -363,3 +367,4 @@
         private DataGridViewTextBoxColumn StatusZajete;
     }
 }
+
