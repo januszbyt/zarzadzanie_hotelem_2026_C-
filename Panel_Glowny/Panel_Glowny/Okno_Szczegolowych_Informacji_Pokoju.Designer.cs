@@ -1,4 +1,8 @@
-﻿namespace Panele_Glowne
+﻿using Org.BouncyCastle.Asn1.Crmf;
+using static System.Net.Mime.MediaTypeNames;
+using System.Xml.Linq;
+
+namespace Panele_Glowne
 {
     partial class Okno_Szczegolowych_Informacji_Pokoju
     {
@@ -81,7 +85,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Georgia", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Font = new System.Drawing.Font("Georgia", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.Location = new Point(83, 46);
             label2.Name = "label2";
             label2.Size = new Size(69, 27);
@@ -92,7 +96,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Georgia", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label1.Font = new System.Drawing.Font("Georgia", 13.8F, FontStyle.Bold);
             label1.Location = new Point(3, 9);
             label1.Name = "label1";
             label1.Size = new Size(215, 27);
@@ -131,7 +135,7 @@
             // label22
             // 
             label22.AutoSize = true;
-            label22.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label22.Font = new System.Drawing.Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label22.Location = new Point(123, 60);
             label22.Name = "label22";
             label22.Size = new Size(36, 20);
@@ -141,7 +145,7 @@
             // label21
             // 
             label21.AutoSize = true;
-            label21.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label21.Font = new System.Drawing.Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label21.Location = new Point(691, 197);
             label21.Name = "label21";
             label21.Size = new Size(36, 20);
@@ -151,7 +155,7 @@
             // label20
             // 
             label20.AutoSize = true;
-            label20.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label20.Font = new System.Drawing.Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label20.Location = new Point(687, 166);
             label20.Name = "label20";
             label20.Size = new Size(36, 20);
@@ -161,7 +165,7 @@
             // label19
             // 
             label19.AutoSize = true;
-            label19.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label19.Font = new System.Drawing.Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label19.Location = new Point(707, 134);
             label19.Name = "label19";
             label19.Size = new Size(36, 20);
@@ -171,7 +175,7 @@
             // label18
             // 
             label18.AutoSize = true;
-            label18.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label18.Font = new System.Drawing.Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label18.Location = new Point(687, 100);
             label18.Name = "label18";
             label18.Size = new Size(36, 20);
@@ -181,7 +185,7 @@
             // label17
             // 
             label17.AutoSize = true;
-            label17.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label17.Font = new System.Drawing.Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label17.Location = new Point(196, 199);
             label17.Name = "label17";
             label17.Size = new Size(36, 20);
@@ -191,7 +195,7 @@
             // label16
             // 
             label16.AutoSize = true;
-            label16.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label16.Font = new System.Drawing.Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label16.Location = new Point(125, 166);
             label16.Name = "label16";
             label16.Size = new Size(36, 20);
@@ -201,7 +205,7 @@
             // label15
             // 
             label15.AutoSize = true;
-            label15.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label15.Font = new System.Drawing.Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label15.Location = new Point(165, 134);
             label15.Name = "label15";
             label15.Size = new Size(36, 20);
@@ -211,7 +215,7 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label14.Font = new System.Drawing.Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label14.Location = new Point(113, 100);
             label14.Name = "label14";
             label14.Size = new Size(36, 20);
@@ -221,7 +225,7 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Font = new Font("Britannic Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label13.Font = new System.Drawing.Font("Britannic Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label13.Location = new Point(533, 197);
             label13.Name = "label13";
             label13.Size = new Size(152, 22);
@@ -232,7 +236,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Font = new Font("Britannic Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label12.Font = new System.Drawing.Font("Britannic Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label12.Location = new Point(49, 58);
             label12.Name = "label12";
             label12.Size = new Size(70, 22);
@@ -242,7 +246,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Font = new Font("Britannic Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label11.Font = new System.Drawing.Font("Britannic Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label11.Location = new Point(533, 164);
             label11.Name = "label11";
             label11.Size = new Size(148, 22);
@@ -252,7 +256,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Font = new Font("Britannic Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label10.Font = new System.Drawing.Font("Britannic Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label10.Location = new Point(533, 132);
             label10.Name = "label10";
             label10.Size = new Size(168, 22);
@@ -262,7 +266,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Font = new Font("Britannic Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label9.Font = new System.Drawing.Font("Britannic Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.Location = new Point(533, 100);
             label9.Name = "label9";
             label9.Size = new Size(157, 22);
@@ -272,7 +276,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Font = new Font("Britannic Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.Font = new System.Drawing.Font("Britannic Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.Location = new Point(50, 197);
             label8.Name = "label8";
             label8.Size = new Size(140, 22);
@@ -282,7 +286,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Britannic Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Font = new System.Drawing.Font("Britannic Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.Location = new Point(50, 164);
             label7.Name = "label7";
             label7.Size = new Size(69, 22);
@@ -292,7 +296,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Britannic Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.Font = new System.Drawing.Font("Britannic Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.Location = new Point(50, 132);
             label6.Name = "label6";
             label6.Size = new Size(109, 22);
@@ -302,7 +306,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Britannic Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Font = new System.Drawing.Font("Britannic Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.Location = new Point(50, 100);
             label5.Name = "label5";
             label5.Size = new Size(54, 22);
@@ -313,7 +317,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Georgia", 13.8F, FontStyle.Bold);
+            label4.Font = new System.Drawing.Font("Georgia", 13.8F, FontStyle.Bold);
             label4.Location = new Point(300, 7);
             label4.Name = "label4";
             label4.Size = new Size(257, 27);
@@ -331,7 +335,7 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // OknoSzczegolowPokoju
+            // Okno_Szczegolowych_Informacji_Pokoju
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -340,8 +344,9 @@
             Controls.Add(button1);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Name = "OknoSzczegolowPokoju";
+            Name = "Okno_Szczegolowych_Informacji_Pokoju";
             Text = "OknoSzczegolowPokoju";
+            Load += Okno_Szczegolowych_Informacji_Pokoju_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
@@ -378,3 +383,4 @@
         private Button button1;
     }
 }
+
