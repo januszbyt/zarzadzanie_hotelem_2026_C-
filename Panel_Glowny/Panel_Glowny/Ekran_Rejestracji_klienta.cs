@@ -31,29 +31,34 @@ namespace Panele_Glowne
         {
             Application.Exit();
         }
+
         private void button3_Click(object sender, EventArgs e)
         {
             Ekran_Logowania_Klienta powrotDoLogowania = new Ekran_Logowania_Klienta();
             powrotDoLogowania.Show();
             this.Hide();
         }
+
         private void button2_Click(object sender, EventArgs e)
         {
             string login = textBox1.Text.Trim();
             string haslo = textBox2.Text;
             string powtorzHaslo = textBox3.Text;
 
+            int przypisaneIdOsoby = 1;
+
             if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(haslo) || string.IsNullOrWhiteSpace(powtorzHaslo))
             {
-                MessageBox.Show("Proszę uzupełnić wszystkie pola!", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Proszę uzupełnic wszystkie pola", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (haslo != powtorzHaslo)
             {
-                MessageBox.Show("Wprowadzone hasła nie są identyczne!", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Wprowadzone hasla nie są identyczne", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             if (login.Length < 3 || haslo.Length < 4)
             {
                 MessageBox.Show("Login musi mieć min. 3 znaki, a hasło min. 4 znaki.", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -74,17 +79,19 @@ namespace Panele_Glowne
 
                         if (userExists > 0)
                         {
-                            MessageBox.Show("Ten login jest już zajęty. Wybierz inny!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Ten login jest już zajęty", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
                     }
 
-                    string insertQuery = "INSERT INTO Uzytkownicy (Login, Haslo, Rola, Id_osoby) VALUES (@login, @haslo, 'Klient', NULL)";
+                    string insertQuery = "INSERT INTO Uzytkownicy (Login, Haslo, Rola, Id_osoby) VALUES (@login, @haslo, 'Klient', @idOsoby)";
 
                     using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, connection))
                     {
                         insertCmd.Parameters.AddWithValue("@login", login);
                         insertCmd.Parameters.AddWithValue("@haslo", haslo);
+
+                        insertCmd.Parameters.AddWithValue("@idOsoby", przypisaneIdOsoby);
 
                         int wynik = insertCmd.ExecuteNonQuery();
 
