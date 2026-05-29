@@ -1,6 +1,6 @@
 ﻿namespace Panele_Glowne
 {
-    partial class EkranPokoje
+    partial class Lista_Wszystkich_Pokojow
     {
         /// <summary>
         /// Required designer variable.

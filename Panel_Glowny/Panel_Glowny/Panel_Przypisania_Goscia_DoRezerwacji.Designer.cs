@@ -1,6 +1,6 @@
 ﻿namespace Panele_Glowne
 {
-    partial class EkranGoscie
+    partial class Panel_Przypisania_Goscia_DoRezerwacji
     {
         /// <summary>
         ///  Required designer variable.

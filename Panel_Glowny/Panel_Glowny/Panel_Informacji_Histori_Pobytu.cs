@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Panele_Glowne
 {
-    public partial class HistoriaGoscia : Form
+    public partial class Panel_Informacji_Histori_Pobytu : Form
     {
-        public HistoriaGoscia()
+        public Panel_Informacji_Histori_Pobytu()
         {
             InitializeComponent();
         }
@@ -24,7 +24,7 @@ namespace Panele_Glowne
 
         private void button1_Click(object sender, EventArgs e)
         {
-            EkranGoscie EkranGosciePowrot = new EkranGoscie();
+            Panel_Przypisania_Goscia_DoRezerwacji EkranGosciePowrot = new Panel_Przypisania_Goscia_DoRezerwacji();
             EkranGosciePowrot.Show();
 
             this.Hide();

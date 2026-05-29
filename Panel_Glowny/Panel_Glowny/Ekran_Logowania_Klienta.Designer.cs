@@ -4,7 +4,7 @@ using System.Xml.Linq;
 
 namespace Panele_Glowne
 {
-    partial class EkranLogowania
+    partial class Ekran_Logowania_Klienta
     {
         /// <summary>
         ///  Required designer variable.
@@ -32,7 +32,7 @@ namespace Panele_Glowne
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EkranLogowania));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ekran_Logowania_Klienta));
             panel1 = new Panel();
             label5 = new Label();
             label4 = new Label();

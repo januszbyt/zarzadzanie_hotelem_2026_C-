@@ -1,6 +1,6 @@
 ﻿namespace Panele_Glowne
 {
-    partial class HistoriaGoscia
+    partial class Panel_Informacji_Histori_Pobytu
     {
         /// <summary>
         /// Required designer variable.

@@ -19,7 +19,7 @@ namespace Panele_Glowne
 
         private void powrot_Click(object sender, EventArgs e)
         {
-            Rezerwacje powrot = new Rezerwacje();
+            Okno_Rezerwacji_Obslugiwane_Przez_Pracownika powrot = new Okno_Rezerwacji_Obslugiwane_Przez_Pracownika();
             powrot.Show();
 
             this.Hide();

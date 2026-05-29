@@ -1,6 +1,6 @@
 ﻿namespace Panele_Glowne
 {
-    partial class Rezerwacje
+    partial class Okno_Rezerwacji_Obslugiwane_Przez_Pracownika
     {
         /// <summary>
         /// Required designer variable.
@@ -42,6 +42,7 @@
             dodajToolStripMenuItem = new ToolStripMenuItem();
             edytujToolStripMenuItem = new ToolStripMenuItem();
             usuńToolStripMenuItem = new ToolStripMenuItem();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -134,16 +135,27 @@
             usuńToolStripMenuItem.Size = new Size(46, 20);
             usuńToolStripMenuItem.Text = "Usuń";
             // 
-            // Rezerwacje
+            // button1
+            // 
+            button1.Location = new Point(757, 51);
+            button1.Name = "button1";
+            button1.Size = new Size(114, 26);
+            button1.TabIndex = 3;
+            button1.Text = "Powrot";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // Okno_Rezerwacji_Obslugiwane_Przez_Pracownika
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(900, 510);
+            Controls.Add(button1);
             Controls.Add(dataGridView1);
             Controls.Add(Title);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            Name = "Rezerwacje";
+            Name = "Okno_Rezerwacji_Obslugiwane_Przez_Pracownika";
             Text = "Rezerwacje";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             menuStrip1.ResumeLayout(false);
@@ -168,5 +180,6 @@
         private DataGridViewTextBoxColumn od;
         private DataGridViewTextBoxColumn doKiedy;
         private DataGridViewTextBoxColumn kwota;
+        private Button button1;
     }
 }

@@ -12,10 +12,10 @@ using Panel_Glowny;
 
 namespace Panele_Glowne
 {
-    public partial class EkranPokoje : Form
+    public partial class Lista_Wszystkich_Pokojow : Form
     {
         private HotelContext db = new HotelContext();
-        public EkranPokoje()
+        public Lista_Wszystkich_Pokojow()
         {
             InitializeComponent();
         }
@@ -88,9 +88,6 @@ namespace Panele_Glowne
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form1 powrotDoOknaPracownika = new Form1();
-            powrotDoOknaPracownika.Show();
-
             this.Hide();
         }
 
@@ -103,7 +100,7 @@ namespace Panele_Glowne
             if (aktywneGrid.CurrentRow != null && aktywneGrid.CurrentRow.Index >= 0)
             {
                 int idPokoju = Convert.ToInt32(aktywneGrid.CurrentRow.Cells[0].Value);
-                OknoSzczegolowPokoju OknoSzczegolow = new OknoSzczegolowPokoju(idPokoju);
+                Okno_Szczegolowych_Informacji_Pokoju OknoSzczegolow = new Okno_Szczegolowych_Informacji_Pokoju(idPokoju);
                 OknoSzczegolow.Show();
                 this.Hide();
             }
