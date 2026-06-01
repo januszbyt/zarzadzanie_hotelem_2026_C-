@@ -66,13 +66,13 @@ public partial class Ekran_Logowania_Klienta : Form
                             Ekran_Glowny_Pracownika recepcja = new Ekran_Glowny_Pracownika();
                             recepcja.Show();
                         }
-                        else if (rola == "klient")
+                        else if (rola == "Klient")
                         {
                             Panel_Glowny_Klienta klient = new Panel_Glowny_Klienta();
                             klient.Show();
                         }
 
-                        this.Hide();
+                            this.Hide();
                     }
                     else
                     {
@@ -108,5 +108,10 @@ public partial class Ekran_Logowania_Klienta : Form
             pictureBox2.Image = Image.FromFile("Zdjecia/okowidac.png");
             pokazHaslo = false;
         }
+    }
+
+    private void textBox1_TextChanged(object sender, EventArgs e)
+    {
+
     }
 }
