@@ -75,9 +75,11 @@ namespace Panele_Glowne
             // label3
             // 
             label3.AutoSize = true;
+            label3.FlatStyle = FlatStyle.Flat;
+            label3.Font = new System.Drawing.Font("Arial Narrow", 9F, FontStyle.Bold);
             label3.Location = new Point(149, 51);
             label3.Name = "label3";
-            label3.Size = new Size(50, 20);
+            label3.Size = new Size(46, 20);
             label3.TabIndex = 2;
             label3.Text = "label3";
             label3.Click += label3_Click;
@@ -136,7 +138,7 @@ namespace Panele_Glowne
             // 
             label22.AutoSize = true;
             label22.Font = new System.Drawing.Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label22.Location = new Point(123, 60);
+            label22.Location = new Point(239, 60);
             label22.Name = "label22";
             label22.Size = new Size(36, 20);
             label22.TabIndex = 18;
@@ -239,9 +241,10 @@ namespace Panele_Glowne
             label12.Font = new System.Drawing.Font("Britannic Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label12.Location = new Point(49, 58);
             label12.Name = "label12";
-            label12.Size = new Size(70, 22);
+            label12.Size = new Size(193, 22);
             label12.TabIndex = 8;
-            label12.Text = "status:";
+            label12.Text = "Ilosc osob w pokoju:";
+            label12.Click += label12_Click;
             // 
             // label11
             // 
@@ -318,11 +321,11 @@ namespace Panele_Glowne
             // 
             label4.AutoSize = true;
             label4.Font = new System.Drawing.Font("Georgia", 13.8F, FontStyle.Bold);
-            label4.Location = new Point(300, 7);
+            label4.Location = new Point(253, 7);
             label4.Name = "label4";
-            label4.Size = new Size(257, 27);
+            label4.Size = new Size(347, 27);
             label4.TabIndex = 0;
-            label4.Text = "Aktualna rezerwacja";
+            label4.Text = "Aktualna rezerwacja pokoju";
             label4.Click += label4_Click;
             // 
             // button1

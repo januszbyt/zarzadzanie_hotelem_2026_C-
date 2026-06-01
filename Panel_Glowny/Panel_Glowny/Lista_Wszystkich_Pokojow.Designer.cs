@@ -35,29 +35,29 @@ namespace Panele_Glowne
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             dataGridView1 = new DataGridView();
-            IdPokoju = new DataGridViewTextBoxColumn();
-            NumerPokoju = new DataGridViewTextBoxColumn();
-            TypPokoju = new DataGridViewTextBoxColumn();
-            CenaZaNoc = new DataGridViewTextBoxColumn();
-            Status = new DataGridViewTextBoxColumn();
             tabPage2 = new TabPage();
             dataGridView2 = new DataGridView();
-            IdPokojuWolne = new DataGridViewTextBoxColumn();
-            NumerPokojuWolne = new DataGridViewTextBoxColumn();
-            TypPokojuWolne = new DataGridViewTextBoxColumn();
-            CenaZaNocWolne = new DataGridViewTextBoxColumn();
-            StatusWolne = new DataGridViewTextBoxColumn();
             tabPage3 = new TabPage();
             dataGridView3 = new DataGridView();
-            IdPokojuZajete = new DataGridViewTextBoxColumn();
-            NumerPokojuZajete = new DataGridViewTextBoxColumn();
-            TypPokojuZajete = new DataGridViewTextBoxColumn();
-            CenaZaNocZajete = new DataGridViewTextBoxColumn();
-            StatusZajete = new DataGridViewTextBoxColumn();
             panel1 = new Panel();
             label1 = new Label();
             button1 = new Button();
             button2 = new Button();
+            IdPokoju = new DataGridViewTextBoxColumn();
+            NumerPokoju = new DataGridViewTextBoxColumn();
+            TypPokoju = new DataGridViewTextBoxColumn();
+            CenaZaNoc = new DataGridViewTextBoxColumn();
+            IloscOsob = new DataGridViewTextBoxColumn();
+            IdPokojuWolne = new DataGridViewTextBoxColumn();
+            NumerPokojuWolne = new DataGridViewTextBoxColumn();
+            TypPokojuWolne = new DataGridViewTextBoxColumn();
+            CenaZaNocWolne = new DataGridViewTextBoxColumn();
+            IloscOsobWolne = new DataGridViewTextBoxColumn();
+            IdPokojuZajete = new DataGridViewTextBoxColumn();
+            NumerPokojuZajete = new DataGridViewTextBoxColumn();
+            TypPokojuZajete = new DataGridViewTextBoxColumn();
+            CenaZaNocZajete = new DataGridViewTextBoxColumn();
+            IloscOsobZajete = new DataGridViewTextBoxColumn();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -96,53 +96,13 @@ namespace Panele_Glowne
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { IdPokoju, NumerPokoju, TypPokoju, CenaZaNoc, Status });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { IdPokoju, NumerPokoju, TypPokoju, CenaZaNoc, IloscOsob });
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(987, 449);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // IdPokoju
-            // 
-            IdPokoju.DataPropertyName = "IdPokoju";
-            IdPokoju.HeaderText = "IdPokoju";
-            IdPokoju.MinimumWidth = 6;
-            IdPokoju.Name = "IdPokoju";
-            IdPokoju.Width = 175;
-            // 
-            // NumerPokoju
-            // 
-            NumerPokoju.DataPropertyName = "NumerPokoju";
-            NumerPokoju.HeaderText = "NumerPokoju";
-            NumerPokoju.MinimumWidth = 6;
-            NumerPokoju.Name = "NumerPokoju";
-            NumerPokoju.Width = 175;
-            // 
-            // TypPokoju
-            // 
-            TypPokoju.DataPropertyName = "TypPokoju";
-            TypPokoju.HeaderText = "TypPokoju";
-            TypPokoju.MinimumWidth = 6;
-            TypPokoju.Name = "TypPokoju";
-            TypPokoju.Width = 200;
-            // 
-            // CenaZaNoc
-            // 
-            CenaZaNoc.DataPropertyName = "CenaZaNoc";
-            CenaZaNoc.HeaderText = "CenaZaNoc";
-            CenaZaNoc.MinimumWidth = 6;
-            CenaZaNoc.Name = "CenaZaNoc";
-            CenaZaNoc.Width = 175;
-            // 
-            // Status
-            // 
-            Status.DataPropertyName = "Status";
-            Status.HeaderText = "Status";
-            Status.MinimumWidth = 6;
-            Status.Name = "Status";
-            Status.Width = 205;
             // 
             // tabPage2
             // 
@@ -152,7 +112,7 @@ namespace Panele_Glowne
             tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(983, 445);
             tabPage2.TabIndex = 1;
-            tabPage2.Text = "Wolne";
+            tabPage2.Text = "Dwuosobowe";
             tabPage2.UseVisualStyleBackColor = true;
             tabPage2.Click += tabPage2_Click;
             // 
@@ -161,53 +121,13 @@ namespace Panele_Glowne
             dataGridView2.AllowUserToResizeColumns = false;
             dataGridView2.AllowUserToResizeRows = false;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { IdPokojuWolne, NumerPokojuWolne, TypPokojuWolne, CenaZaNocWolne, StatusWolne });
+            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { IdPokojuWolne, NumerPokojuWolne, TypPokojuWolne, CenaZaNocWolne, IloscOsobWolne });
             dataGridView2.Location = new Point(1, 1);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 51;
             dataGridView2.Size = new Size(987, 449);
             dataGridView2.TabIndex = 0;
             dataGridView2.CellContentClick += dataGridView2_CellContentClick;
-            // 
-            // IdPokojuWolne
-            // 
-            IdPokojuWolne.DataPropertyName = "IdPokoju";
-            IdPokojuWolne.HeaderText = "IdPokoju";
-            IdPokojuWolne.MinimumWidth = 6;
-            IdPokojuWolne.Name = "IdPokojuWolne";
-            IdPokojuWolne.Width = 175;
-            // 
-            // NumerPokojuWolne
-            // 
-            NumerPokojuWolne.DataPropertyName = "NumerPokoju";
-            NumerPokojuWolne.HeaderText = "NumerPokoju";
-            NumerPokojuWolne.MinimumWidth = 6;
-            NumerPokojuWolne.Name = "NumerPokojuWolne";
-            NumerPokojuWolne.Width = 175;
-            // 
-            // TypPokojuWolne
-            // 
-            TypPokojuWolne.DataPropertyName = "TypPokoju";
-            TypPokojuWolne.HeaderText = "TypPokoju";
-            TypPokojuWolne.MinimumWidth = 6;
-            TypPokojuWolne.Name = "TypPokojuWolne";
-            TypPokojuWolne.Width = 200;
-            // 
-            // CenaZaNocWolne
-            // 
-            CenaZaNocWolne.DataPropertyName = "CenaZaNoc";
-            CenaZaNocWolne.HeaderText = "CenaZaNoc";
-            CenaZaNocWolne.MinimumWidth = 6;
-            CenaZaNocWolne.Name = "CenaZaNocWolne";
-            CenaZaNocWolne.Width = 175;
-            // 
-            // StatusWolne
-            // 
-            StatusWolne.DataPropertyName = "Status";
-            StatusWolne.HeaderText = "Status";
-            StatusWolne.MinimumWidth = 6;
-            StatusWolne.Name = "StatusWolne";
-            StatusWolne.Width = 205;
             // 
             // tabPage3
             // 
@@ -217,59 +137,19 @@ namespace Panele_Glowne
             tabPage3.Padding = new Padding(3);
             tabPage3.Size = new Size(983, 445);
             tabPage3.TabIndex = 2;
-            tabPage3.Text = "Zajęte";
+            tabPage3.Text = "Czteroosobowe";
             tabPage3.UseVisualStyleBackColor = true;
             // 
             // dataGridView3
             // 
             dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView3.Columns.AddRange(new DataGridViewColumn[] { IdPokojuZajete, NumerPokojuZajete, TypPokojuZajete, CenaZaNocZajete, StatusZajete });
+            dataGridView3.Columns.AddRange(new DataGridViewColumn[] { IdPokojuZajete, NumerPokojuZajete, TypPokojuZajete, CenaZaNocZajete, IloscOsobZajete });
             dataGridView3.Location = new Point(0, 0);
             dataGridView3.Name = "dataGridView3";
             dataGridView3.RowHeadersWidth = 51;
             dataGridView3.Size = new Size(987, 449);
             dataGridView3.TabIndex = 0;
             dataGridView3.CellContentClick += dataGridView3_CellContentClick;
-            // 
-            // IdPokojuZajete
-            // 
-            IdPokojuZajete.DataPropertyName = "IdPokoju";
-            IdPokojuZajete.HeaderText = "IdPokoju";
-            IdPokojuZajete.MinimumWidth = 6;
-            IdPokojuZajete.Name = "IdPokojuZajete";
-            IdPokojuZajete.Width = 175;
-            // 
-            // NumerPokojuZajete
-            // 
-            NumerPokojuZajete.DataPropertyName = "NumerPokoju";
-            NumerPokojuZajete.HeaderText = "NumerPokoju";
-            NumerPokojuZajete.MinimumWidth = 6;
-            NumerPokojuZajete.Name = "NumerPokojuZajete";
-            NumerPokojuZajete.Width = 175;
-            // 
-            // TypPokojuZajete
-            // 
-            TypPokojuZajete.DataPropertyName = "TypPokoju";
-            TypPokojuZajete.HeaderText = "TypPokoju";
-            TypPokojuZajete.MinimumWidth = 6;
-            TypPokojuZajete.Name = "TypPokojuZajete";
-            TypPokojuZajete.Width = 200;
-            // 
-            // CenaZaNocZajete
-            // 
-            CenaZaNocZajete.DataPropertyName = "CenaZaNoc";
-            CenaZaNocZajete.HeaderText = "CenaZaNoc";
-            CenaZaNocZajete.MinimumWidth = 6;
-            CenaZaNocZajete.Name = "CenaZaNocZajete";
-            CenaZaNocZajete.Width = 175;
-            // 
-            // StatusZajete
-            // 
-            StatusZajete.DataPropertyName = "Status";
-            StatusZajete.HeaderText = "Status";
-            StatusZajete.MinimumWidth = 6;
-            StatusZajete.Name = "StatusZajete";
-            StatusZajete.Width = 205;
             // 
             // panel1
             // 
@@ -312,7 +192,127 @@ namespace Panele_Glowne
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
-            // EkranPokoje
+            // IdPokoju
+            // 
+            IdPokoju.DataPropertyName = "IdPokoju";
+            IdPokoju.HeaderText = "IdPokoju";
+            IdPokoju.MinimumWidth = 6;
+            IdPokoju.Name = "IdPokoju";
+            IdPokoju.Width = 175;
+            // 
+            // NumerPokoju
+            // 
+            NumerPokoju.DataPropertyName = "NumerPokoju";
+            NumerPokoju.HeaderText = "NumerPokoju";
+            NumerPokoju.MinimumWidth = 6;
+            NumerPokoju.Name = "NumerPokoju";
+            NumerPokoju.Width = 175;
+            // 
+            // TypPokoju
+            // 
+            TypPokoju.DataPropertyName = "TypPokoju";
+            TypPokoju.HeaderText = "TypPokoju";
+            TypPokoju.MinimumWidth = 6;
+            TypPokoju.Name = "TypPokoju";
+            TypPokoju.Width = 200;
+            // 
+            // CenaZaNoc
+            // 
+            CenaZaNoc.DataPropertyName = "CenaZaNoc";
+            CenaZaNoc.HeaderText = "CenaZaNoc";
+            CenaZaNoc.MinimumWidth = 6;
+            CenaZaNoc.Name = "CenaZaNoc";
+            CenaZaNoc.Width = 175;
+            // 
+            // IloscOsob
+            // 
+            IloscOsob.DataPropertyName = "IloscOsob";
+            IloscOsob.HeaderText = "Ilosc osob";
+            IloscOsob.MinimumWidth = 6;
+            IloscOsob.Name = "IloscOsob";
+            IloscOsob.Width = 205;
+            // 
+            // IdPokojuWolne
+            // 
+            IdPokojuWolne.DataPropertyName = "IdPokoju";
+            IdPokojuWolne.HeaderText = "IdPokoju";
+            IdPokojuWolne.MinimumWidth = 6;
+            IdPokojuWolne.Name = "IdPokojuWolne";
+            IdPokojuWolne.Width = 175;
+            // 
+            // NumerPokojuWolne
+            // 
+            NumerPokojuWolne.DataPropertyName = "NumerPokoju";
+            NumerPokojuWolne.HeaderText = "NumerPokoju";
+            NumerPokojuWolne.MinimumWidth = 6;
+            NumerPokojuWolne.Name = "NumerPokojuWolne";
+            NumerPokojuWolne.Width = 175;
+            // 
+            // TypPokojuWolne
+            // 
+            TypPokojuWolne.DataPropertyName = "TypPokoju";
+            TypPokojuWolne.HeaderText = "TypPokoju";
+            TypPokojuWolne.MinimumWidth = 6;
+            TypPokojuWolne.Name = "TypPokojuWolne";
+            TypPokojuWolne.Width = 200;
+            // 
+            // CenaZaNocWolne
+            // 
+            CenaZaNocWolne.DataPropertyName = "CenaZaNoc";
+            CenaZaNocWolne.HeaderText = "CenaZaNoc";
+            CenaZaNocWolne.MinimumWidth = 6;
+            CenaZaNocWolne.Name = "CenaZaNocWolne";
+            CenaZaNocWolne.Width = 175;
+            // 
+            // IloscOsobWolne
+            // 
+            IloscOsobWolne.DataPropertyName = "IloscOsob";
+            IloscOsobWolne.HeaderText = "Ilosc osob";
+            IloscOsobWolne.MinimumWidth = 6;
+            IloscOsobWolne.Name = "IloscOsobWolne";
+            IloscOsobWolne.Width = 205;
+            // 
+            // IdPokojuZajete
+            // 
+            IdPokojuZajete.DataPropertyName = "IdPokoju";
+            IdPokojuZajete.HeaderText = "IdPokoju";
+            IdPokojuZajete.MinimumWidth = 6;
+            IdPokojuZajete.Name = "IdPokojuZajete";
+            IdPokojuZajete.Width = 175;
+            // 
+            // NumerPokojuZajete
+            // 
+            NumerPokojuZajete.DataPropertyName = "NumerPokoju";
+            NumerPokojuZajete.HeaderText = "NumerPokoju";
+            NumerPokojuZajete.MinimumWidth = 6;
+            NumerPokojuZajete.Name = "NumerPokojuZajete";
+            NumerPokojuZajete.Width = 175;
+            // 
+            // TypPokojuZajete
+            // 
+            TypPokojuZajete.DataPropertyName = "TypPokoju";
+            TypPokojuZajete.HeaderText = "TypPokoju";
+            TypPokojuZajete.MinimumWidth = 6;
+            TypPokojuZajete.Name = "TypPokojuZajete";
+            TypPokojuZajete.Width = 200;
+            // 
+            // CenaZaNocZajete
+            // 
+            CenaZaNocZajete.DataPropertyName = "CenaZaNoc";
+            CenaZaNocZajete.HeaderText = "CenaZaNoc";
+            CenaZaNocZajete.MinimumWidth = 6;
+            CenaZaNocZajete.Name = "CenaZaNocZajete";
+            CenaZaNocZajete.Width = 175;
+            // 
+            // IloscOsobZajete
+            // 
+            IloscOsobZajete.DataPropertyName = "IloscOsob";
+            IloscOsobZajete.HeaderText = "Ilosc osob";
+            IloscOsobZajete.MinimumWidth = 6;
+            IloscOsobZajete.Name = "IloscOsobZajete";
+            IloscOsobZajete.Width = 205;
+            // 
+            // Lista_Wszystkich_Pokojow
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -322,7 +322,7 @@ namespace Panele_Glowne
             Controls.Add(button1);
             Controls.Add(panel1);
             Controls.Add(tabControl1);
-            Name = "EkranPokoje";
+            Name = "Lista_Wszystkich_Pokojow";
             Text = "      ";
             Load += EkranPokoje_Load;
             tabControl1.ResumeLayout(false);
@@ -354,17 +354,17 @@ namespace Panele_Glowne
         private DataGridViewTextBoxColumn NumerPokoju;
         private DataGridViewTextBoxColumn TypPokoju;
         private DataGridViewTextBoxColumn CenaZaNoc;
-        private DataGridViewTextBoxColumn Status;
+        private DataGridViewTextBoxColumn IloscOsob;
         private DataGridViewTextBoxColumn IdPokojuWolne;
         private DataGridViewTextBoxColumn NumerPokojuWolne;
         private DataGridViewTextBoxColumn TypPokojuWolne;
         private DataGridViewTextBoxColumn CenaZaNocWolne;
-        private DataGridViewTextBoxColumn StatusWolne;
+        private DataGridViewTextBoxColumn IloscOsobWolne;
         private DataGridViewTextBoxColumn IdPokojuZajete;
         private DataGridViewTextBoxColumn NumerPokojuZajete;
         private DataGridViewTextBoxColumn TypPokojuZajete;
         private DataGridViewTextBoxColumn CenaZaNocZajete;
-        private DataGridViewTextBoxColumn StatusZajete;
+        private DataGridViewTextBoxColumn IloscOsobZajete;
     }
 }
 

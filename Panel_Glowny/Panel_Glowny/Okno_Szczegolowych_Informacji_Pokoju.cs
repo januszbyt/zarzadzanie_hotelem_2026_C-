@@ -37,7 +37,7 @@ namespace Panele_Glowne
                 try
                 {
                     conn.Open();
-                    string zapytanie = @"SELECT P.NumerPokoju, P.Status, R.IdRezerwacji, R.DataPrzyjazdu, R.DataWyjazdu, R.KwotaLaczna,
+                    string zapytanie = @"SELECT P.NumerPokoju, P.IloscOsob, R.IdRezerwacji, R.DataPrzyjazdu, R.DataWyjazdu, R.KwotaLaczna,
                     O.Imie, O.Nazwisko, K.Email, K.NumerTelefonu from Pokoje P left join Rezerwacje R on P.IdPokoju = R.IdPokoju left join 
                     Klienci K on R.IdKlienta = K.IdKlienta left join osoby O on K.Id_osoby = O.Id
                     where P.IdPokoju = @idPokoju order by R.IdRezerwacji desc limit 1";
@@ -50,7 +50,7 @@ namespace Panele_Glowne
                             if (reader.Read())
                             {
                                 label3.Text = reader["NumerPokoju"].ToString();
-                                label22.Text = reader["Status"].ToString();
+                                label22.Text = reader["IloscOsob"].ToString();
                                 if (reader["Imie"] != DBNull.Value)
                                 {
                                     label14.Text = reader["Imie"].ToString();
@@ -172,6 +172,11 @@ namespace Panele_Glowne
         }
 
         private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
         {
 
         }
