@@ -59,12 +59,6 @@ namespace Panele_Glowne
                 return;
             }
 
-            if (login.Length < 3 || haslo.Length < 4)
-            {
-                MessageBox.Show("Login musi mieć min. 3 znaki, a hasło min. 4 znaki.", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             using (MySqlConnection connection = db.GetConnection())
             {
                 try
