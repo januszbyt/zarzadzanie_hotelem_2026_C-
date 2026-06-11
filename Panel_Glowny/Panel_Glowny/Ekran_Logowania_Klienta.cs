@@ -84,7 +84,7 @@ public partial class Ekran_Logowania_Klienta : Form
                                     Convert.ToInt32(reader["Id_pracownika"]);
                             }
 
-                            Ekran_Glowny_Pracownika recepcja = new Ekran_Glowny_Pracownika();
+                            Ekran_Glowny_Pracownika recepcja = new Ekran_Glowny_Pracownika(login);
                             recepcja.Show();
                         }
                         else if (rola == "Klient")
