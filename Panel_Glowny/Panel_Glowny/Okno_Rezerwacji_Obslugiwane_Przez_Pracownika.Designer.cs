@@ -134,6 +134,7 @@
             usuńToolStripMenuItem.Name = "usuńToolStripMenuItem";
             usuńToolStripMenuItem.Size = new Size(46, 20);
             usuńToolStripMenuItem.Text = "Usuń";
+            usuńToolStripMenuItem.Click += usuńToolStripMenuItem_Click;
             // 
             // powrótToolStripMenuItem
             // 

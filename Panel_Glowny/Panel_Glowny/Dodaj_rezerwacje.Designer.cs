@@ -37,13 +37,11 @@
             label6 = new Label();
             label7 = new Label();
             label8 = new Label();
-            label9 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox6 = new TextBox();
-            textBox8 = new TextBox();
-            textBox9 = new TextBox();
+            email = new TextBox();
+            imie = new TextBox();
+            nazwisko = new TextBox();
+            noce = new TextBox();
+            kwota = new TextBox();
             przyjazd = new DateTimePicker();
             odjazd = new DateTimePicker();
             dodaj = new Button();
@@ -51,7 +49,7 @@
             label10 = new Label();
             Standard = new RadioButton();
             Deluxe = new RadioButton();
-            comboBox1 = new ComboBox();
+            osobowy = new ComboBox();
             SuspendLayout();
             // 
             // label
@@ -130,82 +128,69 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(46, 293);
+            label8.Location = new Point(46, 323);
             label8.Name = "label8";
             label8.Size = new Size(40, 15);
             label8.TabIndex = 8;
             label8.Text = "Kwota";
             // 
-            // label9
+            // email
             // 
-            label9.AutoSize = true;
-            label9.Location = new Point(46, 322);
-            label9.Name = "label9";
-            label9.Size = new Size(39, 15);
-            label9.TabIndex = 9;
-            label9.Text = "Status";
+            email.Location = new Point(147, 93);
+            email.Name = "email";
+            email.Size = new Size(121, 23);
+            email.TabIndex = 10;
             // 
-            // textBox1
+            // imie
             // 
-            textBox1.Location = new Point(147, 93);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(121, 23);
-            textBox1.TabIndex = 10;
+            imie.Location = new Point(147, 122);
+            imie.Name = "imie";
+            imie.Size = new Size(121, 23);
+            imie.TabIndex = 11;
             // 
-            // textBox2
+            // nazwisko
             // 
-            textBox2.Location = new Point(147, 122);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(121, 23);
-            textBox2.TabIndex = 11;
+            nazwisko.Location = new Point(147, 151);
+            nazwisko.Name = "nazwisko";
+            nazwisko.Size = new Size(121, 23);
+            nazwisko.TabIndex = 12;
             // 
-            // textBox3
+            // noce
             // 
-            textBox3.Location = new Point(147, 151);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(121, 23);
-            textBox3.TabIndex = 12;
+            noce.Location = new Point(147, 238);
+            noce.Name = "noce";
+            noce.ReadOnly = true;
+            noce.Size = new Size(121, 23);
+            noce.TabIndex = 15;
             // 
-            // textBox6
+            // kwota
             // 
-            textBox6.Location = new Point(147, 238);
-            textBox6.Name = "textBox6";
-            textBox6.ReadOnly = true;
-            textBox6.Size = new Size(121, 23);
-            textBox6.TabIndex = 15;
-            // 
-            // textBox8
-            // 
-            textBox8.Location = new Point(147, 290);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(121, 23);
-            textBox8.TabIndex = 17;
-            // 
-            // textBox9
-            // 
-            textBox9.Location = new Point(147, 319);
-            textBox9.Name = "textBox9";
-            textBox9.Size = new Size(121, 23);
-            textBox9.TabIndex = 18;
+            kwota.Location = new Point(147, 320);
+            kwota.Name = "kwota";
+            kwota.ReadOnly = true;
+            kwota.Size = new Size(121, 23);
+            kwota.TabIndex = 17;
             // 
             // przyjazd
             // 
             przyjazd.Location = new Point(147, 180);
+            przyjazd.MinDate = new DateTime(2026, 6, 11, 0, 0, 0, 0);
             przyjazd.Name = "przyjazd";
             przyjazd.Size = new Size(200, 23);
             przyjazd.TabIndex = 19;
-            przyjazd.MinDate = DateTime.Today.AddDays(0);
-            przyjazd.Value = DateTime.Today.AddDays(0);
+            przyjazd.Value = new DateTime(2026, 6, 11, 0, 0, 0, 0);
+            przyjazd.ValueChanged += przyjazd_ValueChanged;
             // 
             // odjazd
             // 
             odjazd.CustomFormat = "";
             odjazd.Location = new Point(147, 209);
+            odjazd.MinDate = new DateTime(2026, 6, 12, 0, 0, 0, 0);
             odjazd.Name = "odjazd";
             odjazd.Size = new Size(200, 23);
             odjazd.TabIndex = 20;
-            odjazd.MinDate = DateTime.Today.AddDays(1);
-            odjazd.Value = DateTime.Today.AddDays(1);
+            odjazd.Value = new DateTime(2026, 6, 12, 0, 0, 0, 0);
+            odjazd.ValueChanged += Odjazd_noce_ValueChanged;
             // 
             // dodaj
             // 
@@ -215,6 +200,7 @@
             dodaj.TabIndex = 21;
             dodaj.Text = "Dodaj";
             dodaj.UseVisualStyleBackColor = true;
+            dodaj.Click += dodaj_Click;
             // 
             // powrot
             // 
@@ -229,7 +215,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(46, 351);
+            label10.Location = new Point(46, 295);
             label10.Name = "label10";
             label10.Size = new Size(65, 15);
             label10.TabIndex = 23;
@@ -238,52 +224,59 @@
             // Standard
             // 
             Standard.AutoSize = true;
-            Standard.Location = new Point(147, 349);
+            Standard.Checked = true;
+            Standard.Location = new Point(147, 293);
             Standard.Name = "Standard";
             Standard.Size = new Size(72, 19);
             Standard.TabIndex = 25;
+            Standard.TabStop = true;
             Standard.Text = "Standard";
             Standard.UseVisualStyleBackColor = true;
+            Standard.CheckedChanged += kwotaPokoi;
             // 
             // Deluxe
             // 
             Deluxe.AutoSize = true;
-            Deluxe.Location = new Point(234, 349);
+            Deluxe.Location = new Point(234, 293);
             Deluxe.Name = "Deluxe";
             Deluxe.Size = new Size(61, 19);
             Deluxe.TabIndex = 26;
             Deluxe.Text = "Deluxe";
             Deluxe.UseVisualStyleBackColor = true;
+            Deluxe.CheckedChanged += kwotaPokoi;
             // 
-            // comboBox1
+            // osobowy
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "1", "2", "3", "4", "5" });
-            comboBox1.Location = new Point(147, 264);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 27;
+            osobowy.DisplayMember = "1";
+            osobowy.DropDownStyle = ComboBoxStyle.DropDownList;
+            osobowy.FormattingEnabled = true;
+            osobowy.Items.AddRange(new object[] { "1", "2", "3", "4", "5" });
+            osobowy.Location = new Point(147, 264);
+            osobowy.Name = "osobowy";
+            osobowy.Size = new Size(121, 23);
+            osobowy.TabIndex = 27;
+            osobowy.SelectedIndexChanged += kwotaPokoi;
+            osobowy.DataContextChanged += kwotaPokoi;
+            osobowy.Text = "1";
             // 
             // Dodaj_rezerwacje
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(comboBox1);
             Controls.Add(Deluxe);
             Controls.Add(Standard);
+            Controls.Add(osobowy);
             Controls.Add(label10);
             Controls.Add(powrot);
             Controls.Add(dodaj);
             Controls.Add(odjazd);
             Controls.Add(przyjazd);
-            Controls.Add(textBox9);
-            Controls.Add(textBox8);
-            Controls.Add(textBox6);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(label9);
+            Controls.Add(kwota);
+            Controls.Add(noce);
+            Controls.Add(nazwisko);
+            Controls.Add(imie);
+            Controls.Add(email);
             Controls.Add(label8);
             Controls.Add(label7);
             Controls.Add(label6);
@@ -310,13 +303,8 @@
         private Label label6;
         private Label label7;
         private Label label8;
-        private Label label9;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox6;
-        private TextBox textBox8;
-        private TextBox textBox9;
+        private TextBox noce;
+        private TextBox kwota;
         private DateTimePicker przyjazd;
         private DateTimePicker odjazd;
         private Button dodaj;
@@ -324,6 +312,9 @@
         private Label label10;
         private RadioButton Standard;
         private RadioButton Deluxe;
-        private ComboBox comboBox1;
+        private ComboBox osobowy;
+        private TextBox email;
+        private TextBox imie;
+        private TextBox nazwisko;
     }
 }

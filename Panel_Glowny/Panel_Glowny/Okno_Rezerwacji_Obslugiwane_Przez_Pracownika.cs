@@ -46,25 +46,26 @@ namespace Panele_Glowne
                     conn.Open();
 
                     string query = @"
-                        SELECT 
-                            o.Imie AS ImieDb, 
-                            o.Nazwisko AS NazwiskoDb, 
-                            k.Email AS EmailDb, 
-                            1 AS LiczbaOsobDb, 
-                            CASE
-                                WHEN r.StatusRezerwacji = 'Anulowana' THEN 'Anulowana'
-                                WHEN r.DataWyjazdu < CURDATE() THEN 'Zakończona'
-                                WHEN r.DataWyjazdu = CURDATE() THEN 'Wymeldowanie dzisiaj'
-                                WHEN r.DataPrzyjazdu <= CURDATE() AND r.DataWyjazdu > CURDATE() THEN 'Aktywna'
-                                WHEN r.DataPrzyjazdu > CURDATE() THEN 'Oczekująca'
-                                ELSE 'Błąd daty'
-                            END AS StatusDb,
-                            r.DataPrzyjazdu AS OdDb, 
-                            r.DataWyjazdu AS DoKiedyDb, 
-                            r.KwotaLaczna AS KwotaDb
-                        FROM Rezerwacje r
-                        JOIN Klienci k ON r.IdKlienta = k.IdKlienta
-                        JOIN osoby o ON k.Id_osoby = o.Id";
+                SELECT 
+                    r.IdRezerwacji AS IdRezerwacjiDb, 
+                    o.Imie AS ImieDb, 
+                    o.Nazwisko AS NazwiskoDb, 
+                    k.Email AS EmailDb, 
+                    1 AS LiczbaOsobDb, 
+                    CASE
+                        WHEN r.StatusRezerwacji = 'Anulowana' THEN 'Anulowana'
+                        WHEN r.DataWyjazdu < CURDATE() THEN 'Zakończona'
+                        WHEN r.DataWyjazdu = CURDATE() THEN 'Wymeldowanie dzisiaj'
+                        WHEN r.DataPrzyjazdu <= CURDATE() AND r.DataWyjazdu > CURDATE() THEN 'Aktywna'
+                        WHEN r.DataPrzyjazdu > CURDATE() THEN 'Oczekująca'
+                        ELSE 'Błąd daty'
+                    END AS StatusDb,
+                    r.DataPrzyjazdu AS OdDb, 
+                    r.DataWyjazdu AS DoKiedyDb, 
+                    r.KwotaLaczna AS KwotaDb
+                FROM Rezerwacje r
+                JOIN Klienci k ON r.IdKlienta = k.IdKlienta
+                JOIN osoby o ON k.Id_osoby = o.Id";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
@@ -97,7 +98,18 @@ namespace Panele_Glowne
 
         private void edytujToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Edytuj_rezerwacje edytujRezerwacje = new Edytuj_rezerwacje();
+            if (dataGridView1.CurrentRow == null)
+            {
+                MessageBox.Show("Proszę zaznaczyć rezerwację do edycji.", "Brak wyboru", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 2. Pobieramy ID rezerwacji z zaznaczonego wiersza "z tła"
+            DataRowView zaznaczonyWiersz = (DataRowView)dataGridView1.CurrentRow.DataBoundItem;
+            int idRezerwacji = Convert.ToInt32(zaznaczonyWiersz["IdRezerwacjiDb"]);
+
+           
+            Edytuj_rezerwacje edytujRezerwacje = new Edytuj_rezerwacje(idRezerwacji);
             edytujRezerwacje.Show();
             this.Hide();
         }
@@ -105,6 +117,50 @@ namespace Panele_Glowne
         private void powrótToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void usuńToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow == null)
+            {
+                MessageBox.Show("Proszę zaznaczyć rezerwację do anulowania.", "Brak wyboru", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DataRowView zaznaczonyWiersz = (DataRowView)dataGridView1.CurrentRow.DataBoundItem;
+            int idRezerwacji = Convert.ToInt32(zaznaczonyWiersz["IdRezerwacjiDb"]);
+
+            DialogResult potwierdzenie = MessageBox.Show("Czy na pewno chcesz anulować tę rezerwację?", "Potwierdzenie anulowania", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (potwierdzenie == DialogResult.No)
+            {
+                return;
+            }
+
+            try
+            {
+                HotelContext dbContext = new HotelContext();
+                using (MySqlConnection conn = dbContext.GetConnection())
+                {
+                    conn.Open();
+
+                    string updateQuery = "UPDATE Rezerwacje SET StatusRezerwacji = 'Anulowana' WHERE IdRezerwacji = @id;";
+
+                    using (MySqlCommand cmd = new MySqlCommand(updateQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", idRezerwacji);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Rezerwacja została pomyślnie anulowana.", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                WczytajDane();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Wystąpił błąd podczas anulowania rezerwacji:\n" + ex.Message, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
     }
 }
