@@ -5,87 +5,66 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HotelManagement.Models
 {
-    // TABELA: Osoby (Główna tabela z danymi personalnymi)
-    [Table("osoby")]
-    public class Osoba
+    // TABELA: Konta (Autoryzacja)
+    [Table("Konta")]
+    public class Konto
     {
         [Key]
-        [Column("Id")]
+        [Column("IdKonta")]
         public int Id { get; set; }
 
-        [Column("Imie")]
-        [Required]
-        [MaxLength(50)]
-        public string Imie { get; set; }
-
-        [Column("Nazwisko")]
-        [Required]
-        [MaxLength(100)]
-        public string Nazwisko { get; set; }
-
-        // Właściwości nawigacyjne
-        public ICollection<Klient> Klienci { get; set; }
-        public ICollection<Uzytkownicy> Uzytkownicy { get; set; }
-        public ICollection<Pracownik> Pracownicy { get; set; }
-    }
-
-    // TABELA: Uzytkownicy (Pracownicy logujący się do systemu)
-    [Table("Uzytkownicy")]
-    public class Uzytkownicy
-    {
-        [Key]
-        [Column("IdUzytkownika")]
-        public int Id { get; set; }
-
-        [Column("Login")]
         [Required]
         [MaxLength(50)]
         public string Login { get; set; }
 
-        [Column("Haslo")]
         [Required]
         [MaxLength(255)]
-        public string Haslo { get; set; }
+        public string HasloHash { get; set; }
 
-        [Column("Rola")]
         [Required]
-        [MaxLength(50)]
+        [MaxLength(30)]
         public string Rola { get; set; }
 
-        // Klucz obcy łączący z tabelą Osoby (Nullable, ponieważ w SQL jest DEFAULT NULL)
-        [Column("Id_osoby")]
-        public int? IdOsoby { get; set; }
+        public bool Aktywne { get; set; }
 
-        [ForeignKey(nameof(IdOsoby))]
-        public Osoba Osoba { get; set; }
+        // Relacje
+        public ICollection<Pracownik> Pracownicy { get; set; }
+        public ICollection<Gosc> Goscie { get; set; }
     }
 
-    // TABELA: Klienci
-    [Table("Klienci")]
-    public class Klient
+    // TABELA: Goscie
+    [Table("Goscie")]
+    public class Gosc
     {
         [Key]
-        [Column("IdKlienta")]
+        [Column("IdGoscia")]
         public int Id { get; set; }
 
-        [Column("NumerTelefonu")]
-        [Required]
-        [MaxLength(20)]
-        public string NumerTelefonu { get; set; }
+        [Column("IdKonta")]
+        public int? IdKonta { get; set; }
 
-        [Column("Email")]
+        [ForeignKey(nameof(IdKonta))]
+        public Konto Konto { get; set; }
+
         [Required]
+        [MaxLength(50)]
+        public string Imie { get; set; }
+
+        [Required]
+        [MaxLength(100)]
+        public string Nazwisko { get; set; }
+
         [MaxLength(100)]
         public string Email { get; set; }
 
-        // Klucz obcy łączący z tabelą Osoby (Nullable, ponieważ w SQL jest DEFAULT NULL)
-        [Column("Id_osoby")]
-        public int? IdOsoby { get; set; }
+        [Required]
+        [MaxLength(20)]
+        public string Telefon { get; set; }
 
-        [ForeignKey(nameof(IdOsoby))]
-        public Osoba Osoba { get; set; }
+        [MaxLength(50)]
+        public string DokumentTozsamosci { get; set; }
 
-        // Relacja z rezerwacjami
+        // Relacje
         public ICollection<Rezerwacja> Rezerwacje { get; set; }
     }
 
@@ -94,21 +73,30 @@ namespace HotelManagement.Models
     public class Pracownik
     {
         [Key]
-        [Column("Id_pracownika")]
+        [Column("IdPracownika")]
         public int Id { get; set; }
 
-        [Column("Data_zatrudnienia")]
+        [Required]
+        [Column("IdKonta")]
+        public int IdKonta { get; set; }
+
+        [ForeignKey(nameof(IdKonta))]
+        public Konto Konto { get; set; }
+
+        [Required]
+        [MaxLength(50)]
+        public string Imie { get; set; }
+
+        [Required]
+        [MaxLength(100)]
+        public string Nazwisko { get; set; }
+
         public DateTime DataZatrudnienia { get; set; }
 
-        [Column("Pensja")]
         public decimal Pensja { get; set; }
 
-        // Klucz obcy łączący z tabelą Osoby (NOT NULL w SQL)
-        [Column("Id_osoby")]
-        public int IdOsoby { get; set; }
-
-        [ForeignKey(nameof(IdOsoby))]
-        public Osoba Osoba { get; set; }
+        // Relacje
+        public ICollection<Rezerwacja> Rezerwacje { get; set; }
     }
 
     // TABELA: Pokoje
@@ -119,25 +107,22 @@ namespace HotelManagement.Models
         [Column("IdPokoju")]
         public int Id { get; set; }
 
-        [Column("NumerPokoju")]
         [Required]
         [MaxLength(10)]
         public string NumerPokoju { get; set; }
 
-        [Column("TypPokoju")]
         [Required]
         [MaxLength(50)]
         public string TypPokoju { get; set; }
 
-        [Column("CenaZaNoc")]
-        public decimal CenaZaNoc { get; set; }
+        public int Pojemnosc { get; set; }
 
-        [Column("Status")]
-        [Required]
+        public decimal CenaPodstawowa { get; set; }
+
         [MaxLength(20)]
-        public string Status { get; set; }
+        public string StatusPokoju { get; set; }
 
-        // Relacja z rezerwacjami
+        // Relacje
         public ICollection<Rezerwacja> Rezerwacje { get; set; }
     }
 
@@ -149,36 +134,62 @@ namespace HotelManagement.Models
         [Column("IdRezerwacji")]
         public int Id { get; set; }
 
-        [Column("IdKlienta")]
-        public int IdKlienta { get; set; }
+        [Required]
+        [Column("IdGoscia")]
+        public int IdGoscia { get; set; }
 
-        [ForeignKey(nameof(IdKlienta))]
-        public Klient Klient { get; set; }
+        [ForeignKey(nameof(IdGoscia))]
+        public Gosc Gosc { get; set; }
 
+        [Required]
         [Column("IdPokoju")]
         public int IdPokoju { get; set; }
 
         [ForeignKey(nameof(IdPokoju))]
         public Pokoj Pokoj { get; set; }
 
-        [Column("DataPrzyjazdu")]
+        [Required]
+        [Column("IdPracownika")]
+        public int IdPracownika { get; set; }
+
+        [ForeignKey(nameof(IdPracownika))]
+        public Pracownik Pracownik { get; set; }
+
         public DateTime DataPrzyjazdu { get; set; }
 
-        [Column("DataWyjazdu")]
         public DateTime DataWyjazdu { get; set; }
 
-        [Column("LiczbaNocy")]
-        public int LiczbaNocy { get; set; }
+        public decimal KwotaCalkowita { get; set; }
 
-        [Column("KwotaLaczna")]
-        public decimal KwotaLaczna { get; set; }
+        [MaxLength(30)]
+        public string StatusRezerwacji { get; set; }
 
-        [Column("StatusRezerwacji")]
+        public string Uwagi { get; set; }
+
+        // Relacje
+        public ICollection<Platnosc> Platnosci { get; set; }
+    }
+
+    // TABELA: Platnosci
+    [Table("Platnosci")]
+    public class Platnosc
+    {
+        [Key]
+        [Column("IdPlatnosci")]
+        public int Id { get; set; }
+
         [Required]
-        [MaxLength(20)]
-        public string Status { get; set; }
+        [Column("IdRezerwacji")]
+        public int IdRezerwacji { get; set; }
 
-        [Column("Uwagi")]
-        public string Uwagi { get; set; } // Opcjonalne w SQL (DEFAULT NULL), string domyślnie pozwala na null
+        [ForeignKey(nameof(IdRezerwacji))]
+        public Rezerwacja Rezerwacja { get; set; }
+
+        public decimal Kwota { get; set; }
+
+        public DateTime DataPlatnosci { get; set; }
+
+        [MaxLength(20)]
+        public string MetodaPlatnosci { get; set; }
     }
 }
