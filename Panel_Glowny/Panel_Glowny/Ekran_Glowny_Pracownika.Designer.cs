@@ -33,6 +33,7 @@
             label2 = new Label();
             label1 = new Label();
             panel2 = new Panel();
+            button7 = new Button();
             button6 = new Button();
             button4 = new Button();
             button3 = new Button();
@@ -66,6 +67,7 @@
             label2.Size = new Size(52, 21);
             label2.TabIndex = 0;
             label2.Text = "label2";
+            label2.Click += label2_Click;
             // 
             // label1
             // 
@@ -80,6 +82,7 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ButtonFace;
+            panel2.Controls.Add(button7);
             panel2.Controls.Add(button6);
             panel2.Controls.Add(button4);
             panel2.Controls.Add(button3);
@@ -89,19 +92,31 @@
             panel2.Size = new Size(189, 390);
             panel2.TabIndex = 1;
             // 
+            // button7
+            // 
+            button7.Location = new Point(12, 279);
+            button7.Name = "button7";
+            button7.Size = new Size(160, 42);
+            button7.TabIndex = 6;
+            button7.Text = "Zarządzaj kontem";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
             // button6
             // 
+            button6.BackColor = Color.FromArgb(255, 128, 128);
+            button6.ForeColor = Color.Black;
             button6.Location = new Point(12, 330);
             button6.Name = "button6";
             button6.Size = new Size(160, 40);
             button6.TabIndex = 5;
             button6.Text = "Wyloguj sie";
-            button6.UseVisualStyleBackColor = true;
+            button6.UseVisualStyleBackColor = false;
             button6.Click += button6_Click;
             // 
             // button4
             // 
-            button4.Location = new Point(12, 201);
+            button4.Location = new Point(12, 178);
             button4.Name = "button4";
             button4.Size = new Size(160, 75);
             button4.TabIndex = 3;
@@ -111,7 +126,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(12, 108);
+            button3.Location = new Point(12, 97);
             button3.Name = "button3";
             button3.Size = new Size(160, 75);
             button3.TabIndex = 2;
@@ -121,7 +136,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(12, 18);
+            button2.Location = new Point(12, 16);
             button2.Name = "button2";
             button2.Size = new Size(160, 75);
             button2.TabIndex = 1;
@@ -205,5 +220,6 @@
         private Label label3;
         private MonthCalendar monthCalendar1;
         private PictureBox pictureBox1;
+        private Button button7;
     }
 }
