@@ -43,16 +43,18 @@ public partial class Ekran_Logowania_Klienta : Form
                 conn.Open();
 
                 string query = @"
-                SELECT
-                u.Login,
-                u.Haslo,
-                u.Rola,
-                o.Imie,
-                k.IdKlienta
-                FROM Uzytkownicy u
-                LEFT JOIN osoby o ON u.Id_osoby = o.Id
-                LEFT JOIN Klienci k ON o.Id = k.Id_osoby
-                WHERE u.Login = @login";
+               SELECT
+            u.Login,
+            u.Haslo,
+            u.Rola,
+            o.Imie,
+            k.IdKlienta,
+            p.Id_pracownika
+            FROM Uzytkownicy u
+            LEFT JOIN osoby o ON u.Id_osoby = o.Id
+            LEFT JOIN Klienci k ON o.Id = k.Id_osoby
+            LEFT JOIN Pracownicy p ON o.Id = p.Id_osoby
+            WHERE u.Login = @login";
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@login", login);
@@ -68,7 +70,7 @@ public partial class Ekran_Logowania_Klienta : Form
                     {
                         ZalogowanyUzytkownik.Login = reader["Login"].ToString();
                         ZalogowanyUzytkownik.Imie = reader["Imie"].ToString();
-                        ZalogowanyUzytkownik.IdKlienta = Convert.ToInt32(reader["IdKlienta"]);
+                        ZalogowanyUzytkownik.Rola = reader["Rola"].ToString();
                         if (rola == "Administrator")
                         {
                             Form_Admin admin = new Form_Admin();
@@ -76,11 +78,20 @@ public partial class Ekran_Logowania_Klienta : Form
                         }
                         else if (rola == "Recepcjonista")
                         {
+                            if (reader["Id_pracownika"] != DBNull.Value)
+                            {
+                                ZalogowanyUzytkownik.IdPracownika =
+                                    Convert.ToInt32(reader["Id_pracownika"]);
+                            }
+
                             Ekran_Glowny_Pracownika recepcja = new Ekran_Glowny_Pracownika();
                             recepcja.Show();
                         }
                         else if (rola == "Klient")
                         {
+                            ZalogowanyUzytkownik.IdKlienta =
+                                    Convert.ToInt32(reader["IdKlienta"]);
+
                             Panel_Glowny_Klienta klient = new Panel_Glowny_Klienta();
                             klient.Show();
                         }
