@@ -42,17 +42,7 @@ public partial class Ekran_Logowania_Klienta : Form
             {
                 conn.Open();
 
-                string query = @"
-                SELECT
-                u.Login,
-                u.Haslo,
-                u.Rola,
-                o.Imie,
-                k.IdKlienta
-                FROM Uzytkownicy u
-                LEFT JOIN osoby o ON u.Id_osoby = o.Id
-                LEFT JOIN Klienci k ON o.Id = k.Id_osoby
-                WHERE u.Login = @login";
+                string query = "SELECT Haslo, Rola FROM Uzytkownicy WHERE Login = @login";
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@login", login);
@@ -66,9 +56,6 @@ public partial class Ekran_Logowania_Klienta : Form
 
                     if (haslo == hasloZBazy)
                     {
-                        ZalogowanyUzytkownik.Login = reader["Login"].ToString();
-                        ZalogowanyUzytkownik.Imie = reader["Imie"].ToString();
-                        ZalogowanyUzytkownik.IdKlienta = Convert.ToInt32(reader["IdKlienta"]);
                         if (rola == "Administrator")
                         {
                             Form_Admin admin = new Form_Admin(login);
