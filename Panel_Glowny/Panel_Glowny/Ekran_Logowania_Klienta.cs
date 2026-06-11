@@ -138,4 +138,12 @@ public partial class Ekran_Logowania_Klienta : Form
     {
 
     }
+
+    private void linkLabNiePamietam_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+        OknoNiePamietamHasla DoOknaNiePamietamHasla = new OknoNiePamietamHasla();
+        DoOknaNiePamietamHasla.Show();
+        this.Hide();
+    }
+
 }
