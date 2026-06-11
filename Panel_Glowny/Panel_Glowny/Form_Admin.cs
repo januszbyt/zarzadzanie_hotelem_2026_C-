@@ -12,12 +12,12 @@ namespace Panele_Glowne
 {
     public partial class Form_Admin : Form
     {
-        public Form_Admin(string zalogowanyUzytkownik)
+        public Form_Admin(string ZalogowanyUzytkownik)
         {
             InitializeComponent();
 
            
-            label2.Text = zalogowanyUzytkownik;
+            label2.Text = ZalogowanyUzytkownik;
         }
 
         private void button2_Click(object sender, EventArgs e)
