@@ -88,10 +88,7 @@ namespace Panele_Glowne
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Ekran_Glowny_Pracownika powrotDoOknaPracownika = new Ekran_Glowny_Pracownika();
-            powrotDoOknaPracownika.Show();
-
-            this.Hide();
+            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)

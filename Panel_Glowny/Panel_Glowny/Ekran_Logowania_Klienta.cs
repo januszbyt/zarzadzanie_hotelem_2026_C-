@@ -71,7 +71,7 @@ public partial class Ekran_Logowania_Klienta : Form
                         ZalogowanyUzytkownik.IdKlienta = Convert.ToInt32(reader["IdKlienta"]);
                         if (rola == "Administrator")
                         {
-                            Form_Admin admin = new Form_Admin();
+                            Form_Admin admin = new Form_Admin(login);
                             admin.Show();
                         }
                         else if (rola == "Recepcjonista")
