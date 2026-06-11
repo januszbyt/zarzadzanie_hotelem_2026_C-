@@ -44,24 +44,32 @@ namespace Panele_Glowne
             string login = textBox1.Text.Trim();
             string haslo = textBox2.Text;
             string powtorzHaslo = textBox3.Text;
+            string pin = textBox4.Text.Trim();
 
             int przypisaneIdOsoby = 1;
 
-            if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(haslo) || string.IsNullOrWhiteSpace(powtorzHaslo))
+            if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(haslo) ||
+                string.IsNullOrWhiteSpace(powtorzHaslo) || string.IsNullOrWhiteSpace(pin))
             {
-                MessageBox.Show("Proszę uzupełnic wszystkie pola", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Proszę uzupełnić wszystkie pola, w tym PIN pomocniczy.", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (haslo != powtorzHaslo)
             {
-                MessageBox.Show("Wprowadzone hasla nie są identyczne", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Wprowadzone hasła nie są identyczne", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (login.Length < 3 || haslo.Length < 4)
             {
                 MessageBox.Show("Login musi mieć min. 3 znaki, a hasło min. 4 znaki.", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (pin.Length != 4 || !int.TryParse(pin, out _))
+            {
+                MessageBox.Show("PIN pomocniczy musi składać się dokładnie z 4 cyfr (np. 1234).", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -84,20 +92,20 @@ namespace Panele_Glowne
                         }
                     }
 
-                    string insertQuery = "INSERT INTO Uzytkownicy (Login, Haslo, Rola, Id_osoby) VALUES (@login, @haslo, 'Klient', @idOsoby)";
+                    string insertQuery = "INSERT INTO Uzytkownicy (Login, Haslo, Rola, Id_osoby, Pin) VALUES (@login, @haslo, 'Klient', @idOsoby, @pin)";
 
                     using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, connection))
                     {
                         insertCmd.Parameters.AddWithValue("@login", login);
                         insertCmd.Parameters.AddWithValue("@haslo", haslo);
-
                         insertCmd.Parameters.AddWithValue("@idOsoby", przypisaneIdOsoby);
+                        insertCmd.Parameters.AddWithValue("@pin", pin);
 
                         int wynik = insertCmd.ExecuteNonQuery();
 
                         if (wynik > 0)
                         {
-                            MessageBox.Show("Konto zostało utworzone", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Konto zostało utworzone pomyślnie!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             Ekran_Logowania_Klienta powrotDoLogowania = new Ekran_Logowania_Klienta();
                             powrotDoLogowania.Show();
@@ -110,6 +118,10 @@ namespace Panele_Glowne
                     MessageBox.Show($"Błąd bazy danych podczas rejestracji: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
         }
     }
 }
