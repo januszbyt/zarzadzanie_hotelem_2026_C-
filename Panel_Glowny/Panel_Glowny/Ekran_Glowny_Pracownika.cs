@@ -8,7 +8,11 @@ namespace Panel_Glowny
         {
             InitializeComponent();
         }
+        public Ekran_Glowny_Pracownika(string ZalogowanyUzytkownik)
+        {
+            InitializeComponent();
 
+        }
         private void button4_Click(object sender, EventArgs e)
         {
             Panel_Przypisania_Goscia_DoRezerwacji gosciepracownik = new Panel_Przypisania_Goscia_DoRezerwacji();
