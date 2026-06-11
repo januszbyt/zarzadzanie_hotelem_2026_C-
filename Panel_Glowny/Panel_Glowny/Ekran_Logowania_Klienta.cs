@@ -54,7 +54,7 @@ public partial class Ekran_Logowania_Klienta : Form
             LEFT JOIN osoby o ON u.Id_osoby = o.Id
             LEFT JOIN Klienci k ON o.Id = k.Id_osoby
             LEFT JOIN Pracownicy p ON o.Id = p.Id_osoby
-            WHERE u.Login = @login";
+            WHERE u.Login = @login"; 
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@login", login);
