@@ -58,7 +58,7 @@ public partial class Ekran_Logowania_Klienta : Form
                     {
                         if (rola == "Administrator")
                         {
-                            Form_Admin admin = new Form_Admin();
+                            Form_Admin admin = new Form_Admin(login);
                             admin.Show();
                         }
                         else if (rola == "Recepcjonista")

@@ -30,6 +30,7 @@
         {
             label1 = new Label();
             panel1 = new Panel();
+            button7 = new Button();
             button6 = new Button();
             button5 = new Button();
             button4 = new Button();
@@ -55,7 +56,6 @@
             label3 = new Label();
             textBox1 = new TextBox();
             label2 = new Label();
-            button7 = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -103,6 +103,16 @@
             panel1.Size = new Size(1118, 529);
             panel1.TabIndex = 1;
             // 
+            // button7
+            // 
+            button7.Location = new Point(983, 71);
+            button7.Name = "button7";
+            button7.Size = new Size(85, 47);
+            button7.TabIndex = 18;
+            button7.Text = "Zatwierdz";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
             // button6
             // 
             button6.Location = new Point(983, 230);
@@ -129,7 +139,7 @@
             button4.Name = "button4";
             button4.Size = new Size(85, 47);
             button4.TabIndex = 15;
-            button4.Text = "Anuluj";
+            button4.Text = "Wyczyść";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
@@ -307,6 +317,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(120, 23);
             textBox1.TabIndex = 1;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // label2
             // 
@@ -318,17 +329,7 @@
             label2.TabIndex = 0;
             label2.Text = "Dodaj gościa:";
             // 
-            // button7
-            // 
-            button7.Location = new Point(983, 71);
-            button7.Name = "button7";
-            button7.Size = new Size(85, 47);
-            button7.TabIndex = 18;
-            button7.Text = "Zatwierdz";
-            button7.UseVisualStyleBackColor = true;
-            button7.Click += button7_Click;
-            // 
-            // EkranGoscie
+            // Panel_Przypisania_Goscia_DoRezerwacji
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -336,7 +337,7 @@
             ClientSize = new Size(1266, 607);
             Controls.Add(label1);
             Controls.Add(panel1);
-            Name = "EkranGoscie";
+            Name = "Panel_Przypisania_Goscia_DoRezerwacji";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Ekran Goscie";
             Load += Form1_Load;
