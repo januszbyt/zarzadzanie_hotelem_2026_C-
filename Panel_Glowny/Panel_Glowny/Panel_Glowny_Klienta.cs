@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -25,6 +26,7 @@ namespace Panele_Glowne
         {
             InitializeComponent();
             this.Load += Panel_Glowny_Klienta_Load;
+ 
 
         }
         private void WczytajRezerwacje()
@@ -33,30 +35,43 @@ namespace Panele_Glowne
 
             using (var conn = db.GetConnection())
             {
-                conn.Open();
+                try
+                {
+                    conn.Open();
 
-                string query = @"
-        SELECT 
-        r.IdRezerwacji,
-        p.NumerPokoju,
-        r.DataPrzyjazdu,
-        r.DataWyjazdu,
-        DATEDIFF(r.DataWyjazdu, r.DataPrzyjazdu) AS LiczbaNocy,
-        r.KwotaCalkowita,
-        r.StatusRezerwacji
-        FROM Rezerwacje r
-        JOIN Pokoje p ON r.IdPokoju = p.IdPokoju
-        WHERE r.IdGoscia = @idGoscia";
+                    int idGoscia = ZalogowanyUzytkownik.IdGoscia ?? 0;
 
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@idGoscia", ZalogowanyUzytkownik.IdGoscia);
+                    string query = @"
+                SELECT 
+                    r.IdRezerwacji,
+                    p.NumerPokoju,
+                    r.DataPrzyjazdu,
+                    r.DataWyjazdu,
+                    DATEDIFF(r.DataWyjazdu, r.DataPrzyjazdu) AS LiczbaNocy,
+                    r.KwotaCalkowita,
+                    r.StatusRezerwacji
+                FROM Rezerwacje r
+                LEFT JOIN Pokoje p ON r.IdPokoju = p.IdPokoju
+                WHERE r.IdGoscia = @idGoscia";
 
-                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@idGoscia", idGoscia);
 
-                dataGridView1.DataSource = dt;
-                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            adapter.Fill(dt);
+
+                            dataGridView1.DataSource = dt;
+                            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Błąd SQL: {ex.Message}");
+                }
             }
         }
         private void button1_Click(object sender, EventArgs e)
@@ -69,10 +84,7 @@ namespace Panele_Glowne
             Dodaj_rezerwacje dodaj_Rezerwacje2 = new Dodaj_rezerwacje();
             dodaj_Rezerwacje2.Show();
         }
-        private void fun2()
-        {
-            Console.WriteLine("FUN2");
-        }
+  
 
         private void button3_Click(object sender, EventArgs e)
         {
