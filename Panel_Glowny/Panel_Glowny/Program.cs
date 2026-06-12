@@ -1,4 +1,6 @@
 using Panele_Glowne;
+using System;
+using System.Windows.Forms;
 
 namespace Panel_Glowny
 {
@@ -13,7 +15,22 @@ namespace Panel_Glowny
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Ekran_Logowania_Klienta());
+
+            HotelContext dbContext = new HotelContext();
+
+            if (dbContext.CzyJestPolaczenie())
+            {
+                Application.Run(new Ekran_Logowania_Klienta());
+            }
+            else
+            {
+                Logowanie_do_bazy oknoPolaczenia = new Logowanie_do_bazy();
+
+                if (oknoPolaczenia.ShowDialog() == DialogResult.OK)
+                {
+                    Application.Run(new Ekran_Logowania_Klienta());
+                }
+            }
         }
     }
 }

@@ -27,5 +27,20 @@ namespace Panele_Glowne
         {
             return new MySqlConnection(connectionString);
         }
+        public bool CzyJestPolaczenie()
+        {
+            try
+            {
+                using (MySqlConnection conn = GetConnection())
+                {
+                    conn.Open();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

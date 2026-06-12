@@ -146,4 +146,6 @@ public partial class Ekran_Logowania_Klienta : Form
         this.Hide();
     }
 
+
+
 }
