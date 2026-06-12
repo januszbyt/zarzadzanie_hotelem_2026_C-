@@ -36,20 +36,20 @@ namespace Panele_Glowne
                 conn.Open();
 
                 string query = @"
-            SELECT
-            r.IdRezerwacji,
-            p.NumerPokoju,
-            r.DataPrzyjazdu,
-            r.DataWyjazdu,
-            r.LiczbaNocy,
-            r.KwotaLaczna,
-            r.StatusRezerwacji
-            FROM Rezerwacje r
-            JOIN Pokoje p ON r.IdPokoju = p.IdPokoju
-            WHERE r.IdKlienta = @idKlienta";
+        SELECT 
+        r.IdRezerwacji,
+        p.NumerPokoju,
+        r.DataPrzyjazdu,
+        r.DataWyjazdu,
+        DATEDIFF(r.DataWyjazdu, r.DataPrzyjazdu) AS LiczbaNocy,
+        r.KwotaCalkowita,
+        r.StatusRezerwacji
+        FROM Rezerwacje r
+        JOIN Pokoje p ON r.IdPokoju = p.IdPokoju
+        WHERE r.IdGoscia = @idGoscia";
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@idKlienta", ZalogowanyUzytkownik.IdKlienta);
+                cmd.Parameters.AddWithValue("@idGoscia", ZalogowanyUzytkownik.IdGoscia);
 
                 MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                 DataTable dt = new DataTable();

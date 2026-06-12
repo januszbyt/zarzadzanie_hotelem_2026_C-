@@ -12,7 +12,7 @@ namespace Panele_Glowne
         public static string Login { get; set; }
         public static string Imie { get; set; }
 
-        public static int? IdKlienta { get; set; }
+        public static int? IdGoscia { get; set; }
         public static int? IdPracownika { get; set; }
     }
 }
