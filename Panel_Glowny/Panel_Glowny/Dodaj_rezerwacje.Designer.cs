@@ -204,12 +204,13 @@
             // 
             // powrot
             // 
+            powrot.BackColor = Color.FromArgb(255, 128, 128);
             powrot.Location = new Point(683, 359);
             powrot.Name = "powrot";
             powrot.Size = new Size(105, 36);
             powrot.TabIndex = 22;
             powrot.Text = "Powrót";
-            powrot.UseVisualStyleBackColor = true;
+            powrot.UseVisualStyleBackColor = false;
             powrot.Click += button2_Click;
             // 
             // label10
@@ -257,7 +258,6 @@
             osobowy.TabIndex = 27;
             osobowy.SelectedIndexChanged += kwotaPokoi;
             osobowy.DataContextChanged += kwotaPokoi;
-            osobowy.Text = "1";
             // 
             // Dodaj_rezerwacje
             // 

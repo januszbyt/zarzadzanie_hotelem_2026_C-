@@ -138,9 +138,10 @@
             // 
             // powrótToolStripMenuItem
             // 
+            powrótToolStripMenuItem.BackColor = Color.FromArgb(255, 128, 128);
             powrótToolStripMenuItem.Name = "powrótToolStripMenuItem";
             powrótToolStripMenuItem.Size = new Size(57, 20);
-            powrótToolStripMenuItem.Text = "Powrot";
+            powrótToolStripMenuItem.Text = "Powrót";
             powrótToolStripMenuItem.Click += powrótToolStripMenuItem_Click;
             // 
             // Okno_Rezerwacji_Obslugiwane_Przez_Pracownika

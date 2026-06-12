@@ -81,12 +81,13 @@
             // 
             // button1
             // 
-            button1.Location = new Point(16, 478);
+            button1.BackColor = Color.FromArgb(255, 128, 128);
+            button1.Location = new Point(16, 469);
             button1.Name = "button1";
-            button1.Size = new Size(102, 23);
+            button1.Size = new Size(128, 37);
             button1.TabIndex = 12;
             button1.Text = "Powrot";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // label12
