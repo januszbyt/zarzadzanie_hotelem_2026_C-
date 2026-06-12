@@ -42,7 +42,7 @@
             dodajToolStripMenuItem = new ToolStripMenuItem();
             edytujToolStripMenuItem = new ToolStripMenuItem();
             usuńToolStripMenuItem = new ToolStripMenuItem();
-            button1 = new Button();
+            powrótToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -108,7 +108,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { dodajToolStripMenuItem, edytujToolStripMenuItem, usuńToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { dodajToolStripMenuItem, edytujToolStripMenuItem, usuńToolStripMenuItem, powrótToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(900, 24);
@@ -134,23 +134,21 @@
             usuńToolStripMenuItem.Name = "usuńToolStripMenuItem";
             usuńToolStripMenuItem.Size = new Size(46, 20);
             usuńToolStripMenuItem.Text = "Usuń";
+            usuńToolStripMenuItem.Click += usuńToolStripMenuItem_Click;
             // 
-            // button1
+            // powrótToolStripMenuItem
             // 
-            button1.Location = new Point(757, 51);
-            button1.Name = "button1";
-            button1.Size = new Size(114, 26);
-            button1.TabIndex = 3;
-            button1.Text = "Powrot";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            powrótToolStripMenuItem.BackColor = Color.FromArgb(255, 128, 128);
+            powrótToolStripMenuItem.Name = "powrótToolStripMenuItem";
+            powrótToolStripMenuItem.Size = new Size(57, 20);
+            powrótToolStripMenuItem.Text = "Powrót";
+            powrótToolStripMenuItem.Click += powrótToolStripMenuItem_Click;
             // 
             // Okno_Rezerwacji_Obslugiwane_Przez_Pracownika
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(900, 510);
-            Controls.Add(button1);
             Controls.Add(dataGridView1);
             Controls.Add(Title);
             Controls.Add(menuStrip1);
@@ -180,6 +178,6 @@
         private DataGridViewTextBoxColumn od;
         private DataGridViewTextBoxColumn doKiedy;
         private DataGridViewTextBoxColumn kwota;
-        private Button button1;
+        private ToolStripMenuItem powrótToolStripMenuItem;
     }
 }

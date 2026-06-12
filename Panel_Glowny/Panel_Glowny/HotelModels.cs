@@ -25,7 +25,14 @@ namespace HotelManagement.Models
         [MaxLength(30)]
         public string Rola { get; set; }
 
-        public bool Aktywne { get; set; }
+        [Column("Pin")]
+        [Required]
+        [MaxLength(4)]
+        public string Pin { get; set; }
+
+        // Klucz obcy łączący z tabelą Osoby (Nullable, ponieważ w SQL jest DEFAULT NULL)
+        [Column("Id_osoby")]
+        public int? IdOsoby { get; set; }
 
         // Relacje
         public ICollection<Pracownik> Pracownicy { get; set; }

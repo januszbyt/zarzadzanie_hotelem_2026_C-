@@ -34,6 +34,7 @@ namespace Panele_Glowne
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ekran_Logowania_Klienta));
             panel1 = new Panel();
+            linkLabNiePamietam = new LinkLabel();
             pictureBox2 = new PictureBox();
             label5 = new Label();
             label4 = new Label();
@@ -55,6 +56,7 @@ namespace Panele_Glowne
             // 
             panel1.BackColor = SystemColors.ButtonFace;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(linkLabNiePamietam);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label4);
@@ -69,8 +71,22 @@ namespace Panele_Glowne
             panel1.Controls.Add(label1);
             panel1.Location = new Point(183, 32);
             panel1.Name = "panel1";
-            panel1.Size = new Size(397, 480);
+            panel1.Size = new Size(397, 525);
             panel1.TabIndex = 0;
+            // 
+            // linkLabNiePamietam
+            // 
+            linkLabNiePamietam.AutoSize = true;
+            linkLabNiePamietam.Cursor = Cursors.Hand;
+            linkLabNiePamietam.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 238);
+            linkLabNiePamietam.LinkColor = Color.Red;
+            linkLabNiePamietam.Location = new Point(45, 355);
+            linkLabNiePamietam.Name = "linkLabNiePamietam";
+            linkLabNiePamietam.Size = new Size(114, 15);
+            linkLabNiePamietam.TabIndex = 12;
+            linkLabNiePamietam.TabStop = true;
+            linkLabNiePamietam.Text = "Nie pamietam hasla";
+            linkLabNiePamietam.LinkClicked += linkLabNiePamietam_LinkClicked;
             // 
             // pictureBox2
             // 
@@ -106,7 +122,7 @@ namespace Panele_Glowne
             button3.FlatAppearance.MouseOverBackColor = SystemColors.GradientInactiveCaption;
             button3.FlatStyle = FlatStyle.Flat;
             button3.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            button3.Location = new Point(147, 361);
+            button3.Location = new Point(146, 388);
             button3.Name = "button3";
             button3.Size = new Size(120, 31);
             button3.TabIndex = 8;
@@ -116,12 +132,12 @@ namespace Panele_Glowne
             // 
             // button2
             // 
-            button2.BackColor = SystemColors.ControlLight;
+            button2.BackColor = Color.FromArgb(255, 128, 128);
             button2.FlatAppearance.MouseDownBackColor = SystemColors.GradientInactiveCaption;
             button2.FlatAppearance.MouseOverBackColor = SystemColors.GradientInactiveCaption;
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            button2.Location = new Point(289, 431);
+            button2.Location = new Point(305, 478);
             button2.Name = "button2";
             button2.Size = new Size(75, 29);
             button2.TabIndex = 7;
@@ -137,7 +153,7 @@ namespace Panele_Glowne
             button1.FlatAppearance.MouseOverBackColor = SystemColors.GradientInactiveCaption;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            button1.Location = new Point(45, 361);
+            button1.Location = new Point(45, 388);
             button1.Name = "button1";
             button1.Size = new Size(84, 31);
             button1.TabIndex = 6;
@@ -197,7 +213,7 @@ namespace Panele_Glowne
             label1.Font = new Font("Sitka Small", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label1.Location = new Point(45, 239);
             label1.Name = "label1";
-            label1.Size = new Size(185, 28);
+            label1.Size = new Size(187, 28);
             label1.TabIndex = 0;
             label1.Text = "System Hotelowy";
             // 
@@ -233,5 +249,6 @@ namespace Panele_Glowne
         private Label label4;
         private Label label5;
         private PictureBox pictureBox2;
+        private LinkLabel linkLabNiePamietam;
     }
 }

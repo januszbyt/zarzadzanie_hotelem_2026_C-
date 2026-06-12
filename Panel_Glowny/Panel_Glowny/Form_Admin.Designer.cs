@@ -91,12 +91,13 @@
             // 
             // button4
             // 
+            button4.BackColor = Color.FromArgb(255, 128, 128);
             button4.Location = new Point(34, 358);
             button4.Name = "button4";
             button4.Size = new Size(111, 42);
             button4.TabIndex = 3;
             button4.Text = "Wyloguj sie";
-            button4.UseVisualStyleBackColor = true;
+            button4.UseVisualStyleBackColor = false;
             button4.Click += button4_Click;
             // 
             // panel1
@@ -118,6 +119,7 @@
             label2.Size = new Size(52, 21);
             label2.TabIndex = 1;
             label2.Text = "label2";
+            label2.Click += label2_Click;
             // 
             // label1
             // 

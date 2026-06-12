@@ -1,6 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
 using Panele_Glowne;
+using System;
 using System.Data;
+using System.Windows.Forms;
+
 namespace Panele_Glowne
 {
     public partial class EkranAdmin : Form
@@ -12,6 +15,7 @@ namespace Panele_Glowne
             InitializeComponent();
             OdswiezTabelePracownikow();
         }
+
         private void OdswiezTabelePracownikow()
         {
             string query = @"
@@ -48,6 +52,7 @@ namespace Panele_Glowne
                 }
             }
         }
+
         private void button2_Click(object sender, EventArgs e)
         {
             string imie = textBox1.Text.Trim();
@@ -57,17 +62,31 @@ namespace Panele_Glowne
             string haslo = textBox5.Text.Trim();
             string pensjaRaw = textBox3.Text.Trim();
 
+            // POBRANIE PINU (Upewnij się, że Twoje pole to textBox6)
+            string pin = textBox6.Text.Trim();
+
+            // Sprawdzenie, czy żadne pole nie jest puste
             if (string.IsNullOrWhiteSpace(imie) || string.IsNullOrWhiteSpace(nazwisko) ||
                 string.IsNullOrWhiteSpace(rola) || string.IsNullOrWhiteSpace(login) ||
-                string.IsNullOrWhiteSpace(haslo) || string.IsNullOrWhiteSpace(pensjaRaw))
+                string.IsNullOrWhiteSpace(haslo) || string.IsNullOrWhiteSpace(pensjaRaw) ||
+                string.IsNullOrWhiteSpace(pin))
             {
                 MessageBox.Show("Uzupełnij wszystkie pola, zanim dodasz pracownika!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            // Walidacja Pensji
             if (!decimal.TryParse(pensjaRaw, out decimal pensja))
             {
                 MessageBox.Show("Pensja musi być liczbą!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Walidacja PIN-u (Dokładnie 4 cyfry)
+            int parsedPin;
+            if (pin.Length != 4 || !int.TryParse(pin, out parsedPin))
+            {
+                MessageBox.Show("PIN musi składać się dokładnie z 4 cyfr!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -75,7 +94,9 @@ namespace Panele_Glowne
 
             string insertOsoba = "INSERT INTO osoby (Imie, Nazwisko) VALUES (@imie, @nazwisko); SELECT LAST_INSERT_ID();";
             string insertPracownik = "INSERT INTO Pracownicy (Id_osoby, Data_zatrudnienia, Pensja) VALUES (@idOsoby, @dataZatrudnienia, @pensja);";
-            string insertUzytkownik = "INSERT INTO Uzytkownicy (Login, Haslo, Rola, Id_osoby) VALUES (@login, @haslo, @rola, @idOsoby);";
+
+            // Dodano kolumnę PIN do zapytania Uzytkownicy (dostosuj nazwę kolumny 'PIN' jeśli w bazie nazywa się inaczej)
+            string insertUzytkownik = "INSERT INTO Uzytkownicy (Login, Haslo, Rola, Id_osoby, PIN) VALUES (@login, @haslo, @rola, @idOsoby, @pin);";
 
             using (MySqlConnection connection = db.GetConnection())
             {
@@ -107,6 +128,10 @@ namespace Panele_Glowne
                             cmdUzytkownik.Parameters.AddWithValue("@haslo", haslo);
                             cmdUzytkownik.Parameters.AddWithValue("@rola", rola);
                             cmdUzytkownik.Parameters.AddWithValue("@idOsoby", idOsoby);
+
+                            // Dodanie parametru PIN do zapytania
+                            cmdUzytkownik.Parameters.AddWithValue("@pin", pin);
+
                             cmdUzytkownik.ExecuteNonQuery();
                         }
 
@@ -119,6 +144,10 @@ namespace Panele_Glowne
                         textBox3.Clear();
                         textBox4.Clear();
                         textBox5.Clear();
+
+                        // Czyszczenie pola PIN po dodaniu
+                        textBox6.Clear();
+
                         dateTimePicker1.Value = DateTime.Now;
 
                         OdswiezTabelePracownikow();
@@ -169,9 +198,9 @@ namespace Panele_Glowne
 
         }
 
-        //private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        //{
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
-        // }
+        }
     }
 }

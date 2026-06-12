@@ -9,7 +9,6 @@ namespace Panele_Glowne
 {
     internal class HotelContext
     {
-
         string server = "127.0.0.1";
         string port = "3306";
         string database = "HotelParadisev2";

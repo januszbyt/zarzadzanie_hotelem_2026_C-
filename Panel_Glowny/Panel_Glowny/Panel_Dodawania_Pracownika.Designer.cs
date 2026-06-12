@@ -32,34 +32,36 @@ namespace Panele_Glowne
         {
             panel2 = new Panel();
             button4 = new Button();
-            button3 = new Button();
             button2 = new Button();
+            button3 = new Button();
             panel1 = new Panel();
             label3 = new Label();
             panel3 = new Panel();
+            label11 = new Label();
+            textBox6 = new TextBox();
+            label10 = new Label();
+            label9 = new Label();
+            textBox5 = new TextBox();
+            textBox4 = new TextBox();
+            label8 = new Label();
+            label7 = new Label();
+            label6 = new Label();
+            label5 = new Label();
+            comboBox1 = new ComboBox();
+            textBox3 = new TextBox();
+            textBox2 = new TextBox();
+            textBox1 = new TextBox();
             dateTimePicker1 = new DateTimePicker();
             label4 = new Label();
             label1 = new Label();
             label2 = new Label();
             dataGridView1 = new DataGridView();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
             Id_pracownika = new DataGridViewTextBoxColumn();
             Imie = new DataGridViewTextBoxColumn();
             Nazwisko = new DataGridViewTextBoxColumn();
             rola = new DataGridViewTextBoxColumn();
             Data_Zatrudnienia = new DataGridViewTextBoxColumn();
             pensja = new DataGridViewTextBoxColumn();
-            comboBox1 = new ComboBox();
-            label5 = new Label();
-            label6 = new Label();
-            label7 = new Label();
-            label8 = new Label();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
-            label9 = new Label();
-            label10 = new Label();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
@@ -79,23 +81,14 @@ namespace Panele_Glowne
             // 
             // button4
             // 
+            button4.BackColor = Color.FromArgb(255, 128, 128);
             button4.Location = new Point(34, 376);
             button4.Name = "button4";
             button4.Size = new Size(111, 42);
             button4.TabIndex = 3;
             button4.Text = "Powrót";
-            button4.UseVisualStyleBackColor = true;
+            button4.UseVisualStyleBackColor = false;
             button4.Click += button4_Click;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(34, 108);
-            button3.Name = "button3";
-            button3.Size = new Size(125, 60);
-            button3.TabIndex = 5;
-            button3.Text = "Usuń Pracownika";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
             // 
             // button2
             // 
@@ -106,6 +99,16 @@ namespace Panele_Glowne
             button2.Text = "Dodaj Pracownika";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(34, 108);
+            button3.Name = "button3";
+            button3.Size = new Size(125, 60);
+            button3.TabIndex = 5;
+            button3.Text = "Usuń Pracownika";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // panel1
             // 
@@ -129,6 +132,8 @@ namespace Panele_Glowne
             // panel3
             // 
             panel3.BackColor = SystemColors.ButtonFace;
+            panel3.Controls.Add(label11);
+            panel3.Controls.Add(textBox6);
             panel3.Controls.Add(label10);
             panel3.Controls.Add(label9);
             panel3.Controls.Add(textBox5);
@@ -151,6 +156,124 @@ namespace Panele_Glowne
             panel3.Size = new Size(951, 484);
             panel3.TabIndex = 5;
             panel3.Paint += panel3_Paint;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(428, 121);
+            label11.Name = "label11";
+            label11.Size = new Size(26, 15);
+            label11.TabIndex = 25;
+            label11.Text = "PIN";
+            // 
+            // textBox6
+            // 
+            textBox6.Location = new Point(376, 136);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(142, 23);
+            textBox6.TabIndex = 24;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(241, 121);
+            label10.Name = "label10";
+            label10.Size = new Size(37, 15);
+            label10.TabIndex = 23;
+            label10.Text = "Haslo";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(88, 121);
+            label9.Name = "label9";
+            label9.Size = new Size(37, 15);
+            label9.TabIndex = 22;
+            label9.Text = "Login";
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(203, 136);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(142, 23);
+            textBox5.TabIndex = 21;
+            textBox5.TextChanged += textBox5_TextChanged;
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(45, 136);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(125, 23);
+            textBox4.TabIndex = 20;
+            textBox4.TextChanged += textBox4_TextChanged;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(828, 57);
+            label8.Name = "label8";
+            label8.Size = new Size(41, 15);
+            label8.TabIndex = 19;
+            label8.Text = "Pensja";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(241, 57);
+            label7.Name = "label7";
+            label7.Size = new Size(57, 15);
+            label7.TabIndex = 18;
+            label7.Text = "Nazwisko";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(401, 58);
+            label6.Name = "label6";
+            label6.Size = new Size(92, 15);
+            label6.TabIndex = 17;
+            label6.Text = "Stanowisko/rola";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(86, 57);
+            label5.Name = "label5";
+            label5.Size = new Size(30, 15);
+            label5.TabIndex = 16;
+            label5.Text = "Imie";
+            label5.Click += label5_Click;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Administrator", "Recepcjonista" });
+            comboBox1.Location = new Point(376, 76);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(149, 23);
+            comboBox1.TabIndex = 15;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(799, 76);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(100, 23);
+            textBox3.TabIndex = 14;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(203, 76);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(142, 23);
+            textBox2.TabIndex = 13;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(45, 76);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(125, 23);
+            textBox1.TabIndex = 12;
             // 
             // dateTimePicker1
             // 
@@ -198,27 +321,6 @@ namespace Panele_Glowne
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick_1;
             // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(45, 76);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 23);
-            textBox1.TabIndex = 12;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(203, 76);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(142, 23);
-            textBox2.TabIndex = 13;
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(799, 76);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(100, 23);
-            textBox3.TabIndex = 14;
-            // 
             // Id_pracownika
             // 
             Id_pracownika.HeaderText = "ID_Pracownika";
@@ -257,86 +359,6 @@ namespace Panele_Glowne
             pensja.HeaderText = "Pensja";
             pensja.Name = "pensja";
             pensja.Width = 160;
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Adminitrator", "Recepcjonista" });
-            comboBox1.Location = new Point(376, 76);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(149, 23);
-            comboBox1.TabIndex = 15;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(86, 57);
-            label5.Name = "label5";
-            label5.Size = new Size(30, 15);
-            label5.TabIndex = 16;
-            label5.Text = "Imie";
-            label5.Click += label5_Click;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(401, 58);
-            label6.Name = "label6";
-            label6.Size = new Size(92, 15);
-            label6.TabIndex = 17;
-            label6.Text = "Stanowisko/rola";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(241, 57);
-            label7.Name = "label7";
-            label7.Size = new Size(57, 15);
-            label7.TabIndex = 18;
-            label7.Text = "Nazwisko";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(828, 57);
-            label8.Name = "label8";
-            label8.Size = new Size(41, 15);
-            label8.TabIndex = 19;
-            label8.Text = "Pensja";
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(45, 136);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(125, 23);
-            textBox4.TabIndex = 20;
-            textBox4.TextChanged += textBox4_TextChanged;
-            // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(203, 136);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(142, 23);
-            textBox5.TabIndex = 21;
-            textBox5.TextChanged += textBox5_TextChanged;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(88, 121);
-            label9.Name = "label9";
-            label9.Size = new Size(37, 15);
-            label9.TabIndex = 22;
-            label9.Text = "Login";
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(241, 121);
-            label10.Name = "label10";
-            label10.Size = new Size(37, 15);
-            label10.TabIndex = 23;
-            label10.Text = "Haslo";
             // 
             // EkranAdmin
             // 
@@ -440,5 +462,7 @@ namespace Panele_Glowne
         private TextBox textBox5;
         private TextBox textBox4;
         private Label label10;
+        private Label label11;
+        private TextBox textBox6;
     }
 }

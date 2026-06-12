@@ -42,7 +42,19 @@ public partial class Ekran_Logowania_Klienta : Form
             {
                 conn.Open();
 
-                string query = "SELECT Haslo, Rola FROM Uzytkownicy WHERE Login = @login";
+                string query = @"
+               SELECT
+            u.Login,
+            u.Haslo,
+            u.Rola,
+            o.Imie,
+            k.IdKlienta,
+            p.Id_pracownika
+            FROM Uzytkownicy u
+            LEFT JOIN osoby o ON u.Id_osoby = o.Id
+            LEFT JOIN Klienci k ON o.Id = k.Id_osoby
+            LEFT JOIN Pracownicy p ON o.Id = p.Id_osoby
+            WHERE u.Login = @login";
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@login", login);
@@ -56,23 +68,35 @@ public partial class Ekran_Logowania_Klienta : Form
 
                     if (haslo == hasloZBazy)
                     {
+                        ZalogowanyUzytkownik.Login = reader["Login"].ToString();
+                        ZalogowanyUzytkownik.Imie = reader["Imie"].ToString();
+                        ZalogowanyUzytkownik.Rola = reader["Rola"].ToString();
                         if (rola == "Administrator")
                         {
-                            Form_Admin admin = new Form_Admin();
+                            Form_Admin admin = new Form_Admin(ZalogowanyUzytkownik.Login);
                             admin.Show();
                         }
                         else if (rola == "Recepcjonista")
                         {
-                            Ekran_Glowny_Pracownika recepcja = new Ekran_Glowny_Pracownika();
+                            if (reader["Id_pracownika"] != DBNull.Value)
+                            {
+                                ZalogowanyUzytkownik.IdPracownika =
+                                    Convert.ToInt32(reader["Id_pracownika"]);
+                            }
+
+                            Ekran_Glowny_Pracownika recepcja = new Ekran_Glowny_Pracownika(login);
                             recepcja.Show();
                         }
                         else if (rola == "Klient")
                         {
+                            ZalogowanyUzytkownik.IdKlienta =
+                                    Convert.ToInt32(reader["IdKlienta"]);
+
                             Panel_Glowny_Klienta klient = new Panel_Glowny_Klienta();
                             klient.Show();
                         }
 
-                            this.Hide();
+                        this.Hide();
                     }
                     else
                     {
@@ -114,4 +138,12 @@ public partial class Ekran_Logowania_Klienta : Form
     {
 
     }
+
+    private void linkLabNiePamietam_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+        OknoNiePamietamHasla DoOknaNiePamietamHasla = new OknoNiePamietamHasla();
+        DoOknaNiePamietamHasla.Show();
+        this.Hide();
+    }
+
 }
