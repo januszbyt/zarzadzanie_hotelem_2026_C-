@@ -37,9 +37,9 @@ namespace Panele_Glowne
                 try
                 {
                     conn.Open();
-                    string zapytanie = @"SELECT P.NumerPokoju, P.IloscOsob, R.IdRezerwacji, R.DataPrzyjazdu, R.DataWyjazdu, R.KwotaLaczna,
-                    O.Imie, O.Nazwisko, K.Email, K.NumerTelefonu from Pokoje P left join Rezerwacje R on P.IdPokoju = R.IdPokoju left join 
-                    Klienci K on R.IdKlienta = K.IdKlienta left join osoby O on K.Id_osoby = O.Id
+                    string zapytanie = @"SELECT P.NumerPokoju, P.Pojemnosc, R.IdRezerwacji, R.DataPrzyjazdu, R.DataWyjazdu, R.KwotaCalkowita,
+                    G.Imie, G.Nazwisko, G.Email, G.Telefon from Pokoje P left join Rezerwacje R on P.IdPokoju = R.IdPokoju left join 
+                    Goscie G on R.IdGoscia = G.IdGoscia
                     where P.IdPokoju = @idPokoju order by R.IdRezerwacji desc limit 1";
                     using (MySqlCommand cmd = new MySqlCommand(zapytanie, conn))
                     {
@@ -50,7 +50,7 @@ namespace Panele_Glowne
                             if (reader.Read())
                             {
                                 label3.Text = reader["NumerPokoju"].ToString();
-                                label22.Text = reader["IloscOsob"].ToString();
+                                label22.Text = reader["Pojemnosc"].ToString();
                                 if (reader["Imie"] != DBNull.Value)
                                 {
                                     label14.Text = reader["Imie"].ToString();
@@ -75,17 +75,17 @@ namespace Panele_Glowne
                                 {
                                     label16.Text = "brak informacji";
                                 }
-                                if (reader["NumerTelefonu"] != DBNull.Value)
+                                if (reader["Telefon"] != DBNull.Value)
                                 {
-                                    label17.Text = reader["NumerTelefonu"].ToString();
+                                    label17.Text = reader["Telefon"].ToString();
                                 }
                                 else
                                 {
                                     label17.Text = "brak informacji";
                                 }
-                                if (reader["idRezerwacji"] != DBNull.Value)
+                                if (reader["IdRezerwacji"] != DBNull.Value)
                                 {
-                                    label18.Text = reader["idRezerwacji"].ToString();
+                                    label18.Text = reader["IdRezerwacji"].ToString();
                                 }
                                 else
                                 {
@@ -111,9 +111,9 @@ namespace Panele_Glowne
                                 {
                                     label20.Text = "brak informacji";
                                 }
-                                if (reader["KwotaLaczna"] != DBNull.Value)
+                                if (reader["KwotaCalkowita"] != DBNull.Value)
                                 {
-                                    label21.Text = reader["KwotaLaczna"].ToString() + " zł";
+                                    label21.Text = reader["KwotaCalkowita"].ToString() + " zł";
                                 }
                                 else
                                 {
@@ -182,4 +182,3 @@ namespace Panele_Glowne
         }
     }
 }
-
