@@ -91,7 +91,7 @@ public partial class Ekran_Logowania_Klienta : Form
                             Ekran_Glowny_Pracownika recepcja = new Ekran_Glowny_Pracownika(login);
                             recepcja.Show();
                         }
-                        else if (rola == "Gosc")
+                        else if (rola == "Gosc" || rola=="Klient")
                         {
                             ZalogowanyUzytkownik.Imie = reader["ImieGoscia"].ToString();
 

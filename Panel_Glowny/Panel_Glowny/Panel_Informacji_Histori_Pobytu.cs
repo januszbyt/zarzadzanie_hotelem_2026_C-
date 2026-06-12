@@ -7,9 +7,8 @@ namespace Panele_Glowne
 {
     public partial class Panel_Informacji_Histori_Pobytu : Form
     {
-        private int _wybraneIdGoscia; // ID gościa przesłane z pierwszego okna
+        private int _wybraneIdGoscia;
 
-        // Konstruktor przyjmuje ID gościa
         public Panel_Informacji_Histori_Pobytu(int idGoscia)
         {
             InitializeComponent();
@@ -25,7 +24,6 @@ namespace Panele_Glowne
 
         private void WczytajHistoriePobytow()
         {
-            // Zapytanie filtrujące pod wybranego gościa (WHERE g.IdGoscia = @IdGoscia)
             string query = @"
                 SELECT 
                     r.IdRezerwacji AS 'IdRezerwacji', 
@@ -71,7 +69,6 @@ namespace Panele_Glowne
 
                     dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-                    // Jeżeli są jakieś wyniki, od razu wypełnij labele z pierwszego wiersza
                     if (dataGridView1.Rows.Count > 0 && dataGridView1.Rows[0].Cells["IdOsoby"].Value != null)
                     {
                         WypelnijLabele(dataGridView1.Rows[0]);
