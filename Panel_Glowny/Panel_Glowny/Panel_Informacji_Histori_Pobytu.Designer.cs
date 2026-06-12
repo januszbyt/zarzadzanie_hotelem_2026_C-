@@ -97,6 +97,7 @@
             label12.Size = new Size(44, 15);
             label12.TabIndex = 11;
             label12.Text = "label12";
+            label12.Click += label12_Click;
             // 
             // label11
             // 
@@ -106,6 +107,7 @@
             label11.Size = new Size(44, 15);
             label11.TabIndex = 10;
             label11.Text = "label11";
+            label11.Click += label11_Click;
             // 
             // label10
             // 
@@ -115,6 +117,7 @@
             label10.Size = new Size(44, 15);
             label10.TabIndex = 9;
             label10.Text = "label10";
+            label10.Click += label10_Click;
             // 
             // label9
             // 
@@ -124,6 +127,7 @@
             label9.Size = new Size(38, 15);
             label9.TabIndex = 8;
             label9.Text = "label9";
+            label9.Click += label9_Click;
             // 
             // label8
             // 
@@ -133,6 +137,7 @@
             label8.Size = new Size(38, 15);
             label8.TabIndex = 7;
             label8.Text = "label8";
+            label8.Click += label8_Click;
             // 
             // label7
             // 
@@ -215,6 +220,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(1020, 522);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // IdRezerwacji
             // 
@@ -275,7 +281,7 @@
             label1.Text = "Historia pobytów";
             label1.Click += label1_Click;
             // 
-            // HistoriaGoscia
+            // Panel_Informacji_Histori_Pobytu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -283,7 +289,7 @@
             ClientSize = new Size(1327, 615);
             Controls.Add(label1);
             Controls.Add(panel1);
-            Name = "HistoriaGoscia";
+            Name = "Panel_Informacji_Histori_Pobytu";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form2";
             panel1.ResumeLayout(false);
