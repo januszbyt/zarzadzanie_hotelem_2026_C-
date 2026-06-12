@@ -30,10 +30,12 @@
         {
             Title = new Label();
             dataGridView1 = new DataGridView();
+            idRezerwacji = new DataGridViewTextBoxColumn();
             Imie = new DataGridViewTextBoxColumn();
             Nazwisko = new DataGridViewTextBoxColumn();
+            telefon = new DataGridViewTextBoxColumn();
             email = new DataGridViewTextBoxColumn();
-            osoby = new DataGridViewTextBoxColumn();
+            numerPokoju = new DataGridViewTextBoxColumn();
             status = new DataGridViewTextBoxColumn();
             od = new DataGridViewTextBoxColumn();
             doKiedy = new DataGridViewTextBoxColumn();
@@ -49,9 +51,10 @@
             // 
             // Title
             // 
+            Title.Anchor = AnchorStyles.Top;
             Title.AutoSize = true;
             Title.Font = new Font("Segoe UI Semibold", 24F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            Title.Location = new Point(354, 9);
+            Title.Location = new Point(434, 30);
             Title.Name = "Title";
             Title.Size = new Size(182, 45);
             Title.TabIndex = 0;
@@ -59,59 +62,89 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            // Tutaj definiujemy dynamiczne rozciąganie krawędzi tabeli
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            // Tutaj wymuszamy, aby kolumny wypełniły całą dostępną przestrzeń
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Imie, Nazwisko, email, osoby, status, od, doKiedy, kwota });
-            dataGridView1.Location = new Point(28, 104);
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { idRezerwacji, Imie, Nazwisko, telefon, email, numerPokoju, status, od, doKiedy, kwota });
+            dataGridView1.Location = new Point(25, 90);
+            dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(843, 394);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.Size = new Size(1000, 420);
             dataGridView1.TabIndex = 1;
+            // 
+            // idRezerwacji
+            // 
+            idRezerwacji.HeaderText = "ID";
+            idRezerwacji.Name = "idRezerwacji";
+            idRezerwacji.ReadOnly = true;
+            idRezerwacji.Visible = false;
             // 
             // Imie
             // 
-            Imie.HeaderText = "Imie";
+            Imie.HeaderText = "Imię";
             Imie.Name = "Imie";
+            Imie.ReadOnly = true;
             // 
             // Nazwisko
             // 
             Nazwisko.HeaderText = "Nazwisko";
             Nazwisko.Name = "Nazwisko";
+            Nazwisko.ReadOnly = true;
+            // 
+            // telefon
+            // 
+            telefon.HeaderText = "Telefon";
+            telefon.Name = "telefon";
+            telefon.ReadOnly = true;
             // 
             // email
             // 
-            email.HeaderText = "e-mail";
+            email.HeaderText = "E-mail";
             email.Name = "email";
+            email.ReadOnly = true;
             // 
-            // osoby
+            // numerPokoju
             // 
-            osoby.HeaderText = "L. osób";
-            osoby.Name = "osoby";
+            numerPokoju.HeaderText = "Pokój";
+            numerPokoju.Name = "numerPokoju";
+            numerPokoju.ReadOnly = true;
             // 
             // status
             // 
             status.HeaderText = "Status";
             status.Name = "status";
+            status.ReadOnly = true;
             // 
             // od
             // 
             od.HeaderText = "Od";
             od.Name = "od";
+            od.ReadOnly = true;
             // 
             // doKiedy
             // 
             doKiedy.HeaderText = "Do";
             doKiedy.Name = "doKiedy";
+            doKiedy.ReadOnly = true;
             // 
             // kwota
             // 
-            kwota.HeaderText = "kwota";
+            kwota.HeaderText = "Kwota";
             kwota.Name = "kwota";
+            kwota.ReadOnly = true;
             // 
             // menuStrip1
             // 
             menuStrip1.Items.AddRange(new ToolStripItem[] { dodajToolStripMenuItem, edytujToolStripMenuItem, usuńToolStripMenuItem, powrótToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(900, 24);
+            menuStrip1.Size = new Size(1050, 24);
             menuStrip1.TabIndex = 2;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -148,13 +181,14 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(900, 510);
+            ClientSize = new Size(1050, 550);
             Controls.Add(dataGridView1);
             Controls.Add(Title);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "Okno_Rezerwacji_Obslugiwane_Przez_Pracownika";
-            Text = "Rezerwacje";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Rezerwacje - Panel Pracownika";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
@@ -170,14 +204,18 @@
         private ToolStripMenuItem dodajToolStripMenuItem;
         private ToolStripMenuItem edytujToolStripMenuItem;
         private ToolStripMenuItem usuńToolStripMenuItem;
+
+        private DataGridViewTextBoxColumn idRezerwacji;
         private DataGridViewTextBoxColumn Imie;
         private DataGridViewTextBoxColumn Nazwisko;
+        private DataGridViewTextBoxColumn telefon;
         private DataGridViewTextBoxColumn email;
-        private DataGridViewTextBoxColumn osoby;
+        private DataGridViewTextBoxColumn numerPokoju;
         private DataGridViewTextBoxColumn status;
         private DataGridViewTextBoxColumn od;
         private DataGridViewTextBoxColumn doKiedy;
         private DataGridViewTextBoxColumn kwota;
+
         private ToolStripMenuItem powrótToolStripMenuItem;
     }
 }

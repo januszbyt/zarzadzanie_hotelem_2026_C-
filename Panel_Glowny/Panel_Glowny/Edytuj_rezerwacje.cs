@@ -13,7 +13,6 @@ namespace Panele_Glowne
 
         public Edytuj_rezerwacje(int idRezerwacji)
         {
-
             InitializeComponent();
             idEdytowanejRezerwacji = idRezerwacji;
 
@@ -25,7 +24,6 @@ namespace Panele_Glowne
             przyjazdNew.Value = DateTime.Today;
             wyjazdNew.Value = DateTime.Today.AddDays(1);
             przyjazdNew.MinDate = DateTime.Today;
-
 
             WczytajStareDane();
 
@@ -44,7 +42,7 @@ namespace Panele_Glowne
             InitializeComponent();
         }
 
-        //PRZELICZANIE KWOT
+        // PRZELICZANIE KWOT
 
         private void kwotaPokoi(object sender, EventArgs e)
         {
@@ -96,15 +94,14 @@ namespace Panele_Glowne
                     conn.Open();
 
                     string query = @"
-                        SELECT 
-                            o.Imie, o.Nazwisko, k.Email, 
-                            r.DataPrzyjazdu, r.DataWyjazdu, r.LiczbaNocy, r.KwotaLaczna, 
-                            p.TypPokoju, p.IloscOsob
-                        FROM Rezerwacje r
-                        JOIN Klienci k ON r.IdKlienta = k.IdKlienta
-                        JOIN osoby o ON k.Id_osoby = o.Id
-                        JOIN Pokoje p ON r.IdPokoju = p.IdPokoju
-                        WHERE r.IdRezerwacji = @id;";
+                SELECT 
+                    g.Imie, g.Nazwisko, g.Email, g.Telefon, g.DokumentTozsamosci, 
+                    r.DataPrzyjazdu, r.DataWyjazdu, r.KwotaCalkowita, r.Uwagi, 
+                    p.TypPokoju, p.Pojemnosc
+                FROM Rezerwacje r
+                JOIN Goscie g ON r.IdGoscia = g.IdGoscia
+                JOIN Pokoje p ON r.IdPokoju = p.IdPokoju
+                WHERE r.IdRezerwacji = @id;";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
@@ -114,44 +111,62 @@ namespace Panele_Glowne
                         {
                             if (reader.Read())
                             {
+                                // 1. Wypełnienie lewej strony (Stare wartości - tylko do odczytu)
                                 ImieOld.Text = reader["Imie"].ToString();
                                 NazwiskoOld.Text = reader["Nazwisko"].ToString();
                                 emailOld.Text = reader["Email"].ToString();
+                                telefonOld.Text = reader["Telefon"].ToString();
+                                dokumentOld.Text = reader["DokumentTozsamosci"] != DBNull.Value ? reader["DokumentTozsamosci"].ToString() : "";
+                                uwagiOld.Text = reader["Uwagi"] != DBNull.Value ? reader["Uwagi"].ToString() : "";
 
                                 PrzyjazdOld.Value = Convert.ToDateTime(reader["DataPrzyjazdu"]);
                                 WyjazdOld.Value = Convert.ToDateTime(reader["DataWyjazdu"]);
 
-                                NoceOld.Text = reader["LiczbaNocy"].ToString();
-                                KwotaOld.Text = reader["KwotaLaczna"].ToString();
-                                osobyOld.Text = reader["IloscOsob"].ToString();
+                                int stareNoce = (WyjazdOld.Value - PrzyjazdOld.Value).Days;
+                                NoceOld.Text = stareNoce.ToString();
+                                KwotaOld.Text = reader["KwotaCalkowita"].ToString();
+                                osobyOld.Text = reader["Pojemnosc"].ToString();
                                 typPokojuOld.Text = reader["TypPokoju"].ToString();
+
+                                // 2. Wypełnienie prawej strony (Nowe wartości - kopia startowa)
+                                imieNew.Text = ImieOld.Text;
+                                nazwiskoNew.Text = NazwiskoOld.Text;
+                                emailNew.Text = emailOld.Text;
+                                telefonNew.Text = telefonOld.Text;
+                                dokumentNew.Text = dokumentOld.Text;
+                                uwagiNew.Text = uwagiOld.Text;
+
+                                przyjazdNew.Value = PrzyjazdOld.Value;
+                                wyjazdNew.Value = WyjazdOld.Value;
+                                noce.Text = NoceOld.Text;
+                                osobowy.Text = osobyOld.Text;
+                                kwotaNew.Text = KwotaOld.Text;
+
+                                // Ustawienie typu pokoju
+                                if (typPokojuOld.Text == "Standard") Standard.Checked = true;
+                                else Deluxe.Checked = true;
                             }
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Błąd podczas pobierania danych rezerwacji:\n" + ex.Message, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Błąd podczas pobierania danych: " + ex.Message);
                 }
             }
-
-
         }
-
-        
-
         private void powrot_Click(object sender, EventArgs e)
         {
-            Okno_Rezerwacji_Obslugiwane_Przez_Pracownika powrotOkna = new Okno_Rezerwacji_Obslugiwane_Przez_Pracownika();
-            powrotOkna.Show();
+            
             this.Hide();
         }
 
         private void zapisz_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(imieNew.Text) || string.IsNullOrWhiteSpace(nazwiskoNew.Text) || string.IsNullOrWhiteSpace(emailNew.Text))
+            // Zmodyfikowana walidacja o dodane pola
+            if (string.IsNullOrWhiteSpace(imieNew.Text) || string.IsNullOrWhiteSpace(nazwiskoNew.Text) || string.IsNullOrWhiteSpace(emailNew.Text) || string.IsNullOrWhiteSpace(telefonNew.Text))
             {
-                MessageBox.Show("Proszę wypełnić sekcję 'Nowe wartości' (imię, nazwisko, email).", "Braki w formularzu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Proszę wypełnić wymagane pola w sekcji 'Nowe wartości' (imię, nazwisko, email, telefon).", "Braki w formularzu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -170,20 +185,21 @@ namespace Panele_Glowne
                 {
                     conn.Open();
 
+                    // KROK 1: Sprawdzenie dostępności pokoju (z użyciem Pojemnosc)
                     string findPokoj = @"
                         SELECT IdPokoju 
                         FROM Pokoje 
                         WHERE TypPokoju = @typ 
-                          AND IloscOsob >= @osoby 
+                          AND Pojemnosc >= @osoby 
                           AND IdPokoju NOT IN (
                               SELECT IdPokoju 
                               FROM Rezerwacje 
-                              WHERE StatusRezerwacji = 'Aktywna'
+                              WHERE StatusRezerwacji != 'Anulowana'
                                 AND IdRezerwacji != @idAktualnejRezerwacji
                                 AND DataPrzyjazdu < @wyjazd 
                                 AND DataWyjazdu > @przyjazd
                           )
-                        ORDER BY IloscOsob ASC 
+                        ORDER BY Pojemnosc ASC 
                         LIMIT 1;";
 
                     MySqlCommand cmdPokoj = new MySqlCommand(findPokoj, conn);
@@ -202,44 +218,35 @@ namespace Panele_Glowne
                     }
                     int noweIdPokoju = Convert.ToInt32(wynikPokoj);
 
-                    string getIdsQuery = "SELECT k.IdKlienta, k.Id_osoby FROM Rezerwacje r JOIN Klienci k ON r.IdKlienta = k.IdKlienta WHERE r.IdRezerwacji = @idRez;";
-                    MySqlCommand cmdIds = new MySqlCommand(getIdsQuery, conn);
+                    // KROK 2: Pobranie IdGoscia dla tej rezerwacji
+                    string getIdGosciaQuery = "SELECT IdGoscia FROM Rezerwacje WHERE IdRezerwacji = @idRez;";
+                    MySqlCommand cmdIds = new MySqlCommand(getIdGosciaQuery, conn);
                     cmdIds.Parameters.AddWithValue("@idRez", idEdytowanejRezerwacji);
 
-                    int idKlienta = 0;
-                    int idOsoby = 0;
-                    using (MySqlDataReader reader = cmdIds.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            idKlienta = Convert.ToInt32(reader["IdKlienta"]);
-                            idOsoby = Convert.ToInt32(reader["Id_osoby"]);
-                        }
-                    }
+                    int idGoscia = Convert.ToInt32(cmdIds.ExecuteScalar());
 
-                    string updateOsoba = "UPDATE osoby SET Imie = @imie, Nazwisko = @nazwisko WHERE Id = @idOsoba;";
-                    MySqlCommand cmdOsoba = new MySqlCommand(updateOsoba, conn);
-                    cmdOsoba.Parameters.AddWithValue("@imie", imieNew.Text);
-                    cmdOsoba.Parameters.AddWithValue("@nazwisko", nazwiskoNew.Text);
-                    cmdOsoba.Parameters.AddWithValue("@idOsoba", idOsoby);
-                    cmdOsoba.ExecuteNonQuery();
+                    // KROK 3: Aktualizacja danych w tabeli Goscie
+                    string updateGosc = "UPDATE Goscie SET Imie = @imie, Nazwisko = @nazwisko, Email = @email, Telefon = @telefon, DokumentTozsamosci = @dokument WHERE IdGoscia = @idGoscia;";
+                    MySqlCommand cmdGosc = new MySqlCommand(updateGosc, conn);
+                    cmdGosc.Parameters.AddWithValue("@imie", imieNew.Text);
+                    cmdGosc.Parameters.AddWithValue("@nazwisko", nazwiskoNew.Text);
+                    cmdGosc.Parameters.AddWithValue("@email", emailNew.Text);
+                    cmdGosc.Parameters.AddWithValue("@telefon", telefonNew.Text);
+                    cmdGosc.Parameters.AddWithValue("@dokument", string.IsNullOrWhiteSpace(dokumentNew.Text) ? DBNull.Value : (object)dokumentNew.Text);
+                    cmdGosc.Parameters.AddWithValue("@idGoscia", idGoscia);
+                    cmdGosc.ExecuteNonQuery();
 
-                    string updateKlient = "UPDATE Klienci SET Email = @email WHERE IdKlienta = @idKlienta;";
-                    MySqlCommand cmdKlient = new MySqlCommand(updateKlient, conn);
-                    cmdKlient.Parameters.AddWithValue("@email", emailNew.Text);
-                    cmdKlient.Parameters.AddWithValue("@idKlienta", idKlienta);
-                    cmdKlient.ExecuteNonQuery();
-
+                    // KROK 4: Aktualizacja danych w tabeli Rezerwacje
                     string updateRezerwacja = @"
                         UPDATE Rezerwacje 
-                        SET IdPokoju = @idPokoj, DataPrzyjazdu = @przyjazd, DataWyjazdu = @wyjazd, LiczbaNocy = @noce, KwotaLaczna = @kwota 
+                        SET IdPokoju = @idPokoj, DataPrzyjazdu = @przyjazd, DataWyjazdu = @wyjazd, KwotaCalkowita = @kwota, Uwagi = @uwagi 
                         WHERE IdRezerwacji = @idRez;";
                     MySqlCommand cmdRez = new MySqlCommand(updateRezerwacja, conn);
                     cmdRez.Parameters.AddWithValue("@idPokoj", noweIdPokoju);
                     cmdRez.Parameters.AddWithValue("@przyjazd", dataPrzyjazduSQL);
                     cmdRez.Parameters.AddWithValue("@wyjazd", dataOdjazduSQL);
-                    cmdRez.Parameters.AddWithValue("@noce", noc);
                     cmdRez.Parameters.AddWithValue("@kwota", cena);
+                    cmdRez.Parameters.AddWithValue("@uwagi", string.IsNullOrWhiteSpace(uwagiNew.Text) ? DBNull.Value : (object)uwagiNew.Text);
                     cmdRez.Parameters.AddWithValue("@idRez", idEdytowanejRezerwacji);
                     cmdRez.ExecuteNonQuery();
 
@@ -253,6 +260,5 @@ namespace Panele_Glowne
                 }
             }
         }
-
     }
 }

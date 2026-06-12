@@ -15,11 +15,9 @@ namespace Panele_Glowne
     {
         int noc;
         int cena;
-        
 
         public Dodaj_rezerwacje()
         {
-
             InitializeComponent();
             przyjazd.MinDate = DateTime.Today;
 
@@ -30,7 +28,7 @@ namespace Panele_Glowne
 
             if (Standard.Checked)
             {
-                cena = 300 * noc + (iloscOsob-1)*50;
+                cena = 300 * noc + (iloscOsob - 1) * 50;
             }
             else if (Deluxe.Checked)
             {
@@ -38,8 +36,51 @@ namespace Panele_Glowne
             }
 
             kwota.Text = cena.ToString();
+            osobowy.Text = "1";
 
+            // Podpięcie zdarzenia, które wykona się, gdy pole email straci "focus" (użytkownik kliknie gdzie indziej)
+            this.email.Leave += new System.EventHandler(this.email_Leave);
+        }
 
+        // ==========================================
+        // NOWA METODA: Sprawdzanie emaila w bazie
+        // ==========================================
+        private void email_Leave(object sender, EventArgs e)
+        {
+            // Przerywamy, jeśli pole jest puste
+            if (string.IsNullOrWhiteSpace(email.Text)) return;
+
+            HotelContext dbContext = new HotelContext();
+            using (MySqlConnection conn = dbContext.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT Imie, Nazwisko, Telefon, DokumentTozsamosci FROM Goscie WHERE Email = @email LIMIT 1";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@email", email.Text.Trim());
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read()) // Jeśli znaleziono rekord
+                            {
+                                imie.Text = reader["Imie"].ToString();
+                                nazwisko.Text = reader["Nazwisko"].ToString();
+                                telefon.Text = reader["Telefon"].ToString();
+
+                                // Bezpieczne odczytywanie potencjalnie pustych pól (NULL)
+                                dokument.Text = reader["DokumentTozsamosci"] != DBNull.Value ? reader["DokumentTozsamosci"].ToString() : "";
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    // Ciche ignorowanie błędów w tym miejscu, aby nie irytować użytkownika podczas wpisywania
+                }
+            }
         }
 
         private void kwotaPokoi(object sender, EventArgs e)
@@ -57,9 +98,9 @@ namespace Panele_Glowne
 
             kwota.Text = cena.ToString();
         }
+
         private void przyjazd_ValueChanged(object sender, EventArgs e)
         {
-
             DateTime nowaMinimalnaDataOdjazdu = przyjazd.Value.AddDays(1);
 
             if (odjazd.Value < nowaMinimalnaDataOdjazdu)
@@ -78,15 +119,10 @@ namespace Panele_Glowne
             noc = (odjazd.Value - przyjazd.Value).Days;
             noce.Text = noc.ToString();
             kwotaPokoi(sender, e);
-
         }
-
-
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Okno_Rezerwacji_Obslugiwane_Przez_Pracownika powrot = new Okno_Rezerwacji_Obslugiwane_Przez_Pracownika();
-            powrot.Show();
             this.Hide();
         }
 
@@ -97,17 +133,20 @@ namespace Panele_Glowne
 
         private void dodaj_Click(object sender, EventArgs e)
         {
-            // 1. Prosta walidacja - sprawdzamy, czy użytkownik wypełnił najważniejsze pola
-            if (string.IsNullOrWhiteSpace(imie.Text) || string.IsNullOrWhiteSpace(nazwisko.Text) || string.IsNullOrWhiteSpace(email.Text))
+            // 1. Walidacja głównych pól
+            if (string.IsNullOrWhiteSpace(imie.Text) || string.IsNullOrWhiteSpace(nazwisko.Text) || string.IsNullOrWhiteSpace(email.Text) || string.IsNullOrWhiteSpace(telefon.Text))
             {
-                MessageBox.Show("Proszę wypełnić imię, nazwisko i e-mail gościa.", "Braki w formularzu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Proszę wypełnić imię, nazwisko, e-mail oraz telefon gościa.", "Braki w formularzu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             // 2. Pobranie danych z kontrolek
-            string imieGo = imie.Text;
-            string nazwiskoGo = nazwisko.Text;
-            string emailGo = email.Text;
+            string imieGo = imie.Text.Trim();
+            string nazwiskoGo = nazwisko.Text.Trim();
+            string emailGo = email.Text.Trim();
+            string telefonGo = telefon.Text.Trim();
+            string dokumentGo = dokument.Text.Trim();
+            string uwagiGo = uwagi.Text.Trim();
 
             if (!int.TryParse(osobowy.Text, out int iloscOsob))
             {
@@ -118,30 +157,29 @@ namespace Panele_Glowne
             string dataPrzyjazduSQL = przyjazd.Value.ToString("yyyy-MM-dd");
             string dataOdjazduSQL = odjazd.Value.ToString("yyyy-MM-dd");
 
-            // 3. POŁĄCZENIE Z WYKORZYSTANIEM TWOJEJ KLASY HotelContext
+            // 3. POŁĄCZENIE Z BAZĄ DANYCH
             HotelContext dbContext = new HotelContext();
 
-            // Pobieramy gotowe połączenie z Twojego pliku konfiguracyjnego
             using (MySqlConnection conn = dbContext.GetConnection())
             {
                 try
                 {
                     conn.Open();
 
-                    // KROK 1: Szukamy WOLNEGO pokoju 
+                    // KROK 1: Szukamy WOLNEGO pokoju
                     string findPokoj = @"
                 SELECT IdPokoju 
                 FROM Pokoje 
                 WHERE TypPokoju = @typ 
-                  AND IloscOsob >= @osoby 
+                  AND Pojemnosc >= @osoby 
                   AND IdPokoju NOT IN (
                       SELECT IdPokoju 
                       FROM Rezerwacje 
-                      WHERE StatusRezerwacji = 'Aktywna'
+                      WHERE StatusRezerwacji != 'Anulowana'
                         AND DataPrzyjazdu < @wyjazd 
                         AND DataWyjazdu > @przyjazd
                   )
-                ORDER BY IloscOsob ASC 
+                ORDER BY Pojemnosc ASC 
                 LIMIT 1;";
 
                     MySqlCommand cmdPokoj = new MySqlCommand(findPokoj, conn);
@@ -160,35 +198,63 @@ namespace Panele_Glowne
 
                     int idPokoju = Convert.ToInt32(wynikPokoj);
 
-                    // KROK 2: Zapisanie nowej Osoby w bazie
-                    string insertOsoba = "INSERT INTO osoby (Imie, Nazwisko) VALUES (@imie, @nazwisko); SELECT LAST_INSERT_ID();";
-                    MySqlCommand cmdOsoba = new MySqlCommand(insertOsoba, conn);
-                    cmdOsoba.Parameters.AddWithValue("@imie", imieGo);
-                    cmdOsoba.Parameters.AddWithValue("@nazwisko", nazwiskoGo);
-                    int idOsoby = Convert.ToInt32(cmdOsoba.ExecuteScalar());
+                    // KROK 2: Weryfikacja, czy gość już istnieje (Zmodyfikowane)
+                    int idGoscia = -1;
+                    string checkGosc = "SELECT IdGoscia FROM Goscie WHERE Email = @email LIMIT 1;";
+                    using (MySqlCommand cmdCheck = new MySqlCommand(checkGosc, conn))
+                    {
+                        cmdCheck.Parameters.AddWithValue("@email", emailGo);
+                        object wynikGosc = cmdCheck.ExecuteScalar();
 
-                    // KROK 3: Zapisanie Klienta (telefon jako NULL)
-                    string insertKlient = "INSERT INTO Klienci (NumerTelefonu, Email, Id_osoby) VALUES (@telefon, @email, @idOsoby); SELECT LAST_INSERT_ID();";
-                    MySqlCommand cmdKlient = new MySqlCommand(insertKlient, conn);
-                    cmdKlient.Parameters.AddWithValue("@telefon", DBNull.Value);
-                    cmdKlient.Parameters.AddWithValue("@email", emailGo);
-                    cmdKlient.Parameters.AddWithValue("@idOsoby", idOsoby);
-                    int idKlienta = Convert.ToInt32(cmdKlient.ExecuteScalar());
+                        if (wynikGosc != null)
+                        {
+                            // Gość istnieje, pobieramy jego ID
+                            idGoscia = Convert.ToInt32(wynikGosc);
 
-                    // KROK 4: Zapisanie Rezerwacji 
-                    string insertRezerwacja = @"INSERT INTO Rezerwacje (IdKlienta, IdPokoju, DataPrzyjazdu, DataWyjazdu, LiczbaNocy, KwotaLaczna, StatusRezerwacji) 
-                                        VALUES (@idKlient, @idPokoj, @przyjazd, @wyjazd, @noce, @kwota, 'Aktywna');";
-                    MySqlCommand cmdRez = new MySqlCommand(insertRezerwacja, conn);
-                    cmdRez.Parameters.AddWithValue("@idKlient", idKlienta);
-                    cmdRez.Parameters.AddWithValue("@idPokoj", idPokoju);
-                    cmdRez.Parameters.AddWithValue("@przyjazd", dataPrzyjazduSQL);
-                    cmdRez.Parameters.AddWithValue("@wyjazd", dataOdjazduSQL);
+                            // Opcjonalnie aktualizujemy jego dane, jeśli np. podał inny telefon lub wpisał dokument
+                            string updateGosc = "UPDATE Goscie SET Imie = @imie, Nazwisko = @nazwisko, Telefon = @telefon, DokumentTozsamosci = @dokument WHERE IdGoscia = @id;";
+                            using (MySqlCommand cmdUpdate = new MySqlCommand(updateGosc, conn))
+                            {
+                                cmdUpdate.Parameters.AddWithValue("@imie", imieGo);
+                                cmdUpdate.Parameters.AddWithValue("@nazwisko", nazwiskoGo);
+                                cmdUpdate.Parameters.AddWithValue("@telefon", telefonGo);
+                                cmdUpdate.Parameters.AddWithValue("@dokument", string.IsNullOrWhiteSpace(dokumentGo) ? DBNull.Value : (object)dokumentGo);
+                                cmdUpdate.Parameters.AddWithValue("@id", idGoscia);
+                                cmdUpdate.ExecuteNonQuery();
+                            }
+                        }
+                        else
+                        {
+                            // Gość nie istnieje, dodajemy nowego
+                            string insertGosc = "INSERT INTO Goscie (Imie, Nazwisko, Email, Telefon, DokumentTozsamosci) VALUES (@imie, @nazwisko, @email, @telefon, @dokument); SELECT LAST_INSERT_ID();";
+                            using (MySqlCommand cmdGosc = new MySqlCommand(insertGosc, conn))
+                            {
+                                cmdGosc.Parameters.AddWithValue("@imie", imieGo);
+                                cmdGosc.Parameters.AddWithValue("@nazwisko", nazwiskoGo);
+                                cmdGosc.Parameters.AddWithValue("@email", emailGo);
+                                cmdGosc.Parameters.AddWithValue("@telefon", telefonGo);
+                                cmdGosc.Parameters.AddWithValue("@dokument", string.IsNullOrWhiteSpace(dokumentGo) ? DBNull.Value : (object)dokumentGo);
 
-                    // Używamy zmiennych z klasy, które same się przeliczają po kliknięciu kontrolek
-                    cmdRez.Parameters.AddWithValue("@noce", noc);
-                    cmdRez.Parameters.AddWithValue("@kwota", cena);
+                                idGoscia = Convert.ToInt32(cmdGosc.ExecuteScalar());
+                            }
+                        }
+                    }
 
-                    cmdRez.ExecuteNonQuery();
+                    // KROK 3: Zapisanie Rezerwacji z Uwagami
+                    string insertRezerwacja = @"INSERT INTO Rezerwacje (IdGoscia, IdPokoju, IdPracownika, DataPrzyjazdu, DataWyjazdu, KwotaCalkowita, StatusRezerwacji, Uwagi) 
+                                        VALUES (@idGosc, @idPokoj, @idPracownika, @przyjazd, @wyjazd, @kwota, 'Oczekujaca', @uwagi);";
+                    using (MySqlCommand cmdRez = new MySqlCommand(insertRezerwacja, conn))
+                    {
+                        cmdRez.Parameters.AddWithValue("@idGosc", idGoscia);
+                        cmdRez.Parameters.AddWithValue("@idPokoj", idPokoju);
+                        cmdRez.Parameters.AddWithValue("@idPracownika", DBNull.Value);
+                        cmdRez.Parameters.AddWithValue("@przyjazd", dataPrzyjazduSQL);
+                        cmdRez.Parameters.AddWithValue("@wyjazd", dataOdjazduSQL);
+                        cmdRez.Parameters.AddWithValue("@kwota", cena);
+                        cmdRez.Parameters.AddWithValue("@uwagi", string.IsNullOrWhiteSpace(uwagiGo) ? DBNull.Value : (object)uwagiGo);
+
+                        cmdRez.ExecuteNonQuery();
+                    }
 
                     MessageBox.Show("Rezerwacja została pomyślnie dodana do bazy!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -198,6 +264,5 @@ namespace Panele_Glowne
                 }
             }
         }
-
     }
 }
