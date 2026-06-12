@@ -125,12 +125,13 @@
             // 
             // button5
             // 
-            button5.Location = new Point(1009, 472);
+            button5.BackColor = Color.FromArgb(255, 128, 128);
+            button5.Location = new Point(983, 431);
             button5.Name = "button5";
             button5.Size = new Size(85, 47);
             button5.TabIndex = 16;
             button5.Text = "Powrot";
-            button5.UseVisualStyleBackColor = true;
+            button5.UseVisualStyleBackColor = false;
             button5.Click += button5_Click;
             // 
             // button4

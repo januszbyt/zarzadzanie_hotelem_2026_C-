@@ -37,6 +37,8 @@ namespace Panele_Glowne
             panel1 = new Panel();
             label3 = new Label();
             panel3 = new Panel();
+            label11 = new Label();
+            textBox6 = new TextBox();
             label10 = new Label();
             label9 = new Label();
             textBox5 = new TextBox();
@@ -79,12 +81,13 @@ namespace Panele_Glowne
             // 
             // button4
             // 
+            button4.BackColor = Color.FromArgb(255, 128, 128);
             button4.Location = new Point(34, 376);
             button4.Name = "button4";
             button4.Size = new Size(111, 42);
             button4.TabIndex = 3;
             button4.Text = "Powrót";
-            button4.UseVisualStyleBackColor = true;
+            button4.UseVisualStyleBackColor = false;
             button4.Click += button4_Click;
             // 
             // button2
@@ -129,6 +132,8 @@ namespace Panele_Glowne
             // panel3
             // 
             panel3.BackColor = SystemColors.ButtonFace;
+            panel3.Controls.Add(label11);
+            panel3.Controls.Add(textBox6);
             panel3.Controls.Add(label10);
             panel3.Controls.Add(label9);
             panel3.Controls.Add(textBox5);
@@ -151,6 +156,22 @@ namespace Panele_Glowne
             panel3.Size = new Size(951, 484);
             panel3.TabIndex = 5;
             panel3.Paint += panel3_Paint;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(428, 121);
+            label11.Name = "label11";
+            label11.Size = new Size(26, 15);
+            label11.TabIndex = 25;
+            label11.Text = "PIN";
+            // 
+            // textBox6
+            // 
+            textBox6.Location = new Point(376, 136);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(142, 23);
+            textBox6.TabIndex = 24;
             // 
             // label10
             // 
@@ -441,5 +462,7 @@ namespace Panele_Glowne
         private TextBox textBox5;
         private TextBox textBox4;
         private Label label10;
+        private Label label11;
+        private TextBox textBox6;
     }
 }

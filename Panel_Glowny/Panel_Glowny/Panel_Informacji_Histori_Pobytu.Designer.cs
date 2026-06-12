@@ -81,12 +81,13 @@
             // 
             // button1
             // 
-            button1.Location = new Point(16, 478);
+            button1.BackColor = Color.FromArgb(255, 128, 128);
+            button1.Location = new Point(16, 469);
             button1.Name = "button1";
-            button1.Size = new Size(102, 23);
+            button1.Size = new Size(128, 37);
             button1.TabIndex = 12;
             button1.Text = "Powrot";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // label12
@@ -275,7 +276,7 @@
             label1.Text = "Historia pobytów";
             label1.Click += label1_Click;
             // 
-            // HistoriaGoscia
+            // Panel_Informacji_Histori_Pobytu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -283,7 +284,7 @@
             ClientSize = new Size(1327, 615);
             Controls.Add(label1);
             Controls.Add(panel1);
-            Name = "HistoriaGoscia";
+            Name = "Panel_Informacji_Histori_Pobytu";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form2";
             panel1.ResumeLayout(false);

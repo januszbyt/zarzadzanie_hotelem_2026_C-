@@ -228,12 +228,13 @@
             // 
             // powrot
             // 
+            powrot.BackColor = Color.FromArgb(255, 128, 128);
             powrot.Location = new Point(683, 384);
             powrot.Name = "powrot";
             powrot.Size = new Size(105, 36);
             powrot.TabIndex = 22;
             powrot.Text = "Powrót";
-            powrot.UseVisualStyleBackColor = true;
+            powrot.UseVisualStyleBackColor = false;
             powrot.Click += powrot_Click;
             // 
             // wyjazdNew

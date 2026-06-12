@@ -61,11 +61,11 @@ namespace Panele_Glowne
             IloscOsob = new DataGridViewTextBoxColumn();
             tabControl1 = new TabControl();
             tabPage4 = new TabPage();
+            dataGridView6 = new DataGridView();
             tabPage5 = new TabPage();
+            dataGridView5 = new DataGridView();
             tabPage6 = new TabPage();
             dataGridView4 = new DataGridView();
-            dataGridView5 = new DataGridView();
-            dataGridView6 = new DataGridView();
             panel1.SuspendLayout();
             tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
@@ -75,11 +75,11 @@ namespace Panele_Glowne
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             tabControl1.SuspendLayout();
             tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView6).BeginInit();
             tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView5).BeginInit();
             tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView6).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -106,13 +106,14 @@ namespace Panele_Glowne
             // 
             // button1
             // 
+            button1.BackColor = Color.FromArgb(255, 128, 128);
             button1.Location = new Point(10, 399);
             button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
             button1.Size = new Size(82, 26);
             button1.TabIndex = 2;
             button1.Text = "Powrót";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // button2
@@ -371,6 +372,14 @@ namespace Panele_Glowne
             tabPage4.Text = "Jednoosobowe";
             tabPage4.UseVisualStyleBackColor = true;
             // 
+            // dataGridView6
+            // 
+            dataGridView6.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView6.Location = new Point(4, 1);
+            dataGridView6.Name = "dataGridView6";
+            dataGridView6.Size = new Size(855, 326);
+            dataGridView6.TabIndex = 0;
+            // 
             // tabPage5
             // 
             tabPage5.Controls.Add(dataGridView5);
@@ -380,6 +389,14 @@ namespace Panele_Glowne
             tabPage5.TabIndex = 4;
             tabPage5.Text = "Trzyosobowe";
             tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView5
+            // 
+            dataGridView5.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView5.Location = new Point(3, 0);
+            dataGridView5.Name = "dataGridView5";
+            dataGridView5.Size = new Size(853, 327);
+            dataGridView5.TabIndex = 0;
             // 
             // tabPage6
             // 
@@ -398,22 +415,6 @@ namespace Panele_Glowne
             dataGridView4.Name = "dataGridView4";
             dataGridView4.Size = new Size(853, 331);
             dataGridView4.TabIndex = 0;
-            // 
-            // dataGridView5
-            // 
-            dataGridView5.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView5.Location = new Point(3, 0);
-            dataGridView5.Name = "dataGridView5";
-            dataGridView5.Size = new Size(853, 327);
-            dataGridView5.TabIndex = 0;
-            // 
-            // dataGridView6
-            // 
-            dataGridView6.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView6.Location = new Point(4, 1);
-            dataGridView6.Name = "dataGridView6";
-            dataGridView6.Size = new Size(855, 326);
-            dataGridView6.TabIndex = 0;
             // 
             // Lista_Wszystkich_Pokojow
             // 
@@ -441,11 +442,11 @@ namespace Panele_Glowne
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             tabControl1.ResumeLayout(false);
             tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView6).EndInit();
             tabPage5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView5).EndInit();
             tabPage6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView6).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

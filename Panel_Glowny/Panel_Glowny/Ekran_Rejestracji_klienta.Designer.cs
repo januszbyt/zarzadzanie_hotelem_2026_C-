@@ -217,7 +217,7 @@
             // 
             // button1
             // 
-            button1.BackColor = SystemColors.ControlLight;
+            button1.BackColor = Color.FromArgb(255, 128, 128);
             button1.FlatAppearance.MouseDownBackColor = SystemColors.GradientInactiveCaption;
             button1.FlatAppearance.MouseOverBackColor = SystemColors.GradientInactiveCaption;
             button1.FlatStyle = FlatStyle.Flat;
