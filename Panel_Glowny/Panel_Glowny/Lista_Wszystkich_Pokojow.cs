@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using Panel_Glowny;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Windows.Forms;
 
 namespace Panele_Glowne
 {
@@ -24,8 +19,7 @@ namespace Panele_Glowne
         private void EkranPokoje_Load(object sender, EventArgs e)
         {
             checkBox1.Checked = true;
-            checkBox2.Checked = false; 
-            ZaladujOdpowiedniaZakladke();
+            checkBox2.Checked = false;
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -35,12 +29,12 @@ namespace Panele_Glowne
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            ZaladujOdpowiedniaZakladke(); 
+            ZaladujOdpowiedniaZakladke();
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            ZaladujOdpowiedniaZakladke(); 
+            ZaladujOdpowiedniaZakladke();
         }
 
         private void ZaladujOdpowiedniaZakladke()
@@ -48,13 +42,17 @@ namespace Panele_Glowne
             int wybranyIndeks = tabControl1.SelectedIndex;
             DataGridView aktywneGrid = PobierzAktywneGrid(wybranyIndeks);
 
-            string query = "SELECT IdPokoju, NumerPokoju, TypPokoju, CenaZaNoc, IloscOsob FROM Pokoje WHERE 1=1";
+            if (aktywneGrid == null) return;
 
+            // Zaktualizowane zapytanie - używamy nowych nazw (CenaPodstawowa, Pojemnosc) 
+            // i aliasów (AS), aby dopasować je do Twojej tabeli w programie
+            string query = "SELECT IdPokoju, NumerPokoju, TypPokoju, CenaPodstawowa AS CenaZaNoc, Pojemnosc AS IloscOsob FROM Pokoje WHERE 1=1";
             List<MySqlParameter> parameters = new List<MySqlParameter>();
 
             if (wybranyIndeks > 0)
             {
-                query += " AND IloscOsob = @iloscOsob";
+                // Zmiana filtrowania na nową kolumnę 'Pojemnosc'
+                query += " AND Pojemnosc = @iloscOsob";
                 parameters.Add(new MySqlParameter("@iloscOsob", wybranyIndeks));
             }
 
@@ -66,15 +64,17 @@ namespace Panele_Glowne
             {
                 query += " AND TypPokoju = 'Deluxe'";
             }
+            else if (checkBox1.Checked && checkBox2.Checked)
+            {
+                query += " AND (TypPokoju = 'Standard' OR TypPokoju = 'Deluxe')";
+            }
             else if (!checkBox1.Checked && !checkBox2.Checked)
             {
-   
                 query += " AND 1=0";
             }
 
             LadujDaneZHotelu(query, aktywneGrid, parameters);
         }
-
 
         private void LadujDaneZHotelu(string query, DataGridView targetGrid, List<MySqlParameter> parameters)
         {
@@ -85,8 +85,7 @@ namespace Panele_Glowne
                     conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        // Dodanie parametrów do zapytania
-                        if (parameters != null)
+                        if (parameters != null && parameters.Count > 0)
                         {
                             cmd.Parameters.AddRange(parameters.ToArray());
                         }
@@ -99,14 +98,17 @@ namespace Panele_Glowne
                         }
                     }
                 }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Błąd bazy danych przy pobieraniu pokoi: " + ex.Message, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Błąd pobierania pokoi - " + ex.Message, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Wystąpił nieoczekiwany błąd: " + ex.Message, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
-  
         private DataGridView PobierzAktywneGrid(int indeksZakladki)
         {
             switch (indeksZakladki)
@@ -130,18 +132,28 @@ namespace Panele_Glowne
         {
             DataGridView aktywneGrid = PobierzAktywneGrid(tabControl1.SelectedIndex);
 
-            if (aktywneGrid.CurrentRow != null && aktywneGrid.CurrentRow.Index >= 0)
+            if (aktywneGrid != null && aktywneGrid.CurrentRow != null && aktywneGrid.CurrentRow.Index >= 0)
             {
-                int idPokoju = Convert.ToInt32(aktywneGrid.CurrentRow.Cells["IdPokoju"].Value);
-                Okno_Szczegolowych_Informacji_Pokoju OknoSzczegolow = new Okno_Szczegolowych_Informacji_Pokoju(idPokoju);
-                OknoSzczegolow.Show();
-                this.Hide();
+                if (aktywneGrid.CurrentRow.Cells["IdPokoju"].Value != null && aktywneGrid.CurrentRow.Cells["IdPokoju"].Value != DBNull.Value)
+                {
+                    int idPokoju = Convert.ToInt32(aktywneGrid.CurrentRow.Cells["IdPokoju"].Value);
+
+                    Okno_Szczegolowych_Informacji_Pokoju OknoSzczegolow = new Okno_Szczegolowych_Informacji_Pokoju(idPokoju);
+                    OknoSzczegolow.Show();
+
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Wybrany wiersz jest pusty. Zaznacz prawidłowy pokój.", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {
-                MessageBox.Show("Wybierz pokój z tabeli", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Wybierz pokój z tabeli.", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void panel1_Paint(object sender, PaintEventArgs e) { }
         private void label1_Click(object sender, EventArgs e) { }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
