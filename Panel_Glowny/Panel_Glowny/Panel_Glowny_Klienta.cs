@@ -18,6 +18,7 @@ namespace Panele_Glowne
         {
             InitializeComponent();
             WczytajRezerwacje();
+            this.Load += Panel_Glowny_Klienta_Load;
 
         }
         public Panel_Glowny_Klienta()

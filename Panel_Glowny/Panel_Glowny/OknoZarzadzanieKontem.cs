@@ -19,6 +19,11 @@ namespace Panele_Glowne
             InitializeComponent();
             this.Load += OknoZarzadzanieKontem_Load;
         }
+        public OknoZarzadzanieKontem(string ZalogowanyUzytkownik)
+        {
+            InitializeComponent();
+            this.Load += OknoZarzadzanieKontem_Load;
+        }
         private void OknoZarzadzanieKontem_Load(object sender, EventArgs e)
         {
             lblwitajnazwa.Text = ZalogowanyUzytkownik.Imie + "!";
@@ -76,6 +81,20 @@ namespace Panele_Glowne
                 klient.Show();
                 this.Close();
             }
+        }
+
+        private void btnZmienHaslo_Click(object sender, EventArgs e)
+        {
+            OknoZmianyHasla oknoZmianyHasla = new OknoZmianyHasla(ZalogowanyUzytkownik.Login);
+            oknoZmianyHasla.Show();
+            this.Close();
+        }
+
+        private void btnZmianaPin_Click(object sender, EventArgs e)
+        {
+            OknoZmianyPinu oknoZmianyPinu = new OknoZmianyPinu(ZalogowanyUzytkownik.Login);
+            oknoZmianyPinu.Show();
+            this.Close();
         }
     }
 }
