@@ -13,10 +13,10 @@ namespace Panele_Glowne
 
         public Edytuj_rezerwacje(int idRezerwacji)
         {
+
             InitializeComponent();
             idEdytowanejRezerwacji = idRezerwacji;
 
-            // 1. Reset i ustawienie bezpiecznych dat dla kalendarzy
             przyjazdNew.MinDate = DateTime.MinValue;
             przyjazdNew.MaxDate = DateTime.MaxValue;
             wyjazdNew.MinDate = DateTime.MinValue;
@@ -26,20 +26,16 @@ namespace Panele_Glowne
             wyjazdNew.Value = DateTime.Today.AddDays(1);
             przyjazdNew.MinDate = DateTime.Today;
 
-            // 2. Wczytanie starych wartości z bazy
+
             WczytajStareDane();
 
-            // 3. PRZYPISANIE FUNKCJI DO KONTROLEK (Automatyczne podpięcie zdarzeń)
-            // Zmiana dat uruchamia odpowiednie metody ValueChanged
             przyjazdNew.ValueChanged += przyjazdNew_ValueChanged;
             wyjazdNew.ValueChanged += wyjazdNew_ValueChanged;
 
-            // Zmiana liczby osób lub typu pokoju uruchamia przeliczanie samej kwoty
             osobowy.SelectedIndexChanged += kwotaPokoi;
             Standard.CheckedChanged += kwotaPokoi;
             Deluxe.CheckedChanged += kwotaPokoi;
 
-            // 4. Pierwsze wywołanie, żeby przeliczyć kwotę od razu po otwarciu okna
             przyjazdNew_ValueChanged(null, null);
         }
 
@@ -48,9 +44,7 @@ namespace Panele_Glowne
             InitializeComponent();
         }
 
-        // ==========================================
-        // SEKCJA: NOWE METODY DO PRZELICZANIA KWOT
-        // ==========================================
+        //PRZELICZANIE KWOT
 
         private void kwotaPokoi(object sender, EventArgs e)
         {
@@ -90,9 +84,7 @@ namespace Panele_Glowne
             kwotaPokoi(sender, e);
         }
 
-        // ==========================================
-        // SEKCJA: BAZA DANYCH (WCZYTYWANIE I ZAPIS)
-        // ==========================================
+        // BAZA DANYCH 
 
         private void WczytajStareDane()
         {
@@ -142,7 +134,11 @@ namespace Panele_Glowne
                     MessageBox.Show("Błąd podczas pobierania danych rezerwacji:\n" + ex.Message, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
+
         }
+
+        
 
         private void powrot_Click(object sender, EventArgs e)
         {
@@ -151,7 +147,7 @@ namespace Panele_Glowne
             this.Hide();
         }
 
-        private void dodaj_Click(object sender, EventArgs e)
+        private void zapisz_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(imieNew.Text) || string.IsNullOrWhiteSpace(nazwiskoNew.Text) || string.IsNullOrWhiteSpace(emailNew.Text))
             {
@@ -257,5 +253,6 @@ namespace Panele_Glowne
                 }
             }
         }
+
     }
 }

@@ -45,7 +45,7 @@
             KwotaOld = new TextBox();
             PrzyjazdOld = new DateTimePicker();
             WyjazdOld = new DateTimePicker();
-            dodaj = new Button();
+            zapisz = new Button();
             powrot = new Button();
             wyjazdNew = new DateTimePicker();
             przyjazdNew = new DateTimePicker();
@@ -216,14 +216,15 @@
             WyjazdOld.Size = new Size(200, 23);
             WyjazdOld.TabIndex = 20;
             // 
-            // dodaj
+            // zapisz
             // 
-            dodaj.Location = new Point(558, 384);
-            dodaj.Name = "dodaj";
-            dodaj.Size = new Size(105, 36);
-            dodaj.TabIndex = 21;
-            dodaj.Text = "Zapisz";
-            dodaj.UseVisualStyleBackColor = true;
+            zapisz.Location = new Point(558, 384);
+            zapisz.Name = "zapisz";
+            zapisz.Size = new Size(105, 36);
+            zapisz.TabIndex = 21;
+            zapisz.Text = "Zapisz";
+            zapisz.UseVisualStyleBackColor = true;
+            zapisz.Click += zapisz_Click;
             // 
             // powrot
             // 
@@ -238,7 +239,6 @@
             // wyjazdNew
             // 
             wyjazdNew.CustomFormat = "";
-            wyjazdNew.Enabled = false;
             wyjazdNew.Location = new Point(371, 236);
             wyjazdNew.Name = "wyjazdNew";
             wyjazdNew.Size = new Size(200, 23);
@@ -347,7 +347,6 @@
             osobowy.Name = "osobowy";
             osobowy.Size = new Size(200, 23);
             osobowy.TabIndex = 39;
-            osobowy.Text = "1";
             // 
             // noce
             // 
@@ -377,7 +376,7 @@
             Controls.Add(imieNew);
             Controls.Add(emailNew);
             Controls.Add(powrot);
-            Controls.Add(dodaj);
+            Controls.Add(zapisz);
             Controls.Add(WyjazdOld);
             Controls.Add(PrzyjazdOld);
             Controls.Add(KwotaOld);
@@ -420,7 +419,7 @@
         private TextBox KwotaOld;
         private DateTimePicker PrzyjazdOld;
         private DateTimePicker WyjazdOld;
-        private Button dodaj;
+        private Button zapisz;
         private Button powrot;
         private DateTimePicker wyjazdNew;
         private DateTimePicker przyjazdNew;
