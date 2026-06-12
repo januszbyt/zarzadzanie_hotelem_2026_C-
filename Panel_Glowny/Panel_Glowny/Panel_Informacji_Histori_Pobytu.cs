@@ -7,13 +7,12 @@ namespace Panele_Glowne
 {
     public partial class Panel_Informacji_Histori_Pobytu : Form
     {
-        private int _wybraneIdKlienta; // Zmienna, która trzyma ID przysłane z pierwszego okna
+        private int _wybraneIdGoscia;
 
-        // Konstruktor teraz przyjmuje ID klienta
-        public Panel_Informacji_Histori_Pobytu(int idKlienta)
+        public Panel_Informacji_Histori_Pobytu(int idGoscia)
         {
             InitializeComponent();
-            _wybraneIdKlienta = idKlienta;
+            _wybraneIdGoscia = idGoscia;
 
             dataGridView1.CellClick += new DataGridViewCellEventHandler(dataGridView1_CellClick);
 
@@ -25,27 +24,25 @@ namespace Panele_Glowne
 
         private void WczytajHistoriePobytow()
         {
-            // Zapytanie filtrujące konkretnie pod wybranego gościa (WHERE k.IdKlienta = @IdKlienta)
             string query = @"
                 SELECT 
                     r.IdRezerwacji AS 'IdRezerwacji', 
                     p.NumerPokoju AS 'Pokoj', 
                     r.DataPrzyjazdu AS 'DataPrzyjazdu', 
                     r.DataWyjazdu AS 'DataOdjazdu', 
-                    r.LiczbaNocy AS 'Liczba Nocy',
-                    r.KwotaLaczna AS 'Kwota',
+                    DATEDIFF(r.DataWyjazdu, r.DataPrzyjazdu) AS 'Liczba Nocy',
+                    r.KwotaCalkowita AS 'Kwota',
                     r.StatusRezerwacji AS 'Status',
                     r.Uwagi AS 'Uwagi',
-                    o.Id AS 'IdOsoby', 
-                    o.Imie AS 'Imie', 
-                    o.Nazwisko AS 'Nazwisko', 
-                    k.NumerTelefonu AS 'Telefon', 
-                    k.Email AS 'Email'
+                    g.IdGoscia AS 'IdOsoby', 
+                    g.Imie AS 'Imie', 
+                    g.Nazwisko AS 'Nazwisko', 
+                    g.Telefon AS 'Telefon', 
+                    g.Email AS 'Email'
                 FROM Rezerwacje r
-                JOIN Klienci k ON r.IdKlienta = k.IdKlienta
-                JOIN osoby o ON k.Id_osoby = o.Id
+                JOIN Goscie g ON r.IdGoscia = g.IdGoscia
                 JOIN Pokoje p ON r.IdPokoju = p.IdPokoju
-                WHERE k.IdKlienta = @IdKlienta
+                WHERE g.IdGoscia = @IdGoscia
                 ORDER BY r.DataPrzyjazdu DESC";
 
             HotelContext db = new HotelContext();
@@ -56,7 +53,7 @@ namespace Panele_Glowne
                 {
                     conn.Open();
                     MySqlCommand cmd = new MySqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@IdKlienta", _wybraneIdKlienta); // Podpinamy przysłane ID
+                    cmd.Parameters.AddWithValue("@IdGoscia", _wybraneIdGoscia);
 
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
@@ -72,7 +69,6 @@ namespace Panele_Glowne
 
                     dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-                    // Jeżeli są jakieś wyniki, od razu wypełnij labele z pierwszego wiersza
                     if (dataGridView1.Rows.Count > 0 && dataGridView1.Rows[0].Cells["IdOsoby"].Value != null)
                     {
                         WypelnijLabele(dataGridView1.Rows[0]);
@@ -93,7 +89,6 @@ namespace Panele_Glowne
             }
         }
 
-        // Zrobiłem to jako osobną metodę, żeby kod nie był nasrany w dwóch miejscach
         private void WypelnijLabele(DataGridViewRow row)
         {
             label8.Text = row.Cells["IdOsoby"].Value.ToString();
