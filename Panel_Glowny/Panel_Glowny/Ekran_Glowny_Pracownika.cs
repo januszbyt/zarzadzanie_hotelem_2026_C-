@@ -11,7 +11,7 @@ namespace Panel_Glowny
 
             label2.Text = ZalogowanyUzytkownik;
         }
-        public Ekran_Glowny_Pracownika(string ZalogowanyUzytkownik)
+        public Ekran_Glowny_Pracownika()
         {
             InitializeComponent();
 
