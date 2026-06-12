@@ -90,7 +90,7 @@ namespace Panele_Glowne
         }
         private void Panel_Glowny_Klienta_Load(object sender, EventArgs e)
         {
-            label2.Text = ZalogowanyUzytkownik.Imie + "!";
+            label2.Text = ZalogowanyUzytkownik.Login + "!";
             WczytajRezerwacje();
         }
 

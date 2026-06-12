@@ -46,10 +46,9 @@ namespace Panele_Glowne
             string powtorzHaslo = textBox3.Text;
             string pin = textBox4.Text.Trim();
 
-            int przypisaneIdOsoby = 1;
 
             if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(haslo) ||
-                string.IsNullOrWhiteSpace(powtorzHaslo) || string.IsNullOrWhiteSpace(pin))
+                            string.IsNullOrWhiteSpace(powtorzHaslo) || string.IsNullOrWhiteSpace(pin))
             {
                 MessageBox.Show("Proszę uzupełnić wszystkie pola, w tym PIN pomocniczy.", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -79,7 +78,8 @@ namespace Panele_Glowne
                 {
                     connection.Open();
 
-                    string checkQuery = "SELECT COUNT(*) FROM Uzytkownicy WHERE Login = @login";
+
+                    string checkQuery = "SELECT COUNT(*) FROM Konta WHERE Login = @login";
                     using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, connection))
                     {
                         checkCmd.Parameters.AddWithValue("@login", login);
@@ -92,13 +92,14 @@ namespace Panele_Glowne
                         }
                     }
 
-                    string insertQuery = "INSERT INTO Uzytkownicy (Login, Haslo, Rola, Id_osoby, Pin) VALUES (@login, @haslo, 'Klient', @idOsoby, @pin)";
+                    string insertQuery = @"
+                        INSERT INTO Konta (Login, HasloHash, Rola, Aktywne, PIN) 
+                        VALUES (@login, @haslo, 'Gosc', 1, @pin)";
 
                     using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, connection))
                     {
                         insertCmd.Parameters.AddWithValue("@login", login);
-                        insertCmd.Parameters.AddWithValue("@haslo", haslo);
-                        insertCmd.Parameters.AddWithValue("@idOsoby", przypisaneIdOsoby);
+                        insertCmd.Parameters.AddWithValue("@haslo", haslo); 
                         insertCmd.Parameters.AddWithValue("@pin", pin);
 
                         int wynik = insertCmd.ExecuteNonQuery();
@@ -119,6 +120,7 @@ namespace Panele_Glowne
                 }
             }
         }
+        
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
