@@ -38,16 +38,11 @@ namespace Panele_Glowne
             kwota.Text = cena.ToString();
             osobowy.Text = "1";
 
-            // Podpięcie zdarzenia, które wykona się, gdy pole email straci "focus" (użytkownik kliknie gdzie indziej)
             this.email.Leave += new System.EventHandler(this.email_Leave);
         }
 
-        // ==========================================
-        // NOWA METODA: Sprawdzanie emaila w bazie
-        // ==========================================
         private void email_Leave(object sender, EventArgs e)
         {
-            // Przerywamy, jeśli pole jest puste
             if (string.IsNullOrWhiteSpace(email.Text)) return;
 
             HotelContext dbContext = new HotelContext();
@@ -64,13 +59,12 @@ namespace Panele_Glowne
 
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (reader.Read()) // Jeśli znaleziono rekord
+                            if (reader.Read()) 
                             {
                                 imie.Text = reader["Imie"].ToString();
                                 nazwisko.Text = reader["Nazwisko"].ToString();
                                 telefon.Text = reader["Telefon"].ToString();
 
-                                // Bezpieczne odczytywanie potencjalnie pustych pól (NULL)
                                 dokument.Text = reader["DokumentTozsamosci"] != DBNull.Value ? reader["DokumentTozsamosci"].ToString() : "";
                             }
                         }
@@ -78,7 +72,6 @@ namespace Panele_Glowne
                 }
                 catch (Exception)
                 {
-                    // Ciche ignorowanie błędów w tym miejscu, aby nie irytować użytkownika podczas wpisywania
                 }
             }
         }
@@ -133,14 +126,12 @@ namespace Panele_Glowne
 
         private void dodaj_Click(object sender, EventArgs e)
         {
-            // 1. Walidacja głównych pól
             if (string.IsNullOrWhiteSpace(imie.Text) || string.IsNullOrWhiteSpace(nazwisko.Text) || string.IsNullOrWhiteSpace(email.Text) || string.IsNullOrWhiteSpace(telefon.Text))
             {
                 MessageBox.Show("Proszę wypełnić imię, nazwisko, e-mail oraz telefon gościa.", "Braki w formularzu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 2. Pobranie danych z kontrolek
             string imieGo = imie.Text.Trim();
             string nazwiskoGo = nazwisko.Text.Trim();
             string emailGo = email.Text.Trim();
@@ -157,7 +148,6 @@ namespace Panele_Glowne
             string dataPrzyjazduSQL = przyjazd.Value.ToString("yyyy-MM-dd");
             string dataOdjazduSQL = odjazd.Value.ToString("yyyy-MM-dd");
 
-            // 3. POŁĄCZENIE Z BAZĄ DANYCH
             HotelContext dbContext = new HotelContext();
 
             using (MySqlConnection conn = dbContext.GetConnection())
@@ -166,7 +156,6 @@ namespace Panele_Glowne
                 {
                     conn.Open();
 
-                    // KROK 1: Szukamy WOLNEGO pokoju
                     string findPokoj = @"
                 SELECT IdPokoju 
                 FROM Pokoje 
@@ -198,7 +187,6 @@ namespace Panele_Glowne
 
                     int idPokoju = Convert.ToInt32(wynikPokoj);
 
-                    // KROK 2: Weryfikacja, czy gość już istnieje (Zmodyfikowane)
                     int idGoscia = -1;
                     string checkGosc = "SELECT IdGoscia FROM Goscie WHERE Email = @email LIMIT 1;";
                     using (MySqlCommand cmdCheck = new MySqlCommand(checkGosc, conn))
@@ -208,10 +196,8 @@ namespace Panele_Glowne
 
                         if (wynikGosc != null)
                         {
-                            // Gość istnieje, pobieramy jego ID
                             idGoscia = Convert.ToInt32(wynikGosc);
 
-                            // Opcjonalnie aktualizujemy jego dane, jeśli np. podał inny telefon lub wpisał dokument
                             string updateGosc = "UPDATE Goscie SET Imie = @imie, Nazwisko = @nazwisko, Telefon = @telefon, DokumentTozsamosci = @dokument WHERE IdGoscia = @id;";
                             using (MySqlCommand cmdUpdate = new MySqlCommand(updateGosc, conn))
                             {
@@ -225,7 +211,6 @@ namespace Panele_Glowne
                         }
                         else
                         {
-                            // Gość nie istnieje, dodajemy nowego
                             string insertGosc = "INSERT INTO Goscie (Imie, Nazwisko, Email, Telefon, DokumentTozsamosci) VALUES (@imie, @nazwisko, @email, @telefon, @dokument); SELECT LAST_INSERT_ID();";
                             using (MySqlCommand cmdGosc = new MySqlCommand(insertGosc, conn))
                             {
@@ -240,7 +225,6 @@ namespace Panele_Glowne
                         }
                     }
 
-                    // KROK 3: Zapisanie Rezerwacji z Uwagami
                     string insertRezerwacja = @"INSERT INTO Rezerwacje (IdGoscia, IdPokoju, IdPracownika, DataPrzyjazdu, DataWyjazdu, KwotaCalkowita, StatusRezerwacji, Uwagi) 
                                         VALUES (@idGosc, @idPokoj, @idPracownika, @przyjazd, @wyjazd, @kwota, 'Oczekujaca', @uwagi);";
                     using (MySqlCommand cmdRez = new MySqlCommand(insertRezerwacja, conn))

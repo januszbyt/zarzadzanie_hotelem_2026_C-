@@ -111,7 +111,6 @@ namespace Panele_Glowne
                         {
                             if (reader.Read())
                             {
-                                // 1. Wypełnienie lewej strony (Stare wartości - tylko do odczytu)
                                 ImieOld.Text = reader["Imie"].ToString();
                                 NazwiskoOld.Text = reader["Nazwisko"].ToString();
                                 emailOld.Text = reader["Email"].ToString();
@@ -128,7 +127,6 @@ namespace Panele_Glowne
                                 osobyOld.Text = reader["Pojemnosc"].ToString();
                                 typPokojuOld.Text = reader["TypPokoju"].ToString();
 
-                                // 2. Wypełnienie prawej strony (Nowe wartości - kopia startowa)
                                 imieNew.Text = ImieOld.Text;
                                 nazwiskoNew.Text = NazwiskoOld.Text;
                                 emailNew.Text = emailOld.Text;
@@ -142,7 +140,6 @@ namespace Panele_Glowne
                                 osobowy.Text = osobyOld.Text;
                                 kwotaNew.Text = KwotaOld.Text;
 
-                                // Ustawienie typu pokoju
                                 if (typPokojuOld.Text == "Standard") Standard.Checked = true;
                                 else Deluxe.Checked = true;
                             }
@@ -163,7 +160,6 @@ namespace Panele_Glowne
 
         private void zapisz_Click(object sender, EventArgs e)
         {
-            // Zmodyfikowana walidacja o dodane pola
             if (string.IsNullOrWhiteSpace(imieNew.Text) || string.IsNullOrWhiteSpace(nazwiskoNew.Text) || string.IsNullOrWhiteSpace(emailNew.Text) || string.IsNullOrWhiteSpace(telefonNew.Text))
             {
                 MessageBox.Show("Proszę wypełnić wymagane pola w sekcji 'Nowe wartości' (imię, nazwisko, email, telefon).", "Braki w formularzu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -185,7 +181,6 @@ namespace Panele_Glowne
                 {
                     conn.Open();
 
-                    // KROK 1: Sprawdzenie dostępności pokoju (z użyciem Pojemnosc)
                     string findPokoj = @"
                         SELECT IdPokoju 
                         FROM Pokoje 
@@ -218,14 +213,12 @@ namespace Panele_Glowne
                     }
                     int noweIdPokoju = Convert.ToInt32(wynikPokoj);
 
-                    // KROK 2: Pobranie IdGoscia dla tej rezerwacji
                     string getIdGosciaQuery = "SELECT IdGoscia FROM Rezerwacje WHERE IdRezerwacji = @idRez;";
                     MySqlCommand cmdIds = new MySqlCommand(getIdGosciaQuery, conn);
                     cmdIds.Parameters.AddWithValue("@idRez", idEdytowanejRezerwacji);
 
                     int idGoscia = Convert.ToInt32(cmdIds.ExecuteScalar());
 
-                    // KROK 3: Aktualizacja danych w tabeli Goscie
                     string updateGosc = "UPDATE Goscie SET Imie = @imie, Nazwisko = @nazwisko, Email = @email, Telefon = @telefon, DokumentTozsamosci = @dokument WHERE IdGoscia = @idGoscia;";
                     MySqlCommand cmdGosc = new MySqlCommand(updateGosc, conn);
                     cmdGosc.Parameters.AddWithValue("@imie", imieNew.Text);
@@ -236,7 +229,6 @@ namespace Panele_Glowne
                     cmdGosc.Parameters.AddWithValue("@idGoscia", idGoscia);
                     cmdGosc.ExecuteNonQuery();
 
-                    // KROK 4: Aktualizacja danych w tabeli Rezerwacje
                     string updateRezerwacja = @"
                         UPDATE Rezerwacje 
                         SET IdPokoju = @idPokoj, DataPrzyjazdu = @przyjazd, DataWyjazdu = @wyjazd, KwotaCalkowita = @kwota, Uwagi = @uwagi 

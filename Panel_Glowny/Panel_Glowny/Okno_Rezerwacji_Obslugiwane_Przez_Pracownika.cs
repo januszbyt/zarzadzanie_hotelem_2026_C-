@@ -23,7 +23,6 @@ namespace Panele_Glowne
         {
             dataGridView1.AutoGenerateColumns = false;
 
-            // Mapowanie kolumn z zapytania SQL na kolumny w DataGridView (wg nowych nazw z Designera)
             idRezerwacji.DataPropertyName = "IdRezerwacjiDb";
             Imie.DataPropertyName = "ImieDb";
             Nazwisko.DataPropertyName = "NazwiskoDb";
@@ -48,7 +47,6 @@ namespace Panele_Glowne
                 {
                     conn.Open();
 
-                    // Nowe zapytanie dopasowane do struktury bazy HotelParadisev2
                     string query = @"
                 SELECT 
                     r.IdRezerwacji AS IdRezerwacjiDb, 
@@ -108,7 +106,6 @@ namespace Panele_Glowne
                 return;
             }
 
-            // Pobieramy ID rezerwacji z zaznaczonego wiersza "z tła"
             DataRowView zaznaczonyWiersz = (DataRowView)dataGridView1.CurrentRow.DataBoundItem;
             int idRezerwacji = Convert.ToInt32(zaznaczonyWiersz["IdRezerwacjiDb"]);
 
