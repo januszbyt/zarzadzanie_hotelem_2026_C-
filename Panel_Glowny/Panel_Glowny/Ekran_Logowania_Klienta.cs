@@ -1,5 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using Panel_Glowny;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Panele_Glowne;
 
@@ -13,14 +16,12 @@ public partial class Ekran_Logowania_Klienta : Form
         this.AcceptButton = button1;
         textBox2.PasswordChar = '*';
         pictureBox2.Image = Image.FromFile("Zdjecia/okowidac.png");
-
     }
 
     private void button3_Click(object sender, EventArgs e)
     {
         Ekran_Rejestracji_klienta rejestracja = new Ekran_Rejestracji_klienta();
         rejestracja.Show();
-
         this.Hide();
     }
 
@@ -43,18 +44,19 @@ public partial class Ekran_Logowania_Klienta : Form
                 conn.Open();
 
                 string query = @"
-               SELECT
-            u.Login,
-            u.Haslo,
-            u.Rola,
-            o.Imie,
-            k.IdKlienta,
-            p.Id_pracownika
-            FROM Uzytkownicy u
-            LEFT JOIN osoby o ON u.Id_osoby = o.Id
-            LEFT JOIN Klienci k ON o.Id = k.Id_osoby
-            LEFT JOIN Pracownicy p ON o.Id = p.Id_osoby
-            WHERE u.Login = @login";
+                SELECT 
+                    k.Login, 
+                    k.HasloHash AS Haslo, 
+                    k.Rola,
+                    k.IdKonta,
+                    g.IdGoscia,
+                    g.Imie AS ImieGoscia,
+                    p.IdPracownika,
+                    p.Imie AS ImiePracownika
+                FROM Konta k
+                LEFT JOIN Goscie g ON k.IdKonta = g.IdKonta
+                LEFT JOIN Pracownicy p ON k.IdKonta = p.IdKonta
+                WHERE k.Login = @login AND k.Aktywne = 1";
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@login", login);
@@ -69,28 +71,34 @@ public partial class Ekran_Logowania_Klienta : Form
                     if (haslo == hasloZBazy)
                     {
                         ZalogowanyUzytkownik.Login = reader["Login"].ToString();
-                        ZalogowanyUzytkownik.Imie = reader["Imie"].ToString();
-                        ZalogowanyUzytkownik.Rola = reader["Rola"].ToString();
+                        ZalogowanyUzytkownik.Rola = rola;
+
                         if (rola == "Administrator")
                         {
+                            ZalogowanyUzytkownik.Imie = reader["ImiePracownika"] != DBNull.Value ? reader["ImiePracownika"].ToString() : "Admin";
                             Form_Admin admin = new Form_Admin(ZalogowanyUzytkownik.Login);
                             admin.Show();
                         }
                         else if (rola == "Recepcjonista")
                         {
-                            if (reader["Id_pracownika"] != DBNull.Value)
+                            ZalogowanyUzytkownik.Imie = reader["ImiePracownika"].ToString();
+
+                            if (reader["IdPracownika"] != DBNull.Value)
                             {
-                                ZalogowanyUzytkownik.IdPracownika =
-                                    Convert.ToInt32(reader["Id_pracownika"]);
+                                ZalogowanyUzytkownik.IdPracownika = Convert.ToInt32(reader["IdPracownika"]);
                             }
 
                             Ekran_Glowny_Pracownika recepcja = new Ekran_Glowny_Pracownika(login);
                             recepcja.Show();
                         }
-                        else if (rola == "Klient")
+                        else if (rola == "Gosc")
                         {
-                            ZalogowanyUzytkownik.IdKlienta =
-                                    Convert.ToInt32(reader["IdKlienta"]);
+                            ZalogowanyUzytkownik.Imie = reader["ImieGoscia"].ToString();
+
+                            if (reader["IdGoscia"] != DBNull.Value)
+                            {
+                                ZalogowanyUzytkownik.IdGoscia = Convert.ToInt32(reader["IdGoscia"]);
+                            }
 
                             Panel_Glowny_Klienta klient = new Panel_Glowny_Klienta();
                             klient.Show();
@@ -106,7 +114,7 @@ public partial class Ekran_Logowania_Klienta : Form
                 }
                 else
                 {
-                    label5.Text = "Nie ma takiego użytkownika";
+                    label5.Text = "Nie ma takiego użytkownika lub konto nieaktywne";
                     label5.ForeColor = Color.Red;
                 }
             }
@@ -145,7 +153,4 @@ public partial class Ekran_Logowania_Klienta : Form
         DoOknaNiePamietamHasla.Show();
         this.Hide();
     }
-
-
-
 }
