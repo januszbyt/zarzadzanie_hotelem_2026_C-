@@ -108,7 +108,7 @@ namespace Panele_Glowne
             button3.TabIndex = 5;
             button3.Text = "Usuń Pracownika";
             button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            button3.Click += button3_Click_1;
             // 
             // panel1
             // 
@@ -380,55 +380,6 @@ namespace Panele_Glowne
             ResumeLayout(false);
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Proszę zaznaczyć pracownika do usunięcia.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            int idPracownika = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["ID_Pracownika"].Value);
-
-            DialogResult confirm = MessageBox.Show(
-                $"Czy na pewno chcesz usunąć pracownika o ID {idPracownika}?",
-                "Potwierdzenie",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
-
-            if (confirm != DialogResult.Yes) return;
-
-            string query = "DELETE FROM Pracownicy WHERE Id_pracownika = @idPracownika";
-
-            using (MySqlConnection connection = db.GetConnection())
-            {
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@idPracownika", idPracownika);
-
-                    try
-                    {
-                        connection.Open();
-                        int result = command.ExecuteNonQuery();
-
-                        if (result > 0)
-                        {
-                            MessageBox.Show("Pracownik został pomyslnie usunięty.", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            OdswiezTabelePracownikow();
-                        }
-                    }
-                    catch (MySqlException ex)
-                    {
-                        MessageBox.Show($"Błąd bazy danych: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Wystąpił nieoczekiwany błąd: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-        }
 
         #endregion
 
