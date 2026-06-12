@@ -34,6 +34,8 @@ namespace Panele_Glowne
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ekran_Logowania_Klienta));
             panel1 = new Panel();
+            linkLabNiePamietam = new LinkLabel();
+            pictureBox2 = new PictureBox();
             label5 = new Label();
             label4 = new Label();
             button3 = new Button();
@@ -46,6 +48,7 @@ namespace Panele_Glowne
             pictureBox1 = new PictureBox();
             label1 = new Label();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -53,6 +56,8 @@ namespace Panele_Glowne
             // 
             panel1.BackColor = SystemColors.ButtonFace;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(linkLabNiePamietam);
+            panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(button3);
@@ -67,8 +72,32 @@ namespace Panele_Glowne
             panel1.Location = new Point(209, 43);
             panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(453, 639);
+            panel1.Size = new Size(453, 699);
             panel1.TabIndex = 0;
+            // 
+            // linkLabNiePamietam
+            // 
+            linkLabNiePamietam.AutoSize = true;
+            linkLabNiePamietam.Cursor = Cursors.Hand;
+            linkLabNiePamietam.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 238);
+            linkLabNiePamietam.LinkColor = Color.Red;
+            linkLabNiePamietam.Location = new Point(51, 473);
+            linkLabNiePamietam.Name = "linkLabNiePamietam";
+            linkLabNiePamietam.Size = new Size(139, 20);
+            linkLabNiePamietam.TabIndex = 12;
+            linkLabNiePamietam.TabStop = true;
+            linkLabNiePamietam.Text = "Nie pamietam hasla";
+            linkLabNiePamietam.LinkClicked += linkLabNiePamietam_LinkClicked;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Location = new Point(310, 427);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(27, 27);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 11;
+            pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // label5
             // 
@@ -93,7 +122,7 @@ namespace Panele_Glowne
             button3.FlatAppearance.MouseOverBackColor = SystemColors.GradientInactiveCaption;
             button3.FlatStyle = FlatStyle.Flat;
             button3.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            button3.Location = new Point(168, 481);
+            button3.Location = new Point(167, 518);
             button3.Margin = new Padding(3, 4, 3, 4);
             button3.Name = "button3";
             button3.Size = new Size(137, 41);
@@ -109,7 +138,7 @@ namespace Panele_Glowne
             button2.FlatAppearance.MouseOverBackColor = SystemColors.GradientInactiveCaption;
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            button2.Location = new Point(330, 575);
+            button2.Location = new Point(349, 637);
             button2.Margin = new Padding(3, 4, 3, 4);
             button2.Name = "button2";
             button2.Size = new Size(86, 39);
@@ -126,7 +155,7 @@ namespace Panele_Glowne
             button1.FlatAppearance.MouseOverBackColor = SystemColors.GradientInactiveCaption;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            button1.Location = new Point(51, 481);
+            button1.Location = new Point(51, 518);
             button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
             button1.Size = new Size(96, 41);
@@ -171,6 +200,7 @@ namespace Panele_Glowne
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(190, 27);
             textBox1.TabIndex = 2;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // pictureBox1
             // 
@@ -193,7 +223,7 @@ namespace Panele_Glowne
             label1.TabIndex = 0;
             label1.Text = "System Hotelowy";
             // 
-            // EkranLogowania
+            // Ekran_Logowania_Klienta
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -201,11 +231,12 @@ namespace Panele_Glowne
             ClientSize = new Size(858, 773);
             Controls.Add(panel1);
             Margin = new Padding(3, 4, 3, 4);
-            Name = "EkranLogowania";
+            Name = "Ekran_Logowania_Klienta";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
@@ -224,5 +255,7 @@ namespace Panele_Glowne
         private Label label3;
         private Label label4;
         private Label label5;
+        private PictureBox pictureBox2;
+        private LinkLabel linkLabNiePamietam;
     }
 }

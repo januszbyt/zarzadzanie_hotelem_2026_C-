@@ -4,11 +4,18 @@ namespace Panel_Glowny
 {
     public partial class Ekran_Glowny_Pracownika : Form
     {
-        public Ekran_Glowny_Pracownika()
+        public Ekran_Glowny_Pracownika(string ZalogowanyUzytkownik)
         {
             InitializeComponent();
-        }
 
+
+            label2.Text = ZalogowanyUzytkownik;
+        }
+        public Ekran_Glowny_Pracownika(string ZalogowanyUzytkownik)
+        {
+            InitializeComponent();
+
+        }
         private void button4_Click(object sender, EventArgs e)
         {
             Panel_Przypisania_Goscia_DoRezerwacji gosciepracownik = new Panel_Przypisania_Goscia_DoRezerwacji();
@@ -38,6 +45,17 @@ namespace Panel_Glowny
             Ekran_Logowania_Klienta wyloguj = new Ekran_Logowania_Klienta();
             wyloguj.Show();
             this.Hide();
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+
         }
 
 
