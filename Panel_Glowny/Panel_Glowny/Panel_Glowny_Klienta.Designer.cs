@@ -38,6 +38,7 @@
             label3 = new Label();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
+            btnZarzadzajKontem = new Button();
             button4 = new Button();
             button3 = new Button();
             button2 = new Button();
@@ -138,6 +139,7 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ButtonFace;
+            panel2.Controls.Add(btnZarzadzajKontem);
             panel2.Controls.Add(button4);
             panel2.Controls.Add(button3);
             panel2.Controls.Add(button2);
@@ -146,6 +148,17 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(209, 459);
             panel2.TabIndex = 1;
+            // 
+            // btnZarzadzajKontem
+            // 
+            btnZarzadzajKontem.Location = new Point(33, 188);
+            btnZarzadzajKontem.Margin = new Padding(3, 4, 3, 4);
+            btnZarzadzajKontem.Name = "btnZarzadzajKontem";
+            btnZarzadzajKontem.Size = new Size(127, 56);
+            btnZarzadzajKontem.TabIndex = 4;
+            btnZarzadzajKontem.Text = "Zarzadzaj kontem";
+            btnZarzadzajKontem.UseVisualStyleBackColor = true;
+            btnZarzadzajKontem.Click += btnZarzadzajKontem_Click;
             // 
             // button4
             // 
@@ -216,5 +229,6 @@
         private Label label3;
         private DataGridView dataGridView1;
         private Label label4;
+        private Button btnZarzadzajKontem;
     }
 }

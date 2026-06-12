@@ -14,6 +14,12 @@ namespace Panele_Glowne
 {
     public partial class Panel_Glowny_Klienta : Form
     {
+        public Panel_Glowny_Klienta(string ZalogowanyUzytkownik)
+        {
+            InitializeComponent();
+            WczytajRezerwacje();
+
+        }
         public Panel_Glowny_Klienta()
         {
             InitializeComponent();
@@ -90,6 +96,13 @@ namespace Panele_Glowne
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnZarzadzajKontem_Click(object sender, EventArgs e)
+        {
+            OknoZarzadzanieKontem doOknaZarzadzaniaKontem = new OknoZarzadzanieKontem();
+            doOknaZarzadzaniaKontem.Show();
+            this.Close();
         }
     }
 }
