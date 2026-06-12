@@ -57,20 +57,18 @@
             panel1.BackColor = SystemColors.ButtonFace;
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(lblZarzadzanieHaslem);
-            panel1.Location = new Point(10, 9);
-            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Location = new Point(11, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(494, 55);
+            panel1.Size = new Size(565, 73);
             panel1.TabIndex = 0;
             // 
             // pictureBox1
             // 
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.Location = new Point(418, 2);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Location = new Point(478, 3);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(74, 52);
+            pictureBox1.Size = new Size(85, 69);
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
@@ -78,9 +76,9 @@
             // 
             lblZarzadzanieHaslem.AutoSize = true;
             lblZarzadzanieHaslem.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            lblZarzadzanieHaslem.Location = new Point(3, 9);
+            lblZarzadzanieHaslem.Location = new Point(3, 12);
             lblZarzadzanieHaslem.Name = "lblZarzadzanieHaslem";
-            lblZarzadzanieHaslem.Size = new Size(247, 37);
+            lblZarzadzanieHaslem.Size = new Size(305, 46);
             lblZarzadzanieHaslem.TabIndex = 0;
             lblZarzadzanieHaslem.Text = "Zarządzaj kontem";
             // 
@@ -100,19 +98,17 @@
             panel2.Controls.Add(lblHasloUzytkownika);
             panel2.Controls.Add(lblpobieranaNazwa);
             panel2.Controls.Add(lblNazwaUzytkownika);
-            panel2.Location = new Point(10, 68);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(11, 91);
             panel2.Name = "panel2";
-            panel2.Size = new Size(494, 332);
+            panel2.Size = new Size(565, 443);
             panel2.TabIndex = 1;
             // 
             // btnPowrot
             // 
             btnPowrot.BackColor = Color.FromArgb(255, 128, 128);
-            btnPowrot.Location = new Point(207, 294);
-            btnPowrot.Margin = new Padding(3, 2, 3, 2);
+            btnPowrot.Location = new Point(237, 392);
             btnPowrot.Name = "btnPowrot";
-            btnPowrot.Size = new Size(76, 26);
+            btnPowrot.Size = new Size(87, 35);
             btnPowrot.TabIndex = 14;
             btnPowrot.Text = "Powrot";
             btnPowrot.UseVisualStyleBackColor = false;
@@ -122,10 +118,9 @@
             // 
             pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
             pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox2.Location = new Point(21, 22);
-            pictureBox2.Margin = new Padding(3, 2, 3, 2);
+            pictureBox2.Location = new Point(27, 19);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(111, 66);
+            pictureBox2.Size = new Size(127, 88);
             pictureBox2.TabIndex = 13;
             pictureBox2.TabStop = false;
             // 
@@ -133,9 +128,9 @@
             // 
             lblInfo.AutoSize = true;
             lblInfo.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            lblInfo.Location = new Point(162, 50);
+            lblInfo.Location = new Point(185, 67);
             lblInfo.Name = "lblInfo";
-            lblInfo.Size = new Size(266, 30);
+            lblInfo.Size = new Size(343, 40);
             lblInfo.TabIndex = 12;
             lblInfo.Text = "Aby zaktualizowac poszczegolne informacje \r\ndotyczace twojego konta kliknij przycisk \"Zmien\"";
             // 
@@ -143,9 +138,9 @@
             // 
             lblwitajnazwa.AutoSize = true;
             lblwitajnazwa.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            lblwitajnazwa.Location = new Point(207, 22);
+            lblwitajnazwa.Location = new Point(237, 29);
             lblwitajnazwa.Name = "lblwitajnazwa";
-            lblwitajnazwa.Size = new Size(41, 15);
+            lblwitajnazwa.Size = new Size(52, 20);
             lblwitajnazwa.TabIndex = 11;
             lblwitajnazwa.Text = "nazwa";
             // 
@@ -153,18 +148,17 @@
             // 
             lblWitaj.AutoSize = true;
             lblWitaj.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblWitaj.Location = new Point(162, 22);
+            lblWitaj.Location = new Point(185, 29);
             lblWitaj.Name = "lblWitaj";
-            lblWitaj.Size = new Size(36, 15);
+            lblWitaj.Size = new Size(46, 20);
             lblWitaj.TabIndex = 10;
             lblWitaj.Text = "Witaj";
             // 
             // btnZmienPin
             // 
-            btnZmienPin.Location = new Point(397, 264);
-            btnZmienPin.Margin = new Padding(3, 2, 3, 2);
+            btnZmienPin.Location = new Point(454, 352);
             btnZmienPin.Name = "btnZmienPin";
-            btnZmienPin.Size = new Size(76, 26);
+            btnZmienPin.Size = new Size(87, 35);
             btnZmienPin.TabIndex = 8;
             btnZmienPin.Text = "Zmień";
             btnZmienPin.UseVisualStyleBackColor = true;
@@ -174,27 +168,26 @@
             // 
             lblPinUzytkownika.AutoSize = true;
             lblPinUzytkownika.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblPinUzytkownika.Location = new Point(24, 248);
+            lblPinUzytkownika.Location = new Point(27, 331);
             lblPinUzytkownika.Name = "lblPinUzytkownika";
-            lblPinUzytkownika.Size = new Size(30, 15);
+            lblPinUzytkownika.Size = new Size(39, 20);
             lblPinUzytkownika.TabIndex = 7;
             lblPinUzytkownika.Text = "PIN:";
             // 
             // lblPobieranyPin
             // 
             lblPobieranyPin.AutoSize = true;
-            lblPobieranyPin.Location = new Point(24, 274);
+            lblPobieranyPin.Location = new Point(27, 365);
             lblPobieranyPin.Name = "lblPobieranyPin";
-            lblPobieranyPin.Size = new Size(27, 15);
+            lblPobieranyPin.Size = new Size(33, 20);
             lblPobieranyPin.TabIndex = 6;
             lblPobieranyPin.Text = "----";
             // 
             // btnZmienHaslo
             // 
-            btnZmienHaslo.Location = new Point(397, 193);
-            btnZmienHaslo.Margin = new Padding(3, 2, 3, 2);
+            btnZmienHaslo.Location = new Point(454, 257);
             btnZmienHaslo.Name = "btnZmienHaslo";
-            btnZmienHaslo.Size = new Size(76, 26);
+            btnZmienHaslo.Size = new Size(87, 35);
             btnZmienHaslo.TabIndex = 5;
             btnZmienHaslo.Text = "Zmień";
             btnZmienHaslo.UseVisualStyleBackColor = true;
@@ -203,9 +196,9 @@
             // lblPobieraneHaslo
             // 
             lblPobieraneHaslo.AutoSize = true;
-            lblPobieraneHaslo.Location = new Point(24, 203);
+            lblPobieraneHaslo.Location = new Point(27, 271);
             lblPobieraneHaslo.Name = "lblPobieraneHaslo";
-            lblPobieraneHaslo.Size = new Size(27, 15);
+            lblPobieraneHaslo.Size = new Size(33, 20);
             lblPobieraneHaslo.TabIndex = 4;
             lblPobieraneHaslo.Text = "----";
             // 
@@ -213,18 +206,18 @@
             // 
             lblHasloUzytkownika.AutoSize = true;
             lblHasloUzytkownika.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblHasloUzytkownika.Location = new Point(21, 179);
+            lblHasloUzytkownika.Location = new Point(24, 239);
             lblHasloUzytkownika.Name = "lblHasloUzytkownika";
-            lblHasloUzytkownika.Size = new Size(40, 15);
+            lblHasloUzytkownika.Size = new Size(52, 20);
             lblHasloUzytkownika.TabIndex = 3;
             lblHasloUzytkownika.Text = "Haslo:";
             // 
             // lblpobieranaNazwa
             // 
             lblpobieranaNazwa.AutoSize = true;
-            lblpobieranaNazwa.Location = new Point(24, 142);
+            lblpobieranaNazwa.Location = new Point(27, 189);
             lblpobieranaNazwa.Name = "lblpobieranaNazwa";
-            lblpobieranaNazwa.Size = new Size(27, 15);
+            lblpobieranaNazwa.Size = new Size(33, 20);
             lblpobieranaNazwa.TabIndex = 1;
             lblpobieranaNazwa.Text = "----";
             // 
@@ -232,21 +225,20 @@
             // 
             lblNazwaUzytkownika.AutoSize = true;
             lblNazwaUzytkownika.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblNazwaUzytkownika.Location = new Point(21, 120);
+            lblNazwaUzytkownika.Location = new Point(24, 160);
             lblNazwaUzytkownika.Name = "lblNazwaUzytkownika";
-            lblNazwaUzytkownika.Size = new Size(121, 15);
+            lblNazwaUzytkownika.Size = new Size(152, 20);
             lblNazwaUzytkownika.TabIndex = 0;
             lblNazwaUzytkownika.Text = "Nazwa uzytkownika:";
             // 
             // OknoZarzadzanieKontem
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(518, 409);
+            ClientSize = new Size(592, 545);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "OknoZarzadzanieKontem";
             Text = "OknoZarzadzanieKontem";
             panel1.ResumeLayout(false);

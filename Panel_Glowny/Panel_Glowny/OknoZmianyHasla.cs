@@ -53,7 +53,7 @@ namespace Panele_Glowne
                     conn.Open();
 
 
-                    string query = @"SELECT Login FROM Uzytkownicy WHERE Login = @login AND Haslo = @stareHaslo";
+                    string query = @"SELECT Login FROM Konta WHERE Login = @login AND HasloHash = @stareHaslo";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@login", login);
                     cmd.Parameters.AddWithValue("@stareHaslo", stareHaslo);
@@ -63,8 +63,8 @@ namespace Panele_Glowne
                     {
                         reader.Close();
 
-                        string updateQuery = @"UPDATE Uzytkownicy
-                           SET Haslo = @noweHaslo
+                        string updateQuery = @"UPDATE Konta
+                           SET HasloHash = @noweHaslo
                            WHERE Login = @login";
 
                         MySqlCommand updateCmd = new MySqlCommand(updateQuery, conn);

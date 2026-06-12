@@ -52,9 +52,9 @@ namespace Panele_Glowne
                     conn.Open();
 
                     string query = @"SELECT Login
-                             FROM Uzytkownicy
+                             FROM Konta
                              WHERE Login = @login
-                             AND Pin = @staryPin";
+                             AND PIN = @staryPin";
 
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@login", login);
@@ -66,8 +66,8 @@ namespace Panele_Glowne
                     {
                         reader.Close();
 
-                        string updateQuery = @"UPDATE Uzytkownicy
-                                       SET Pin = @nowyPin
+                        string updateQuery = @"UPDATE Konta
+                                       SET PIN = @nowyPin
                                        WHERE Login = @login";
 
                         MySqlCommand updateCmd = new MySqlCommand(updateQuery, conn);

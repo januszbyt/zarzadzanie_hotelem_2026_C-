@@ -26,7 +26,7 @@ namespace Panele_Glowne
         }
         private void OknoZarzadzanieKontem_Load(object sender, EventArgs e)
         {
-            lblwitajnazwa.Text = ZalogowanyUzytkownik.Imie + "!";
+            lblwitajnazwa.Text = ZalogowanyUzytkownik.Login + "!";
             PobierzDaneUzytkownika();
 
         }
@@ -39,7 +39,7 @@ namespace Panele_Glowne
                 try
                 {
                     conn.Open();
-                    string query = "SELECT Login, Haslo, Pin FROM Uzytkownicy WHERE Login = @login";
+                    string query = "SELECT Login, HasloHash, PIN FROM Konta WHERE Login = @login";
 
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@login", ZalogowanyUzytkownik.Login);
@@ -48,8 +48,8 @@ namespace Panele_Glowne
                     if (reader.Read())
                     {
                         lblpobieranaNazwa.Text = reader["Login"].ToString();
-                        lblPobieraneHaslo.Text = reader["Haslo"].ToString();
-                        lblPobieranyPin.Text = reader["Pin"].ToString();
+                        lblPobieraneHaslo.Text = reader["HasloHash"].ToString();
+                        lblPobieranyPin.Text = reader["PIN"].ToString();
                     }
                 }
                 catch (Exception ex)
@@ -75,7 +75,7 @@ namespace Panele_Glowne
                 this.Close();
             }
 
-            if (rola == "Klient")
+            if (rola == "Gosc")
             {
                 Panel_Glowny_Klienta klient = new Panel_Glowny_Klienta(ZalogowanyUzytkownik.Login);
                 klient.Show();
