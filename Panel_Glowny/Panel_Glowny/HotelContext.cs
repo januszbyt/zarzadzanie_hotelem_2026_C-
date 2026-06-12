@@ -11,7 +11,7 @@ namespace Panele_Glowne
     {
         string server = "127.0.0.1";
         string port = "3306";
-        string database = "HotelParadise";
+        string database = "HotelParadisev2";
         string user = "HotelP";
         string password = "PANS!@1234";
 
