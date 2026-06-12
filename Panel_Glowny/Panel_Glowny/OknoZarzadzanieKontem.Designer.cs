@@ -38,13 +38,12 @@
             lblInfo = new Label();
             lblwitajnazwa = new Label();
             lblWitaj = new Label();
-            button1 = new Button();
+            btnZmienPin = new Button();
             lblPinUzytkownika = new Label();
             lblPobieranyPin = new Label();
             btnZmienHaslo = new Button();
             lblPobieraneHaslo = new Label();
             lblHasloUzytkownika = new Label();
-            btnZmienNazwe = new Button();
             lblpobieranaNazwa = new Label();
             lblNazwaUzytkownika = new Label();
             panel1.SuspendLayout();
@@ -91,13 +90,12 @@
             panel2.Controls.Add(lblInfo);
             panel2.Controls.Add(lblwitajnazwa);
             panel2.Controls.Add(lblWitaj);
-            panel2.Controls.Add(button1);
+            panel2.Controls.Add(btnZmienPin);
             panel2.Controls.Add(lblPinUzytkownika);
             panel2.Controls.Add(lblPobieranyPin);
             panel2.Controls.Add(btnZmienHaslo);
             panel2.Controls.Add(lblPobieraneHaslo);
             panel2.Controls.Add(lblHasloUzytkownika);
-            panel2.Controls.Add(btnZmienNazwe);
             panel2.Controls.Add(lblpobieranaNazwa);
             panel2.Controls.Add(lblNazwaUzytkownika);
             panel2.Location = new Point(12, 91);
@@ -155,14 +153,15 @@
             lblWitaj.TabIndex = 10;
             lblWitaj.Text = "Witaj";
             // 
-            // button1
+            // btnZmienPin
             // 
-            button1.Location = new Point(454, 352);
-            button1.Name = "button1";
-            button1.Size = new Size(87, 34);
-            button1.TabIndex = 8;
-            button1.Text = "Zmień";
-            button1.UseVisualStyleBackColor = true;
+            btnZmienPin.Location = new Point(454, 352);
+            btnZmienPin.Name = "btnZmienPin";
+            btnZmienPin.Size = new Size(87, 34);
+            btnZmienPin.TabIndex = 8;
+            btnZmienPin.Text = "Zmień";
+            btnZmienPin.UseVisualStyleBackColor = true;
+            btnZmienPin.Click += btnZmianaPin_Click;
             // 
             // lblPinUzytkownika
             // 
@@ -191,6 +190,7 @@
             btnZmienHaslo.TabIndex = 5;
             btnZmienHaslo.Text = "Zmień";
             btnZmienHaslo.UseVisualStyleBackColor = true;
+            btnZmienHaslo.Click += btnZmienHaslo_Click;
             // 
             // lblPobieraneHaslo
             // 
@@ -210,15 +210,6 @@
             lblHasloUzytkownika.Size = new Size(52, 20);
             lblHasloUzytkownika.TabIndex = 3;
             lblHasloUzytkownika.Text = "Haslo:";
-            // 
-            // btnZmienNazwe
-            // 
-            btnZmienNazwe.Location = new Point(454, 182);
-            btnZmienNazwe.Name = "btnZmienNazwe";
-            btnZmienNazwe.Size = new Size(87, 34);
-            btnZmienNazwe.TabIndex = 2;
-            btnZmienNazwe.Text = "Zmień";
-            btnZmienNazwe.UseVisualStyleBackColor = true;
             // 
             // lblpobieranaNazwa
             // 
@@ -267,9 +258,8 @@
         private Label lblNazwaUzytkownika;
         private Label lblPobieraneHaslo;
         private Label lblHasloUzytkownika;
-        private Button btnZmienNazwe;
         private Label lblpobieranaNazwa;
-        private Button button1;
+        private Button btnZmienPin;
         private Label lblPinUzytkownika;
         private Label lblPobieranyPin;
         private Button btnZmienHaslo;
