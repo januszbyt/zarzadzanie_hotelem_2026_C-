@@ -104,7 +104,18 @@ namespace Panele_Glowne
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Panel_Informacji_Histori_Pobytu HistoriaGoscia2 = new Panel_Informacji_Histori_Pobytu();
+            // Sprawdzamy, czy w ogóle kogoś zaznaczyłeś
+            if (dataGridView1.CurrentRow == null || dataGridView1.CurrentRow.IsNewRow)
+            {
+                MessageBox.Show("Zaznacz najpierw gościa, żeby sprawdzić jego historię!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Pobieramy ID gościa z pierwszej kolumny zaznaczonego wiersza
+            int wybraneIdKlienta = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
+
+            // Przekazujemy to ID do drugiego okna
+            Panel_Informacji_Histori_Pobytu HistoriaGoscia2 = new Panel_Informacji_Histori_Pobytu(wybraneIdKlienta);
             HistoriaGoscia2.Show();
 
             this.Hide();
