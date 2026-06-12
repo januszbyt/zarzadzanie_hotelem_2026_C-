@@ -69,11 +69,11 @@ namespace Panele_Glowne
 
                     conn.Open();
 
-                    string query = @"SELECT Login FROM Uzytkownicy WHERE Login = @login AND Pin = @PIN";
+                    string query = @"SELECT Login FROM Konta WHERE Login = @login AND PIN = @PIN";
 
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@login", login);
-                    cmd.Parameters.AddWithValue("@pin", PIN);
+                    cmd.Parameters.AddWithValue("@PIN", PIN);
 
                     MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -81,7 +81,7 @@ namespace Panele_Glowne
                     {
                         reader.Close();
 
-                        string updateQuery = @"UPDATE Uzytkownicy SET Haslo = @haslo WHERE Login = @login";
+                        string updateQuery = @"UPDATE Konta SET HasloHash = @haslo WHERE Login = @login";
 
                         MySqlCommand updateCmd = new MySqlCommand(updateQuery, conn);
                         updateCmd.Parameters.AddWithValue("@haslo", haslo);
@@ -104,7 +104,7 @@ namespace Panele_Glowne
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Blad polaczenia z baza");
+                    MessageBox.Show("Blad polaczenia z baza");  
                     MessageBox.Show(ex.Message);
                 }
 
