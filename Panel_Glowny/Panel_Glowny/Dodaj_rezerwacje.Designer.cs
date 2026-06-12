@@ -50,6 +50,15 @@
             Standard = new RadioButton();
             Deluxe = new RadioButton();
             osobowy = new ComboBox();
+
+            // Nowe elementy
+            labelTelefon = new Label();
+            telefon = new TextBox();
+            labelDokument = new Label();
+            dokument = new TextBox();
+            labelUwagi = new Label();
+            uwagi = new TextBox();
+
             SuspendLayout();
             // 
             // label
@@ -78,7 +87,7 @@
             label2.Name = "label2";
             label2.Size = new Size(30, 15);
             label2.TabIndex = 2;
-            label2.Text = "Imie";
+            label2.Text = "Imię";
             // 
             // label3
             // 
@@ -258,12 +267,71 @@
             osobowy.TabIndex = 27;
             osobowy.SelectedIndexChanged += kwotaPokoi;
             osobowy.DataContextChanged += kwotaPokoi;
+
+            // --- NOWE ELEMENTY ---
+
+            // 
+            // labelTelefon
+            // 
+            labelTelefon.AutoSize = true;
+            labelTelefon.Location = new Point(400, 96);
+            labelTelefon.Name = "labelTelefon";
+            labelTelefon.Size = new Size(47, 15);
+            labelTelefon.TabIndex = 28;
+            labelTelefon.Text = "Telefon";
+            // 
+            // telefon
+            // 
+            telefon.Location = new Point(530, 93);
+            telefon.Name = "telefon";
+            telefon.Size = new Size(150, 23);
+            telefon.TabIndex = 29;
+            // 
+            // labelDokument
+            // 
+            labelDokument.AutoSize = true;
+            labelDokument.Location = new Point(400, 125);
+            labelDokument.Name = "labelDokument";
+            labelDokument.Size = new Size(125, 15);
+            labelDokument.TabIndex = 30;
+            labelDokument.Text = "Nr dok. tożsamości";
+            // 
+            // dokument
+            // 
+            dokument.Location = new Point(530, 122);
+            dokument.Name = "dokument";
+            dokument.Size = new Size(150, 23);
+            dokument.TabIndex = 31;
+            // 
+            // labelUwagi
+            // 
+            labelUwagi.AutoSize = true;
+            labelUwagi.Location = new Point(400, 154);
+            labelUwagi.Name = "labelUwagi";
+            labelUwagi.Size = new Size(40, 15);
+            labelUwagi.TabIndex = 32;
+            labelUwagi.Text = "Uwagi";
+            // 
+            // uwagi
+            // 
+            uwagi.Location = new Point(530, 151);
+            uwagi.Multiline = true;
+            uwagi.Name = "uwagi";
+            uwagi.Size = new Size(200, 80);
+            uwagi.TabIndex = 33;
+
             // 
             // Dodaj_rezerwacje
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(uwagi);
+            Controls.Add(labelUwagi);
+            Controls.Add(dokument);
+            Controls.Add(labelDokument);
+            Controls.Add(telefon);
+            Controls.Add(labelTelefon);
             Controls.Add(Deluxe);
             Controls.Add(Standard);
             Controls.Add(osobowy);
@@ -316,5 +384,13 @@
         private TextBox email;
         private TextBox imie;
         private TextBox nazwisko;
+
+        // Deklaracja nowych elementów
+        private Label labelTelefon;
+        private TextBox telefon;
+        private Label labelDokument;
+        private TextBox dokument;
+        private Label labelUwagi;
+        private TextBox uwagi;
     }
 }

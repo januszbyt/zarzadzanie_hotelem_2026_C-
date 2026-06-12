@@ -51,13 +51,11 @@ namespace Panel_Glowny
 
         private void button7_Click(object sender, EventArgs e)
         {
-
+            OknoZarzadzanieKontem konto = new OknoZarzadzanieKontem();
+            konto.Show();
         }
 
 
-        //private void label2_Click(object sender, EventArgs e)
-        //{
-
-        //}
+        
     }
 }

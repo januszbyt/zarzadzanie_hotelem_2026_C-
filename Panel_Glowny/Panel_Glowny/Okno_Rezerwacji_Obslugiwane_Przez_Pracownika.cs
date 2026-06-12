@@ -16,7 +16,6 @@ namespace Panele_Glowne
         public Okno_Rezerwacji_Obslugiwane_Przez_Pracownika()
         {
             InitializeComponent();
-
             this.Load += Okno_Rezerwacji_Obslugiwane_Przez_Pracownika_Load;
         }
 
@@ -24,14 +23,17 @@ namespace Panele_Glowne
         {
             dataGridView1.AutoGenerateColumns = false;
 
+            idRezerwacji.DataPropertyName = "IdRezerwacjiDb";
             Imie.DataPropertyName = "ImieDb";
             Nazwisko.DataPropertyName = "NazwiskoDb";
+            telefon.DataPropertyName = "TelefonDb";
             email.DataPropertyName = "EmailDb";
-            osoby.DataPropertyName = "LiczbaOsobDb";
+            numerPokoju.DataPropertyName = "NumerPokojuDb";
             status.DataPropertyName = "StatusDb";
             od.DataPropertyName = "OdDb";
             doKiedy.DataPropertyName = "DoKiedyDb";
             kwota.DataPropertyName = "KwotaDb";
+
             WczytajDane();
         }
 
@@ -48,10 +50,11 @@ namespace Panele_Glowne
                     string query = @"
                 SELECT 
                     r.IdRezerwacji AS IdRezerwacjiDb, 
-                    o.Imie AS ImieDb, 
-                    o.Nazwisko AS NazwiskoDb, 
-                    k.Email AS EmailDb, 
-                    1 AS LiczbaOsobDb, 
+                    g.Imie AS ImieDb, 
+                    g.Nazwisko AS NazwiskoDb, 
+                    g.Telefon AS TelefonDb,
+                    g.Email AS EmailDb, 
+                    p.NumerPokoju AS NumerPokojuDb, 
                     CASE
                         WHEN r.StatusRezerwacji = 'Anulowana' THEN 'Anulowana'
                         WHEN r.DataWyjazdu < CURDATE() THEN 'Zakończona'
@@ -62,10 +65,10 @@ namespace Panele_Glowne
                     END AS StatusDb,
                     r.DataPrzyjazdu AS OdDb, 
                     r.DataWyjazdu AS DoKiedyDb, 
-                    r.KwotaLaczna AS KwotaDb
+                    r.KwotaCalkowita AS KwotaDb
                 FROM Rezerwacje r
-                JOIN Klienci k ON r.IdKlienta = k.IdKlienta
-                JOIN osoby o ON k.Id_osoby = o.Id";
+                JOIN Goscie g ON r.IdGoscia = g.IdGoscia
+                JOIN Pokoje p ON r.IdPokoju = p.IdPokoju";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
@@ -93,7 +96,6 @@ namespace Panele_Glowne
         {
             Dodaj_rezerwacje dodajRezerwacje = new Dodaj_rezerwacje();
             dodajRezerwacje.Show();
-            this.Hide();
         }
 
         private void edytujToolStripMenuItem_Click(object sender, EventArgs e)
@@ -104,14 +106,11 @@ namespace Panele_Glowne
                 return;
             }
 
-            // 2. Pobieramy ID rezerwacji z zaznaczonego wiersza "z tła"
             DataRowView zaznaczonyWiersz = (DataRowView)dataGridView1.CurrentRow.DataBoundItem;
             int idRezerwacji = Convert.ToInt32(zaznaczonyWiersz["IdRezerwacjiDb"]);
 
-           
             Edytuj_rezerwacje edytujRezerwacje = new Edytuj_rezerwacje(idRezerwacji);
             edytujRezerwacje.Show();
-            this.Hide();
         }
 
         private void powrótToolStripMenuItem_Click(object sender, EventArgs e)
@@ -160,7 +159,6 @@ namespace Panele_Glowne
             {
                 MessageBox.Show("Wystąpił błąd podczas anulowania rezerwacji:\n" + ex.Message, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
     }
 }
