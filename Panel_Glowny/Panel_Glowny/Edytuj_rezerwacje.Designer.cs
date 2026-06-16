@@ -61,22 +61,15 @@
             typPokojuOld = new TextBox();
             osobowy = new ComboBox();
             noce = new TextBox();
-
-            // Nowe etykiety
             labelTelefon = new Label();
             labelDokument = new Label();
             labelUwagi = new Label();
-
-            // Nowe pola (Stare wartości)
             telefonOld = new TextBox();
             dokumentOld = new TextBox();
             uwagiOld = new TextBox();
-
-            // Nowe pola (Nowe wartości)
             telefonNew = new TextBox();
             dokumentNew = new TextBox();
             uwagiNew = new TextBox();
-
             SuspendLayout();
             // 
             // label
@@ -89,24 +82,6 @@
             label.TabIndex = 0;
             label.Text = "EDYTUJ REZERWACJE";
             // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(206, 94);
-            label10.Name = "label10";
-            label10.Size = new Size(83, 15);
-            label10.TabIndex = 32;
-            label10.Text = "Stare wartości ";
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(430, 94);
-            label11.Name = "label11";
-            label11.Size = new Size(85, 15);
-            label11.TabIndex = 33;
-            label11.Text = "Nowe wartości";
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -115,22 +90,6 @@
             label1.Size = new Size(78, 15);
             label1.TabIndex = 1;
             label1.Text = "E-mail gościa";
-            // 
-            // emailOld
-            // 
-            emailOld.Enabled = false;
-            emailOld.Location = new Point(148, 120);
-            emailOld.Name = "emailOld";
-            emailOld.ReadOnly = true;
-            emailOld.Size = new Size(200, 23);
-            emailOld.TabIndex = 10;
-            // 
-            // emailNew
-            // 
-            emailNew.Location = new Point(371, 120);
-            emailNew.Name = "emailNew";
-            emailNew.Size = new Size(200, 23);
-            emailNew.TabIndex = 23;
             // 
             // label2
             // 
@@ -141,22 +100,6 @@
             label2.TabIndex = 2;
             label2.Text = "Imię";
             // 
-            // ImieOld
-            // 
-            ImieOld.Enabled = false;
-            ImieOld.Location = new Point(148, 149);
-            ImieOld.Name = "ImieOld";
-            ImieOld.ReadOnly = true;
-            ImieOld.Size = new Size(200, 23);
-            ImieOld.TabIndex = 11;
-            // 
-            // imieNew
-            // 
-            imieNew.Location = new Point(371, 149);
-            imieNew.Name = "imieNew";
-            imieNew.Size = new Size(200, 23);
-            imieNew.TabIndex = 24;
-            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -165,72 +108,6 @@
             label3.Size = new Size(57, 15);
             label3.TabIndex = 3;
             label3.Text = "Nazwisko";
-            // 
-            // NazwiskoOld
-            // 
-            NazwiskoOld.Enabled = false;
-            NazwiskoOld.Location = new Point(148, 178);
-            NazwiskoOld.Name = "NazwiskoOld";
-            NazwiskoOld.ReadOnly = true;
-            NazwiskoOld.Size = new Size(200, 23);
-            NazwiskoOld.TabIndex = 12;
-            // 
-            // nazwiskoNew
-            // 
-            nazwiskoNew.Location = new Point(371, 178);
-            nazwiskoNew.Name = "nazwiskoNew";
-            nazwiskoNew.Size = new Size(200, 23);
-            nazwiskoNew.TabIndex = 25;
-            // 
-            // labelTelefon
-            // 
-            labelTelefon.AutoSize = true;
-            labelTelefon.Location = new Point(47, 210);
-            labelTelefon.Name = "labelTelefon";
-            labelTelefon.Size = new Size(47, 15);
-            labelTelefon.TabIndex = 40;
-            labelTelefon.Text = "Telefon";
-            // 
-            // telefonOld
-            // 
-            telefonOld.Enabled = false;
-            telefonOld.Location = new Point(148, 207);
-            telefonOld.Name = "telefonOld";
-            telefonOld.ReadOnly = true;
-            telefonOld.Size = new Size(200, 23);
-            telefonOld.TabIndex = 41;
-            // 
-            // telefonNew
-            // 
-            telefonNew.Location = new Point(371, 207);
-            telefonNew.Name = "telefonNew";
-            telefonNew.Size = new Size(200, 23);
-            telefonNew.TabIndex = 42;
-            // 
-            // labelDokument
-            // 
-            labelDokument.AutoSize = true;
-            labelDokument.Location = new Point(47, 239);
-            labelDokument.Name = "labelDokument";
-            labelDokument.Size = new Size(86, 15);
-            labelDokument.TabIndex = 43;
-            labelDokument.Text = "Nr dokumentu";
-            // 
-            // dokumentOld
-            // 
-            dokumentOld.Enabled = false;
-            dokumentOld.Location = new Point(148, 236);
-            dokumentOld.Name = "dokumentOld";
-            dokumentOld.ReadOnly = true;
-            dokumentOld.Size = new Size(200, 23);
-            dokumentOld.TabIndex = 44;
-            // 
-            // dokumentNew
-            // 
-            dokumentNew.Location = new Point(371, 236);
-            dokumentNew.Name = "dokumentNew";
-            dokumentNew.Size = new Size(200, 23);
-            dokumentNew.TabIndex = 45;
             // 
             // label4
             // 
@@ -241,21 +118,6 @@
             label4.TabIndex = 4;
             label4.Text = "Data przyjazdu";
             // 
-            // PrzyjazdOld
-            // 
-            PrzyjazdOld.Enabled = false;
-            PrzyjazdOld.Location = new Point(148, 265);
-            PrzyjazdOld.Name = "PrzyjazdOld";
-            PrzyjazdOld.Size = new Size(200, 23);
-            PrzyjazdOld.TabIndex = 19;
-            // 
-            // przyjazdNew
-            // 
-            przyjazdNew.Location = new Point(371, 265);
-            przyjazdNew.Name = "przyjazdNew";
-            przyjazdNew.Size = new Size(200, 23);
-            przyjazdNew.TabIndex = 30;
-            // 
             // label5
             // 
             label5.AutoSize = true;
@@ -264,23 +126,6 @@
             label5.Size = new Size(77, 15);
             label5.TabIndex = 5;
             label5.Text = "Data wyjazdu";
-            // 
-            // WyjazdOld
-            // 
-            WyjazdOld.CustomFormat = "";
-            WyjazdOld.Enabled = false;
-            WyjazdOld.Location = new Point(148, 294);
-            WyjazdOld.Name = "WyjazdOld";
-            WyjazdOld.Size = new Size(200, 23);
-            WyjazdOld.TabIndex = 20;
-            // 
-            // wyjazdNew
-            // 
-            wyjazdNew.CustomFormat = "";
-            wyjazdNew.Location = new Point(371, 294);
-            wyjazdNew.Name = "wyjazdNew";
-            wyjazdNew.Size = new Size(200, 23);
-            wyjazdNew.TabIndex = 31;
             // 
             // label6
             // 
@@ -291,23 +136,6 @@
             label6.TabIndex = 6;
             label6.Text = "Liczba nocy";
             // 
-            // NoceOld
-            // 
-            NoceOld.Enabled = false;
-            NoceOld.Location = new Point(148, 323);
-            NoceOld.Name = "NoceOld";
-            NoceOld.ReadOnly = true;
-            NoceOld.Size = new Size(200, 23);
-            NoceOld.TabIndex = 15;
-            // 
-            // noce
-            // 
-            noce.Location = new Point(371, 323);
-            noce.Name = "noce";
-            noce.ReadOnly = true;
-            noce.Size = new Size(200, 23);
-            noce.TabIndex = 38;
-            // 
             // label7
             // 
             label7.AutoSize = true;
@@ -316,66 +144,6 @@
             label7.Size = new Size(71, 15);
             label7.TabIndex = 7;
             label7.Text = "Ilu osobowy";
-            // 
-            // osobyOld
-            // 
-            osobyOld.Enabled = false;
-            osobyOld.Location = new Point(148, 352);
-            osobyOld.Name = "osobyOld";
-            osobyOld.ReadOnly = true;
-            osobyOld.Size = new Size(200, 23);
-            osobyOld.TabIndex = 16;
-            // 
-            // osobowy
-            // 
-            osobowy.DisplayMember = "1";
-            osobowy.DropDownStyle = ComboBoxStyle.DropDownList;
-            osobowy.FormattingEnabled = true;
-            osobowy.Items.AddRange(new object[] { "1", "2", "3", "4", "5" });
-            osobowy.Location = new Point(371, 352);
-            osobowy.Name = "osobowy";
-            osobowy.Size = new Size(200, 23);
-            osobowy.TabIndex = 39;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(47, 384);
-            label9.Name = "label9";
-            label9.Size = new Size(65, 15);
-            label9.TabIndex = 34;
-            label9.Text = "Typ pokoju";
-            // 
-            // typPokojuOld
-            // 
-            typPokojuOld.Enabled = false;
-            typPokojuOld.Location = new Point(148, 381);
-            typPokojuOld.Name = "typPokojuOld";
-            typPokojuOld.ReadOnly = true;
-            typPokojuOld.Size = new Size(200, 23);
-            typPokojuOld.TabIndex = 37;
-            // 
-            // Standard
-            // 
-            Standard.AutoSize = true;
-            Standard.Checked = true;
-            Standard.Location = new Point(398, 382);
-            Standard.Name = "Standard";
-            Standard.Size = new Size(72, 19);
-            Standard.TabIndex = 35;
-            Standard.TabStop = true;
-            Standard.Text = "Standard";
-            Standard.UseVisualStyleBackColor = true;
-            // 
-            // Deluxe
-            // 
-            Deluxe.AutoSize = true;
-            Deluxe.Location = new Point(485, 382);
-            Deluxe.Name = "Deluxe";
-            Deluxe.Size = new Size(61, 19);
-            Deluxe.TabIndex = 36;
-            Deluxe.Text = "Deluxe";
-            Deluxe.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
@@ -386,6 +154,51 @@
             label8.TabIndex = 8;
             label8.Text = "Kwota";
             // 
+            // emailOld
+            // 
+            emailOld.Enabled = false;
+            emailOld.Location = new Point(148, 120);
+            emailOld.Name = "emailOld";
+            emailOld.ReadOnly = true;
+            emailOld.Size = new Size(200, 23);
+            emailOld.TabIndex = 10;
+            // 
+            // ImieOld
+            // 
+            ImieOld.Enabled = false;
+            ImieOld.Location = new Point(148, 149);
+            ImieOld.Name = "ImieOld";
+            ImieOld.ReadOnly = true;
+            ImieOld.Size = new Size(200, 23);
+            ImieOld.TabIndex = 11;
+            // 
+            // NazwiskoOld
+            // 
+            NazwiskoOld.Enabled = false;
+            NazwiskoOld.Location = new Point(148, 178);
+            NazwiskoOld.Name = "NazwiskoOld";
+            NazwiskoOld.ReadOnly = true;
+            NazwiskoOld.Size = new Size(200, 23);
+            NazwiskoOld.TabIndex = 12;
+            // 
+            // NoceOld
+            // 
+            NoceOld.Enabled = false;
+            NoceOld.Location = new Point(148, 323);
+            NoceOld.Name = "NoceOld";
+            NoceOld.ReadOnly = true;
+            NoceOld.Size = new Size(200, 23);
+            NoceOld.TabIndex = 15;
+            // 
+            // osobyOld
+            // 
+            osobyOld.Enabled = false;
+            osobyOld.Location = new Point(148, 352);
+            osobyOld.Name = "osobyOld";
+            osobyOld.ReadOnly = true;
+            osobyOld.Size = new Size(200, 23);
+            osobyOld.TabIndex = 16;
+            // 
             // KwotaOld
             // 
             KwotaOld.Enabled = false;
@@ -395,39 +208,22 @@
             KwotaOld.Size = new Size(200, 23);
             KwotaOld.TabIndex = 17;
             // 
-            // kwotaNew
+            // PrzyjazdOld
             // 
-            kwotaNew.Location = new Point(371, 410);
-            kwotaNew.Name = "kwotaNew";
-            kwotaNew.Size = new Size(200, 23);
-            kwotaNew.TabIndex = 28;
+            PrzyjazdOld.Enabled = false;
+            PrzyjazdOld.Location = new Point(148, 265);
+            PrzyjazdOld.Name = "PrzyjazdOld";
+            PrzyjazdOld.Size = new Size(200, 23);
+            PrzyjazdOld.TabIndex = 19;
             // 
-            // labelUwagi
+            // WyjazdOld
             // 
-            labelUwagi.AutoSize = true;
-            labelUwagi.Location = new Point(47, 442);
-            labelUwagi.Name = "labelUwagi";
-            labelUwagi.Size = new Size(40, 15);
-            labelUwagi.TabIndex = 46;
-            labelUwagi.Text = "Uwagi";
-            // 
-            // uwagiOld
-            // 
-            uwagiOld.Enabled = false;
-            uwagiOld.Location = new Point(148, 439);
-            uwagiOld.Multiline = true;
-            uwagiOld.Name = "uwagiOld";
-            uwagiOld.ReadOnly = true;
-            uwagiOld.Size = new Size(200, 50);
-            uwagiOld.TabIndex = 47;
-            // 
-            // uwagiNew
-            // 
-            uwagiNew.Location = new Point(371, 439);
-            uwagiNew.Multiline = true;
-            uwagiNew.Name = "uwagiNew";
-            uwagiNew.Size = new Size(200, 50);
-            uwagiNew.TabIndex = 48;
+            WyjazdOld.CustomFormat = "";
+            WyjazdOld.Enabled = false;
+            WyjazdOld.Location = new Point(148, 294);
+            WyjazdOld.Name = "WyjazdOld";
+            WyjazdOld.Size = new Size(200, 23);
+            WyjazdOld.TabIndex = 20;
             // 
             // zapisz
             // 
@@ -450,13 +246,209 @@
             powrot.UseVisualStyleBackColor = false;
             powrot.Click += powrot_Click;
             // 
+            // wyjazdNew
+            // 
+            wyjazdNew.CustomFormat = "";
+            wyjazdNew.Location = new Point(371, 294);
+            wyjazdNew.Name = "wyjazdNew";
+            wyjazdNew.Size = new Size(200, 23);
+            wyjazdNew.TabIndex = 31;
+            // 
+            // przyjazdNew
+            // 
+            przyjazdNew.Location = new Point(371, 265);
+            przyjazdNew.Name = "przyjazdNew";
+            przyjazdNew.Size = new Size(200, 23);
+            przyjazdNew.TabIndex = 30;
+            // 
+            // kwotaNew
+            // 
+            kwotaNew.Location = new Point(371, 410);
+            kwotaNew.Name = "kwotaNew";
+            kwotaNew.ReadOnly = true;
+            kwotaNew.Size = new Size(200, 23);
+            kwotaNew.TabIndex = 28;
+            // 
+            // nazwiskoNew
+            // 
+            nazwiskoNew.Location = new Point(371, 178);
+            nazwiskoNew.Name = "nazwiskoNew";
+            nazwiskoNew.Size = new Size(200, 23);
+            nazwiskoNew.TabIndex = 25;
+            // 
+            // imieNew
+            // 
+            imieNew.Location = new Point(371, 149);
+            imieNew.Name = "imieNew";
+            imieNew.Size = new Size(200, 23);
+            imieNew.TabIndex = 24;
+            // 
+            // emailNew
+            // 
+            emailNew.Location = new Point(371, 120);
+            emailNew.Name = "emailNew";
+            emailNew.Size = new Size(200, 23);
+            emailNew.TabIndex = 23;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(206, 94);
+            label10.Name = "label10";
+            label10.Size = new Size(83, 15);
+            label10.TabIndex = 32;
+            label10.Text = "Stare wartości ";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(430, 94);
+            label11.Name = "label11";
+            label11.Size = new Size(85, 15);
+            label11.TabIndex = 33;
+            label11.Text = "Nowe wartości";
+            // 
+            // Deluxe
+            // 
+            Deluxe.AutoSize = true;
+            Deluxe.Location = new Point(485, 382);
+            Deluxe.Name = "Deluxe";
+            Deluxe.Size = new Size(60, 19);
+            Deluxe.TabIndex = 36;
+            Deluxe.Text = "Deluxe";
+            Deluxe.UseVisualStyleBackColor = true;
+            // 
+            // Standard
+            // 
+            Standard.AutoSize = true;
+            Standard.Checked = true;
+            Standard.Location = new Point(398, 382);
+            Standard.Name = "Standard";
+            Standard.Size = new Size(72, 19);
+            Standard.TabIndex = 35;
+            Standard.TabStop = true;
+            Standard.Text = "Standard";
+            Standard.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(47, 384);
+            label9.Name = "label9";
+            label9.Size = new Size(66, 15);
+            label9.TabIndex = 34;
+            label9.Text = "Typ pokoju";
+            // 
+            // typPokojuOld
+            // 
+            typPokojuOld.Enabled = false;
+            typPokojuOld.Location = new Point(148, 381);
+            typPokojuOld.Name = "typPokojuOld";
+            typPokojuOld.ReadOnly = true;
+            typPokojuOld.Size = new Size(200, 23);
+            typPokojuOld.TabIndex = 37;
+            // 
+            // osobowy
+            // 
+            osobowy.DisplayMember = "1";
+            osobowy.DropDownStyle = ComboBoxStyle.DropDownList;
+            osobowy.FormattingEnabled = true;
+            osobowy.Items.AddRange(new object[] { "1", "2", "3", "4", "5" });
+            osobowy.Location = new Point(371, 352);
+            osobowy.Name = "osobowy";
+            osobowy.Size = new Size(200, 23);
+            osobowy.TabIndex = 39;
+            // 
+            // noce
+            // 
+            noce.Location = new Point(371, 323);
+            noce.Name = "noce";
+            noce.ReadOnly = true;
+            noce.Size = new Size(200, 23);
+            noce.TabIndex = 38;
+            // 
+            // labelTelefon
+            // 
+            labelTelefon.AutoSize = true;
+            labelTelefon.Location = new Point(47, 210);
+            labelTelefon.Name = "labelTelefon";
+            labelTelefon.Size = new Size(46, 15);
+            labelTelefon.TabIndex = 40;
+            labelTelefon.Text = "Telefon";
+            // 
+            // labelDokument
+            // 
+            labelDokument.AutoSize = true;
+            labelDokument.Location = new Point(47, 239);
+            labelDokument.Name = "labelDokument";
+            labelDokument.Size = new Size(85, 15);
+            labelDokument.TabIndex = 43;
+            labelDokument.Text = "Nr dokumentu";
+            // 
+            // labelUwagi
+            // 
+            labelUwagi.AutoSize = true;
+            labelUwagi.Location = new Point(47, 442);
+            labelUwagi.Name = "labelUwagi";
+            labelUwagi.Size = new Size(40, 15);
+            labelUwagi.TabIndex = 46;
+            labelUwagi.Text = "Uwagi";
+            // 
+            // telefonOld
+            // 
+            telefonOld.Enabled = false;
+            telefonOld.Location = new Point(148, 207);
+            telefonOld.Name = "telefonOld";
+            telefonOld.ReadOnly = true;
+            telefonOld.Size = new Size(200, 23);
+            telefonOld.TabIndex = 41;
+            // 
+            // dokumentOld
+            // 
+            dokumentOld.Enabled = false;
+            dokumentOld.Location = new Point(148, 236);
+            dokumentOld.Name = "dokumentOld";
+            dokumentOld.ReadOnly = true;
+            dokumentOld.Size = new Size(200, 23);
+            dokumentOld.TabIndex = 44;
+            // 
+            // uwagiOld
+            // 
+            uwagiOld.Enabled = false;
+            uwagiOld.Location = new Point(148, 439);
+            uwagiOld.Multiline = true;
+            uwagiOld.Name = "uwagiOld";
+            uwagiOld.ReadOnly = true;
+            uwagiOld.Size = new Size(200, 50);
+            uwagiOld.TabIndex = 47;
+            // 
+            // telefonNew
+            // 
+            telefonNew.Location = new Point(371, 207);
+            telefonNew.Name = "telefonNew";
+            telefonNew.Size = new Size(200, 23);
+            telefonNew.TabIndex = 42;
+            // 
+            // dokumentNew
+            // 
+            dokumentNew.Location = new Point(371, 236);
+            dokumentNew.Name = "dokumentNew";
+            dokumentNew.Size = new Size(200, 23);
+            dokumentNew.TabIndex = 45;
+            // 
+            // uwagiNew
+            // 
+            uwagiNew.Location = new Point(371, 439);
+            uwagiNew.Multiline = true;
+            uwagiNew.Name = "uwagiNew";
+            uwagiNew.Size = new Size(200, 50);
+            uwagiNew.TabIndex = 48;
+            // 
             // Edytuj_rezerwacje
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 570);
-
-            // Dodawanie wszystkich kontrolek do formularza
             Controls.Add(uwagiNew);
             Controls.Add(uwagiOld);
             Controls.Add(labelUwagi);

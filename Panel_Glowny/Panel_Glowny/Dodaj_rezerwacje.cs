@@ -15,6 +15,7 @@ namespace Panele_Glowne
     {
         int noc;
         int cena;
+        private int? zalogowanyIdGoscia = null;
 
         public Dodaj_rezerwacje()
         {
@@ -38,12 +39,82 @@ namespace Panele_Glowne
             kwota.Text = cena.ToString();
             osobowy.Text = "1";
 
+            this.telefon.Leave += new System.EventHandler(this.telefon_Leave);
             this.email.Leave += new System.EventHandler(this.email_Leave);
+        }
+
+        public Dodaj_rezerwacje(int idGoscia) : this()
+        {
+            zalogowanyIdGoscia = idGoscia;
+
+            HotelContext dbContext = new HotelContext();
+            using (MySqlConnection conn = dbContext.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT Imie, Nazwisko, Email, Telefon, DokumentTozsamosci FROM Goscie WHERE IdGoscia = @id LIMIT 1";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", idGoscia);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                imie.Text = reader["Imie"].ToString();
+                                nazwisko.Text = reader["Nazwisko"].ToString();
+                                email.Text = reader["Email"] != DBNull.Value ? reader["Email"].ToString() : "";
+                                telefon.Text = reader["Telefon"].ToString();
+                                dokument.Text = reader["DokumentTozsamosci"] != DBNull.Value ? reader["DokumentTozsamosci"].ToString() : "";
+
+                                imie.ReadOnly = true;
+                                nazwisko.ReadOnly = true;
+                                email.ReadOnly = true;
+                                telefon.ReadOnly = true;
+                                dokument.ReadOnly = true;
+                            }
+                        }
+                    }
+                }
+                catch { }
+            }
+        }
+
+        private void telefon_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(telefon.Text) || zalogowanyIdGoscia.HasValue) return;
+
+            HotelContext dbContext = new HotelContext();
+            using (MySqlConnection conn = dbContext.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT Imie, Nazwisko, Email, DokumentTozsamosci FROM Goscie WHERE Telefon = @telefon LIMIT 1";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@telefon", telefon.Text.Trim());
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                imie.Text = reader["Imie"].ToString();
+                                nazwisko.Text = reader["Nazwisko"].ToString();
+                                if (string.IsNullOrWhiteSpace(email.Text))
+                                    email.Text = reader["Email"] != DBNull.Value ? reader["Email"].ToString() : "";
+
+                                dokument.Text = reader["DokumentTozsamosci"] != DBNull.Value ? reader["DokumentTozsamosci"].ToString() : "";
+                            }
+                        }
+                    }
+                }
+                catch { }
+            }
         }
 
         private void email_Leave(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(email.Text)) return;
+            if (string.IsNullOrWhiteSpace(email.Text) || zalogowanyIdGoscia.HasValue) return;
 
             HotelContext dbContext = new HotelContext();
             using (MySqlConnection conn = dbContext.GetConnection())
@@ -52,27 +123,24 @@ namespace Panele_Glowne
                 {
                     conn.Open();
                     string query = "SELECT Imie, Nazwisko, Telefon, DokumentTozsamosci FROM Goscie WHERE Email = @email LIMIT 1";
-
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@email", email.Text.Trim());
-
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (reader.Read()) 
+                            if (reader.Read())
                             {
                                 imie.Text = reader["Imie"].ToString();
                                 nazwisko.Text = reader["Nazwisko"].ToString();
-                                telefon.Text = reader["Telefon"].ToString();
+                                if (string.IsNullOrWhiteSpace(telefon.Text))
+                                    telefon.Text = reader["Telefon"].ToString();
 
                                 dokument.Text = reader["DokumentTozsamosci"] != DBNull.Value ? reader["DokumentTozsamosci"].ToString() : "";
                             }
                         }
                     }
                 }
-                catch (Exception)
-                {
-                }
+                catch { }
             }
         }
 
@@ -116,7 +184,7 @@ namespace Panele_Glowne
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
@@ -126,9 +194,9 @@ namespace Panele_Glowne
 
         private void dodaj_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(imie.Text) || string.IsNullOrWhiteSpace(nazwisko.Text) || string.IsNullOrWhiteSpace(email.Text) || string.IsNullOrWhiteSpace(telefon.Text))
+            if (string.IsNullOrWhiteSpace(imie.Text) || string.IsNullOrWhiteSpace(nazwisko.Text) || string.IsNullOrWhiteSpace(telefon.Text))
             {
-                MessageBox.Show("Proszę wypełnić imię, nazwisko, e-mail oraz telefon gościa.", "Braki w formularzu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Proszę wypełnić imię, nazwisko oraz telefon gościa.", "Braki w formularzu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -186,52 +254,59 @@ namespace Panele_Glowne
                     }
 
                     int idPokoju = Convert.ToInt32(wynikPokoj);
-
                     int idGoscia = -1;
-                    string checkGosc = "SELECT IdGoscia FROM Goscie WHERE Email = @email LIMIT 1;";
-                    using (MySqlCommand cmdCheck = new MySqlCommand(checkGosc, conn))
+
+                    if (zalogowanyIdGoscia.HasValue)
                     {
-                        cmdCheck.Parameters.AddWithValue("@email", emailGo);
-                        object wynikGosc = cmdCheck.ExecuteScalar();
-
-                        if (wynikGosc != null)
+                        idGoscia = zalogowanyIdGoscia.Value;
+                    }
+                    else
+                    {
+                        string checkGosc = "SELECT IdGoscia FROM Goscie WHERE Telefon = @telefon OR (Email = @email AND Email != '') LIMIT 1;";
+                        using (MySqlCommand cmdCheck = new MySqlCommand(checkGosc, conn))
                         {
-                            idGoscia = Convert.ToInt32(wynikGosc);
+                            cmdCheck.Parameters.AddWithValue("@telefon", telefonGo);
+                            cmdCheck.Parameters.AddWithValue("@email", emailGo);
+                            object wynikGosc = cmdCheck.ExecuteScalar();
 
-                            string updateGosc = "UPDATE Goscie SET Imie = @imie, Nazwisko = @nazwisko, Telefon = @telefon, DokumentTozsamosci = @dokument WHERE IdGoscia = @id;";
-                            using (MySqlCommand cmdUpdate = new MySqlCommand(updateGosc, conn))
+                            if (wynikGosc != null)
                             {
-                                cmdUpdate.Parameters.AddWithValue("@imie", imieGo);
-                                cmdUpdate.Parameters.AddWithValue("@nazwisko", nazwiskoGo);
-                                cmdUpdate.Parameters.AddWithValue("@telefon", telefonGo);
-                                cmdUpdate.Parameters.AddWithValue("@dokument", string.IsNullOrWhiteSpace(dokumentGo) ? DBNull.Value : (object)dokumentGo);
-                                cmdUpdate.Parameters.AddWithValue("@id", idGoscia);
-                                cmdUpdate.ExecuteNonQuery();
+                                idGoscia = Convert.ToInt32(wynikGosc);
+
+                                string updateGosc = "UPDATE Goscie SET Imie = @imie, Nazwisko = @nazwisko, Email = @email, DokumentTozsamosci = @dokument WHERE IdGoscia = @id;";
+                                using (MySqlCommand cmdUpdate = new MySqlCommand(updateGosc, conn))
+                                {
+                                    cmdUpdate.Parameters.AddWithValue("@imie", imieGo);
+                                    cmdUpdate.Parameters.AddWithValue("@nazwisko", nazwiskoGo);
+                                    cmdUpdate.Parameters.AddWithValue("@email", string.IsNullOrWhiteSpace(emailGo) ? DBNull.Value : (object)emailGo);
+                                    cmdUpdate.Parameters.AddWithValue("@dokument", string.IsNullOrWhiteSpace(dokumentGo) ? DBNull.Value : (object)dokumentGo);
+                                    cmdUpdate.Parameters.AddWithValue("@id", idGoscia);
+                                    cmdUpdate.ExecuteNonQuery();
+                                }
                             }
-                        }
-                        else
-                        {
-                            string insertGosc = "INSERT INTO Goscie (Imie, Nazwisko, Email, Telefon, DokumentTozsamosci) VALUES (@imie, @nazwisko, @email, @telefon, @dokument); SELECT LAST_INSERT_ID();";
-                            using (MySqlCommand cmdGosc = new MySqlCommand(insertGosc, conn))
+                            else
                             {
-                                cmdGosc.Parameters.AddWithValue("@imie", imieGo);
-                                cmdGosc.Parameters.AddWithValue("@nazwisko", nazwiskoGo);
-                                cmdGosc.Parameters.AddWithValue("@email", emailGo);
-                                cmdGosc.Parameters.AddWithValue("@telefon", telefonGo);
-                                cmdGosc.Parameters.AddWithValue("@dokument", string.IsNullOrWhiteSpace(dokumentGo) ? DBNull.Value : (object)dokumentGo);
+                                string insertGosc = "INSERT INTO Goscie (Imie, Nazwisko, Email, Telefon, DokumentTozsamosci) VALUES (@imie, @nazwisko, @email, @telefon, @dokument); SELECT LAST_INSERT_ID();";
+                                using (MySqlCommand cmdGosc = new MySqlCommand(insertGosc, conn))
+                                {
+                                    cmdGosc.Parameters.AddWithValue("@imie", imieGo);
+                                    cmdGosc.Parameters.AddWithValue("@nazwisko", nazwiskoGo);
+                                    cmdGosc.Parameters.AddWithValue("@email", string.IsNullOrWhiteSpace(emailGo) ? DBNull.Value : (object)emailGo);
+                                    cmdGosc.Parameters.AddWithValue("@telefon", telefonGo);
+                                    cmdGosc.Parameters.AddWithValue("@dokument", string.IsNullOrWhiteSpace(dokumentGo) ? DBNull.Value : (object)dokumentGo);
 
-                                idGoscia = Convert.ToInt32(cmdGosc.ExecuteScalar());
+                                    idGoscia = Convert.ToInt32(cmdGosc.ExecuteScalar());
+                                }
                             }
                         }
                     }
 
-                    string insertRezerwacja = @"INSERT INTO Rezerwacje (IdGoscia, IdPokoju, IdPracownika, DataPrzyjazdu, DataWyjazdu, KwotaCalkowita, StatusRezerwacji, Uwagi) 
-                                        VALUES (@idGosc, @idPokoj, @idPracownika, @przyjazd, @wyjazd, @kwota, 'Oczekujaca', @uwagi);";
+                    string insertRezerwacja = @"INSERT INTO Rezerwacje (IdGoscia, IdPokoju, DataPrzyjazdu, DataWyjazdu, KwotaCalkowita, StatusRezerwacji, Uwagi) 
+                                        VALUES (@idGosc, @idPokoj, @przyjazd, @wyjazd, @kwota, 'Oczekujaca', @uwagi);";
                     using (MySqlCommand cmdRez = new MySqlCommand(insertRezerwacja, conn))
                     {
                         cmdRez.Parameters.AddWithValue("@idGosc", idGoscia);
                         cmdRez.Parameters.AddWithValue("@idPokoj", idPokoju);
-                        cmdRez.Parameters.AddWithValue("@idPracownika", DBNull.Value);
                         cmdRez.Parameters.AddWithValue("@przyjazd", dataPrzyjazduSQL);
                         cmdRez.Parameters.AddWithValue("@wyjazd", dataOdjazduSQL);
                         cmdRez.Parameters.AddWithValue("@kwota", cena);
@@ -241,6 +316,8 @@ namespace Panele_Glowne
                     }
 
                     MessageBox.Show("Rezerwacja została pomyślnie dodana do bazy!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    this.Close();
                 }
                 catch (Exception ex)
                 {

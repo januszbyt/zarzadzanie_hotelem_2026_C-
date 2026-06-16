@@ -27,6 +27,15 @@ namespace Panele_Glowne
 
             WczytajStareDane();
 
+            if (ZalogowanyUzytkownik.IdGoscia.HasValue)
+            {
+                imieNew.ReadOnly = true;
+                nazwiskoNew.ReadOnly = true;
+                emailNew.ReadOnly = true;
+                telefonNew.ReadOnly = true;
+                dokumentNew.ReadOnly = true;
+            }
+
             przyjazdNew.ValueChanged += przyjazdNew_ValueChanged;
             wyjazdNew.ValueChanged += wyjazdNew_ValueChanged;
 
@@ -250,6 +259,8 @@ namespace Panele_Glowne
                 {
                     MessageBox.Show("Błąd podczas aktualizacji: " + ex.Message, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                this.Hide();
+
             }
         }
     }
