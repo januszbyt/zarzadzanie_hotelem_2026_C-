@@ -67,7 +67,6 @@ namespace Panele_Glowne
                                 telefon.Text = reader["Telefon"].ToString();
                                 dokument.Text = reader["DokumentTozsamosci"] != DBNull.Value ? reader["DokumentTozsamosci"].ToString() : "";
 
-                                // Blokujemy pola, aby klient nie mógł robić rezerwacji na kogoś innego
                                 imie.ReadOnly = true;
                                 nazwisko.ReadOnly = true;
                                 email.ReadOnly = true;
@@ -263,7 +262,6 @@ namespace Panele_Glowne
                     }
                     else
                     {
-                        // Wyszukujemy po telefonie LUB po emailu
                         string checkGosc = "SELECT IdGoscia FROM Goscie WHERE Telefon = @telefon OR (Email = @email AND Email != '') LIMIT 1;";
                         using (MySqlCommand cmdCheck = new MySqlCommand(checkGosc, conn))
                         {
