@@ -40,8 +40,8 @@
             panel2 = new Panel();
             btnZarzadzajKontem = new Button();
             button4 = new Button();
-            button3 = new Button();
-            button2 = new Button();
+            edytuj = new Button();
+            stworz = new Button();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -110,6 +110,7 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(948, 292);
             dataGridView1.TabIndex = 6;
+            dataGridView1.ReadOnly = true;
             // 
             // label3
             // 
@@ -137,8 +138,8 @@
             panel2.BackColor = SystemColors.ButtonFace;
             panel2.Controls.Add(btnZarzadzajKontem);
             panel2.Controls.Add(button4);
-            panel2.Controls.Add(button3);
-            panel2.Controls.Add(button2);
+            panel2.Controls.Add(edytuj);
+            panel2.Controls.Add(stworz);
             panel2.Location = new Point(12, 118);
             panel2.Name = "panel2";
             panel2.Size = new Size(183, 344);
@@ -165,25 +166,25 @@
             button4.UseVisualStyleBackColor = false;
             button4.Click += button4_Click;
             // 
-            // button3
+            // edytuj
             // 
-            button3.Location = new Point(29, 78);
-            button3.Name = "button3";
-            button3.Size = new Size(111, 42);
-            button3.TabIndex = 2;
-            button3.Text = "Edytuj rezerwacje";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            edytuj.Location = new Point(29, 78);
+            edytuj.Name = "edytuj";
+            edytuj.Size = new Size(111, 42);
+            edytuj.TabIndex = 2;
+            edytuj.Text = "Edytuj rezerwacje";
+            edytuj.UseVisualStyleBackColor = true;
+            edytuj.Click += edytuj_Click;
             // 
-            // button2
+            // stworz
             // 
-            button2.Location = new Point(29, 21);
-            button2.Name = "button2";
-            button2.Size = new Size(111, 42);
-            button2.TabIndex = 1;
-            button2.Text = "Stworz rezerwacje";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            stworz.Location = new Point(29, 21);
+            stworz.Name = "stworz";
+            stworz.Size = new Size(111, 42);
+            stworz.TabIndex = 1;
+            stworz.Text = "Stworz rezerwacje";
+            stworz.UseVisualStyleBackColor = true;
+            stworz.Click += stworz_Click;
             // 
             // Panel_Glowny_Klienta
             // 
@@ -221,5 +222,7 @@
         private DataGridView dataGridView1;
         private Label label4;
         private Button btnZarzadzajKontem;
+        private Button edytuj;
+        private Button stworz;
     }
 }

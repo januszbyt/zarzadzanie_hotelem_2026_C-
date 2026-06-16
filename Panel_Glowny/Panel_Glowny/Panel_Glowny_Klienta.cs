@@ -20,15 +20,14 @@ namespace Panele_Glowne
             InitializeComponent();
             WczytajRezerwacje();
             this.Load += Panel_Glowny_Klienta_Load;
-
         }
+
         public Panel_Glowny_Klienta()
         {
             InitializeComponent();
             this.Load += Panel_Glowny_Klienta_Load;
- 
-
         }
+
         private void WczytajRezerwacje()
         {
             HotelContext db = new HotelContext();
@@ -49,7 +48,14 @@ namespace Panele_Glowne
                     r.DataWyjazdu,
                     DATEDIFF(r.DataWyjazdu, r.DataPrzyjazdu) AS LiczbaNocy,
                     r.KwotaCalkowita,
-                    r.StatusRezerwacji
+                    CASE
+                        WHEN r.StatusRezerwacji = 'Anulowana' THEN 'Anulowana'
+                        WHEN r.DataWyjazdu < CURDATE() THEN 'Zakończona'
+                        WHEN r.DataWyjazdu = CURDATE() THEN 'Wymeldowanie dzisiaj'
+                        WHEN r.DataPrzyjazdu <= CURDATE() AND r.DataWyjazdu > CURDATE() THEN 'Aktywna'
+                        WHEN r.DataPrzyjazdu > CURDATE() THEN 'Oczekująca'
+                        ELSE 'Błąd daty'
+                    END AS StatusRezerwacji
                 FROM Rezerwacje r
                 LEFT JOIN Pokoje p ON r.IdPokoju = p.IdPokoju
                 WHERE r.IdGoscia = @idGoscia";
@@ -64,7 +70,13 @@ namespace Panele_Glowne
                             adapter.Fill(dt);
 
                             dataGridView1.DataSource = dt;
-                            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                            if (dataGridView1.Columns.Count > 0)
+                            {
+                                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                                dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                                dataGridView1.Columns["IdRezerwacji"].Visible = false; 
+                            }
                         }
                     }
                 }
@@ -74,32 +86,67 @@ namespace Panele_Glowne
                 }
             }
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Witaj");
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        // TWORZENIE REZERWACJI
+        private void stworz_Click(object sender, EventArgs e)
         {
-            Dodaj_rezerwacje dodaj_Rezerwacje2 = new Dodaj_rezerwacje();
-            dodaj_Rezerwacje2.Show();
-        }
-  
+            if (ZalogowanyUzytkownik.IdGoscia.HasValue)
+            {
+                Dodaj_rezerwacje dodaj_Rezerwacje2 = new Dodaj_rezerwacje(ZalogowanyUzytkownik.IdGoscia.Value);
+                dodaj_Rezerwacje2.ShowDialog();
 
-        private void button3_Click(object sender, EventArgs e)
+                WczytajRezerwacje();
+            }
+            else
+            {
+                MessageBox.Show("Błąd: Nie można zidentyfikować zalogowanego gościa.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // EDYCJA REZERWACJI
+        private void edytuj_Click(object sender, EventArgs e)
         {
-            Edytuj_rezerwacje edytuj_Rezerwacje2 = new Edytuj_rezerwacje();
-            edytuj_Rezerwacje2.Show();
+            if (dataGridView1.CurrentRow == null)
+            {
+                MessageBox.Show("Proszę zaznaczyć rezerwację do edycji.", "Brak wyboru", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string status = dataGridView1.CurrentRow.Cells["StatusRezerwacji"].Value.ToString();
+            DateTime dataPrzyjazdu = Convert.ToDateTime(dataGridView1.CurrentRow.Cells["DataPrzyjazdu"].Value);
+
+            if (status == "Anulowana")
+            {
+                MessageBox.Show("Nie można edytować anulowanej rezerwacji.", "Blokada edycji", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (dataPrzyjazdu <= DateTime.Today)
+            {
+                MessageBox.Show("Edycja jest możliwa tylko dla rezerwacji, które jeszcze się nie rozpoczęły.", "Brak możliwości edycji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int idRezerwacji = Convert.ToInt32(dataGridView1.CurrentRow.Cells["IdRezerwacji"].Value);
+
+            Edytuj_rezerwacje edytuj_Rezerwacje2 = new Edytuj_rezerwacje(idRezerwacji);
+            edytuj_Rezerwacje2.ShowDialog();
+
+            WczytajRezerwacje();
         }
-
-
 
         private void button4_Click(object sender, EventArgs e)
         {
             Ekran_Logowania_Klienta ekranLogowania2 = new Ekran_Logowania_Klienta();
             ekranLogowania2.Show();
-            this.Hide();
+            this.Close();
         }
+
         private void Panel_Glowny_Klienta_Load(object sender, EventArgs e)
         {
             label2.Text = ZalogowanyUzytkownik.Login + "!";

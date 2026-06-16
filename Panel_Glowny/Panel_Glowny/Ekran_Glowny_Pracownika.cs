@@ -53,6 +53,7 @@ namespace Panel_Glowny
         {
             OknoZarzadzanieKontem konto = new OknoZarzadzanieKontem();
             konto.Show();
+            this.Close();
         }
 
 
