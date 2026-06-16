@@ -92,6 +92,7 @@ namespace Panele_Glowne
             Console.WriteLine("Witaj");
         }
 
+
         // TWORZENIE REZERWACJI
         private void stworz_Click(object sender, EventArgs e)
         {
