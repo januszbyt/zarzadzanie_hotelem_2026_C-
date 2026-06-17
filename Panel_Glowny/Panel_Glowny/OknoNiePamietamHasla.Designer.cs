@@ -57,47 +57,44 @@
             panel1.Controls.Add(lblHaslo);
             panel1.Controls.Add(tboxLogin);
             panel1.Controls.Add(lblLogin);
-            panel1.Location = new Point(10, 16);
-            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Location = new Point(11, 21);
             panel1.Name = "panel1";
-            panel1.Size = new Size(374, 386);
+            panel1.Size = new Size(427, 515);
             panel1.TabIndex = 0;
             // 
             // lblResetowanieHasla
             // 
             lblResetowanieHasla.AutoSize = true;
             lblResetowanieHasla.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            lblResetowanieHasla.Location = new Point(52, 22);
+            lblResetowanieHasla.Location = new Point(59, 29);
             lblResetowanieHasla.Name = "lblResetowanieHasla";
-            lblResetowanieHasla.Size = new Size(253, 37);
+            lblResetowanieHasla.Size = new Size(310, 46);
             lblResetowanieHasla.TabIndex = 10;
             lblResetowanieHasla.Text = "Resetowanie hasla";
             // 
             // tboxPinPomocniczy
             // 
-            tboxPinPomocniczy.Location = new Point(39, 257);
-            tboxPinPomocniczy.Margin = new Padding(3, 2, 3, 2);
+            tboxPinPomocniczy.Location = new Point(45, 343);
             tboxPinPomocniczy.Name = "tboxPinPomocniczy";
-            tboxPinPomocniczy.Size = new Size(301, 23);
+            tboxPinPomocniczy.Size = new Size(343, 27);
             tboxPinPomocniczy.TabIndex = 9;
             // 
             // lblPinPomocniczy
             // 
             lblPinPomocniczy.AutoSize = true;
             lblPinPomocniczy.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblPinPomocniczy.Location = new Point(39, 240);
+            lblPinPomocniczy.Location = new Point(45, 320);
             lblPinPomocniczy.Name = "lblPinPomocniczy";
-            lblPinPomocniczy.Size = new Size(132, 15);
+            lblPinPomocniczy.Size = new Size(169, 20);
             lblPinPomocniczy.TabIndex = 8;
             lblPinPomocniczy.Text = "Podaj PIN pomocniczy:";
             // 
             // btnAnuluj
             // 
             btnAnuluj.BackColor = Color.FromArgb(255, 128, 128);
-            btnAnuluj.Location = new Point(273, 335);
-            btnAnuluj.Margin = new Padding(3, 2, 3, 2);
+            btnAnuluj.Location = new Point(312, 447);
             btnAnuluj.Name = "btnAnuluj";
-            btnAnuluj.Size = new Size(66, 28);
+            btnAnuluj.Size = new Size(75, 37);
             btnAnuluj.TabIndex = 7;
             btnAnuluj.Text = "Anuluj";
             btnAnuluj.UseVisualStyleBackColor = false;
@@ -105,10 +102,9 @@
             // 
             // btnZresetuj
             // 
-            btnZresetuj.Location = new Point(199, 335);
-            btnZresetuj.Margin = new Padding(3, 2, 3, 2);
+            btnZresetuj.Location = new Point(227, 447);
             btnZresetuj.Name = "btnZresetuj";
-            btnZresetuj.Size = new Size(66, 28);
+            btnZresetuj.Size = new Size(75, 37);
             btnZresetuj.TabIndex = 6;
             btnZresetuj.Text = "Zresetuj";
             btnZresetuj.UseVisualStyleBackColor = true;
@@ -116,68 +112,65 @@
             // 
             // tboxPowtorzHaslo
             // 
-            tboxPowtorzHaslo.Location = new Point(39, 203);
-            tboxPowtorzHaslo.Margin = new Padding(3, 2, 3, 2);
+            tboxPowtorzHaslo.Location = new Point(45, 271);
             tboxPowtorzHaslo.Name = "tboxPowtorzHaslo";
-            tboxPowtorzHaslo.Size = new Size(301, 23);
+            tboxPowtorzHaslo.Size = new Size(343, 27);
             tboxPowtorzHaslo.TabIndex = 5;
             // 
             // lblPowtorzHaslo
             // 
             lblPowtorzHaslo.AutoSize = true;
             lblPowtorzHaslo.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblPowtorzHaslo.Location = new Point(39, 186);
+            lblPowtorzHaslo.Location = new Point(45, 248);
             lblPowtorzHaslo.Name = "lblPowtorzHaslo";
-            lblPowtorzHaslo.Size = new Size(88, 15);
+            lblPowtorzHaslo.Size = new Size(112, 20);
             lblPowtorzHaslo.TabIndex = 4;
             lblPowtorzHaslo.Text = "Powtorz haslo:";
             // 
             // tboxHaslo
             // 
-            tboxHaslo.Location = new Point(39, 153);
-            tboxHaslo.Margin = new Padding(3, 2, 3, 2);
+            tboxHaslo.Location = new Point(45, 204);
             tboxHaslo.Name = "tboxHaslo";
-            tboxHaslo.Size = new Size(301, 23);
+            tboxHaslo.Size = new Size(343, 27);
             tboxHaslo.TabIndex = 3;
             // 
             // lblHaslo
             // 
             lblHaslo.AutoSize = true;
             lblHaslo.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblHaslo.Location = new Point(39, 136);
+            lblHaslo.Location = new Point(45, 181);
             lblHaslo.Name = "lblHaslo";
-            lblHaslo.Size = new Size(74, 15);
+            lblHaslo.Size = new Size(95, 20);
             lblHaslo.TabIndex = 2;
             lblHaslo.Text = "Nowe haslo:";
             // 
             // tboxLogin
             // 
-            tboxLogin.Location = new Point(39, 98);
-            tboxLogin.Margin = new Padding(3, 2, 3, 2);
+            tboxLogin.Location = new Point(45, 131);
             tboxLogin.Name = "tboxLogin";
-            tboxLogin.Size = new Size(301, 23);
+            tboxLogin.Size = new Size(343, 27);
             tboxLogin.TabIndex = 1;
             // 
             // lblLogin
             // 
             lblLogin.AutoSize = true;
             lblLogin.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblLogin.Location = new Point(39, 81);
+            lblLogin.Location = new Point(45, 108);
             lblLogin.Name = "lblLogin";
-            lblLogin.Size = new Size(40, 15);
+            lblLogin.Size = new Size(52, 20);
             lblLogin.TabIndex = 0;
             lblLogin.Text = "Login:";
             lblLogin.Click += label1_Click;
             // 
             // OknoNiePamietamHasla
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(396, 411);
+            ClientSize = new Size(453, 548);
             Controls.Add(panel1);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "OknoNiePamietamHasla";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "OknoNiePamietamHasla";
             Load += OknoNiePamietamHasla_Load;
             panel1.ResumeLayout(false);

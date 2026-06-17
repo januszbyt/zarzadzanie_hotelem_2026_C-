@@ -14,12 +14,17 @@ namespace Panele_Glowne
         public Lista_Wszystkich_Pokojow()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void EkranPokoje_Load(object sender, EventArgs e)
         {
+            AktualizujStatusyPokoi();
+
             checkBox1.Checked = true;
             checkBox2.Checked = false;
+
+            ZaladujOdpowiedniaZakladke();
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -44,14 +49,12 @@ namespace Panele_Glowne
 
             if (aktywneGrid == null) return;
 
-            // Zaktualizowane zapytanie - używamy nowych nazw (CenaPodstawowa, Pojemnosc) 
-            // i aliasów (AS), aby dopasować je do Twojej tabeli w programie
-            string query = "SELECT IdPokoju, NumerPokoju, TypPokoju, CenaPodstawowa AS CenaZaNoc, Pojemnosc AS IloscOsob FROM Pokoje WHERE 1=1";
+            string query = "SELECT IdPokoju, NumerPokoju, TypPokoju, CenaPodstawowa AS CenaZaNoc, Pojemnosc AS IloscOsob, StatusPokoju FROM Pokoje WHERE 1=1";
             List<MySqlParameter> parameters = new List<MySqlParameter>();
 
             if (wybranyIndeks > 0)
             {
-                // Zmiana filtrowania na nową kolumnę 'Pojemnosc'
+
                 query += " AND Pojemnosc = @iloscOsob";
                 parameters.Add(new MySqlParameter("@iloscOsob", wybranyIndeks));
             }
@@ -75,7 +78,34 @@ namespace Panele_Glowne
 
             LadujDaneZHotelu(query, aktywneGrid, parameters);
         }
+        private void AktualizujStatusyPokoi()
+        {
+            using (var conn = db.GetConnection())
+            {
+                conn.Open();
 
+                string sql = @"
+                    UPDATE Pokoje p
+                    SET StatusPokoju =
+                    CASE
+                        WHEN EXISTS (
+                            SELECT 1
+                            FROM Rezerwacje r
+                            WHERE r.IdPokoju = p.IdPokoju
+                              AND CURDATE() >= r.DataPrzyjazdu
+                              AND CURDATE() < r.DataWyjazdu
+                              AND r.StatusRezerwacji <> 'Anulowana'
+                        )
+                        THEN 'Zajęty'
+                        ELSE 'Wolny'
+                    END";
+
+                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
         private void LadujDaneZHotelu(string query, DataGridView targetGrid, List<MySqlParameter> parameters)
         {
             using (var conn = db.GetConnection())
@@ -95,6 +125,7 @@ namespace Panele_Glowne
                             DataTable dt = new DataTable();
                             adapter.Fill(dt);
                             targetGrid.DataSource = dt;
+                            targetGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                         }
                     }
                 }

@@ -20,11 +20,13 @@ namespace Panele_Glowne
         public Okno_Szczegolowych_Informacji_Pokoju()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
         public Okno_Szczegolowych_Informacji_Pokoju(int idPokoju)
         {
             InitializeComponent();
             this.idPokoju2 = idPokoju;
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
         private void Okno_Szczegolowych_Informacji_Pokoju_Load(object sender, EventArgs e)
         {
@@ -37,10 +39,27 @@ namespace Panele_Glowne
                 try
                 {
                     conn.Open();
-                    string zapytanie = @"SELECT P.NumerPokoju, P.Pojemnosc, R.IdRezerwacji, R.DataPrzyjazdu, R.DataWyjazdu, R.KwotaCalkowita,
-                    G.Imie, G.Nazwisko, G.Email, G.Telefon from Pokoje P left join Rezerwacje R on P.IdPokoju = R.IdPokoju left join 
-                    Goscie G on R.IdGoscia = G.IdGoscia
-                    where P.IdPokoju = @idPokoju order by R.IdRezerwacji desc limit 1";
+                    string zapytanie = @"
+                        SELECT
+                            P.NumerPokoju,
+                            P.Pojemnosc,
+                            R.IdRezerwacji,
+                            R.DataPrzyjazdu,
+                            R.DataWyjazdu,
+                            R.KwotaCalkowita,
+                            G.Imie,
+                            G.Nazwisko,
+                            G.Email,
+                            G.Telefon
+                        FROM Pokoje P
+                        LEFT JOIN Rezerwacje R
+                            ON P.IdPokoju = R.IdPokoju
+                            AND CURDATE() >= R.DataPrzyjazdu
+                            AND CURDATE() < R.DataWyjazdu
+                            AND R.StatusRezerwacji <> 'Anulowana'
+                        LEFT JOIN Goscie G
+                            ON R.IdGoscia = G.IdGoscia
+                        WHERE P.IdPokoju = @idPokoju";
                     using (MySqlCommand cmd = new MySqlCommand(zapytanie, conn))
                     {
                         cmd.Parameters.AddWithValue("@idPokoju", idPokoju2);
@@ -123,6 +142,19 @@ namespace Panele_Glowne
                             else
                             {
                                 MessageBox.Show("Dane pokoju nie zostaly znalezione");
+                            }
+                            if (reader["IdRezerwacji"] == DBNull.Value)
+                            {
+                                label4.Text = "Brak aktualnej rezerwacji";
+                                label14.Text = "-";
+                                label15.Text = "-";
+                                label16.Text = "-";
+                                label17.Text = "-";
+                                label18.Text = "-";
+                                label19.Text = "-";
+                                label20.Text = "-";
+                                label21.Text = "-";
+                                return;
                             }
                         }
                     }

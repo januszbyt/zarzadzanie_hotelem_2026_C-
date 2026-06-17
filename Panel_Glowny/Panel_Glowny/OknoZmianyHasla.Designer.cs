@@ -52,20 +52,18 @@
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(10, 9);
-            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Location = new Point(11, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(355, 62);
+            panel1.Size = new Size(405, 82);
             panel1.TabIndex = 0;
             // 
             // pictureBox1
             // 
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.Location = new Point(286, 8);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Location = new Point(327, 11);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(62, 46);
+            pictureBox1.Size = new Size(71, 61);
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
@@ -73,9 +71,9 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label1.Location = new Point(15, 16);
+            label1.Location = new Point(17, 21);
             label1.Name = "label1";
-            label1.Size = new Size(149, 30);
+            label1.Size = new Size(191, 38);
             label1.TabIndex = 0;
             label1.Text = "Zmiana hasła";
             // 
@@ -91,18 +89,16 @@
             panel2.Controls.Add(label4);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(label2);
-            panel2.Location = new Point(10, 83);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(11, 111);
             panel2.Name = "panel2";
-            panel2.Size = new Size(355, 246);
+            panel2.Size = new Size(405, 327);
             panel2.TabIndex = 1;
             // 
             // btnZmien
             // 
-            btnZmien.Location = new Point(171, 209);
-            btnZmien.Margin = new Padding(3, 2, 3, 2);
+            btnZmien.Location = new Point(195, 279);
             btnZmien.Name = "btnZmien";
-            btnZmien.Size = new Size(82, 22);
+            btnZmien.Size = new Size(94, 29);
             btnZmien.TabIndex = 7;
             btnZmien.Text = "Zmień";
             btnZmien.UseVisualStyleBackColor = true;
@@ -111,10 +107,9 @@
             // btnAnuluj
             // 
             btnAnuluj.BackColor = Color.FromArgb(255, 128, 128);
-            btnAnuluj.Location = new Point(258, 209);
-            btnAnuluj.Margin = new Padding(3, 2, 3, 2);
+            btnAnuluj.Location = new Point(295, 279);
             btnAnuluj.Name = "btnAnuluj";
-            btnAnuluj.Size = new Size(82, 22);
+            btnAnuluj.Size = new Size(94, 29);
             btnAnuluj.TabIndex = 6;
             btnAnuluj.Text = "Anuluj";
             btnAnuluj.UseVisualStyleBackColor = false;
@@ -122,35 +117,32 @@
             // 
             // txtPowtorzHaslo
             // 
-            txtPowtorzHaslo.Location = new Point(23, 152);
-            txtPowtorzHaslo.Margin = new Padding(3, 2, 3, 2);
+            txtPowtorzHaslo.Location = new Point(26, 203);
             txtPowtorzHaslo.Name = "txtPowtorzHaslo";
-            txtPowtorzHaslo.Size = new Size(233, 23);
+            txtPowtorzHaslo.Size = new Size(266, 27);
             txtPowtorzHaslo.TabIndex = 5;
             // 
             // txtNoweHaslo
             // 
-            txtNoweHaslo.Location = new Point(23, 99);
-            txtNoweHaslo.Margin = new Padding(3, 2, 3, 2);
+            txtNoweHaslo.Location = new Point(26, 132);
             txtNoweHaslo.Name = "txtNoweHaslo";
-            txtNoweHaslo.Size = new Size(233, 23);
+            txtNoweHaslo.Size = new Size(266, 27);
             txtNoweHaslo.TabIndex = 4;
             // 
             // txtStareHaslo
             // 
-            txtStareHaslo.Location = new Point(23, 46);
-            txtStareHaslo.Margin = new Padding(3, 2, 3, 2);
+            txtStareHaslo.Location = new Point(26, 61);
             txtStareHaslo.Name = "txtStareHaslo";
-            txtStareHaslo.Size = new Size(233, 23);
+            txtStareHaslo.Size = new Size(266, 27);
             txtStareHaslo.TabIndex = 3;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label4.Location = new Point(23, 134);
+            label4.Location = new Point(26, 179);
             label4.Name = "label4";
-            label4.Size = new Size(123, 15);
+            label4.Size = new Size(155, 20);
             label4.TabIndex = 2;
             label4.Text = "Powtorz nowe hasło:";
             // 
@@ -158,9 +150,9 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label3.Location = new Point(23, 82);
+            label3.Location = new Point(26, 109);
             label3.Name = "label3";
-            label3.Size = new Size(75, 15);
+            label3.Size = new Size(96, 20);
             label3.TabIndex = 1;
             label3.Text = "Nowe hasło:";
             // 
@@ -168,22 +160,22 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label2.Location = new Point(22, 29);
+            label2.Location = new Point(25, 39);
             label2.Name = "label2";
-            label2.Size = new Size(72, 15);
+            label2.Size = new Size(91, 20);
             label2.TabIndex = 0;
             label2.Text = "Stare hasło:";
             // 
             // OknoZmianyHasla
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(375, 338);
+            ClientSize = new Size(429, 451);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "OknoZmianyHasla";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "OknoZmianyHasla";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

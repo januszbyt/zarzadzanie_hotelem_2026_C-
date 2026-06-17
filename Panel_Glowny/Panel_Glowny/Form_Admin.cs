@@ -16,7 +16,7 @@ namespace Panele_Glowne
         {
             InitializeComponent();
 
-
+            this.StartPosition = FormStartPosition.CenterScreen;
             label2.Text = ZalogowanyUzytkownik;
         }
 
@@ -51,6 +51,13 @@ namespace Panele_Glowne
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnZarzadzajKontem_Click(object sender, EventArgs e)
+        {
+            OknoZarzadzanieKontem oknoZarzadzanieKontem = new OknoZarzadzanieKontem();
+            oknoZarzadzanieKontem.Show();
+            this.Hide();
         }
     }
 }
