@@ -39,20 +39,18 @@
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(10, 9);
-            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Location = new Point(11, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(355, 62);
+            panel1.Size = new Size(405, 82);
             panel1.TabIndex = 1;
             // 
             // pictureBox1
             // 
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.Location = new Point(286, 8);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Location = new Point(327, 11);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(62, 46);
+            pictureBox1.Size = new Size(71, 61);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
@@ -60,9 +58,9 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
-            label1.Location = new Point(15, 16);
+            label1.Location = new Point(17, 21);
             label1.Name = "label1";
-            label1.Size = new Size(133, 30);
+            label1.Size = new Size(171, 38);
             label1.TabIndex = 1;
             label1.Text = "Zmiana PIN";
             // 
@@ -78,18 +76,16 @@
             panel2.Controls.Add(label4);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(label2);
-            panel2.Location = new Point(10, 83);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(11, 111);
             panel2.Name = "panel2";
-            panel2.Size = new Size(355, 246);
+            panel2.Size = new Size(405, 327);
             panel2.TabIndex = 0;
             // 
             // btnZmien
             // 
-            btnZmien.Location = new Point(171, 209);
-            btnZmien.Margin = new Padding(3, 2, 3, 2);
+            btnZmien.Location = new Point(195, 279);
             btnZmien.Name = "btnZmien";
-            btnZmien.Size = new Size(82, 22);
+            btnZmien.Size = new Size(94, 29);
             btnZmien.TabIndex = 0;
             btnZmien.Text = "Zmień";
             btnZmien.UseVisualStyleBackColor = true;
@@ -98,10 +94,9 @@
             // btnAnuluj
             // 
             btnAnuluj.BackColor = Color.FromArgb(255, 128, 128);
-            btnAnuluj.Location = new Point(258, 209);
-            btnAnuluj.Margin = new Padding(3, 2, 3, 2);
+            btnAnuluj.Location = new Point(295, 279);
             btnAnuluj.Name = "btnAnuluj";
-            btnAnuluj.Size = new Size(82, 22);
+            btnAnuluj.Size = new Size(94, 29);
             btnAnuluj.TabIndex = 1;
             btnAnuluj.Text = "Anuluj";
             btnAnuluj.UseVisualStyleBackColor = false;
@@ -109,35 +104,32 @@
             // 
             // txtPowtorzPin
             // 
-            txtPowtorzPin.Location = new Point(23, 152);
-            txtPowtorzPin.Margin = new Padding(3, 2, 3, 2);
+            txtPowtorzPin.Location = new Point(26, 203);
             txtPowtorzPin.Name = "txtPowtorzPin";
-            txtPowtorzPin.Size = new Size(233, 23);
+            txtPowtorzPin.Size = new Size(266, 27);
             txtPowtorzPin.TabIndex = 2;
             // 
             // txtNowyPin
             // 
-            txtNowyPin.Location = new Point(23, 99);
-            txtNowyPin.Margin = new Padding(3, 2, 3, 2);
+            txtNowyPin.Location = new Point(26, 132);
             txtNowyPin.Name = "txtNowyPin";
-            txtNowyPin.Size = new Size(233, 23);
+            txtNowyPin.Size = new Size(266, 27);
             txtNowyPin.TabIndex = 3;
             // 
             // txtStaryPin
             // 
-            txtStaryPin.Location = new Point(23, 46);
-            txtStaryPin.Margin = new Padding(3, 2, 3, 2);
+            txtStaryPin.Location = new Point(26, 61);
             txtStaryPin.Name = "txtStaryPin";
-            txtStaryPin.Size = new Size(233, 23);
+            txtStaryPin.Size = new Size(266, 27);
             txtStaryPin.TabIndex = 4;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label4.Location = new Point(23, 134);
+            label4.Location = new Point(26, 179);
             label4.Name = "label4";
-            label4.Size = new Size(113, 15);
+            label4.Size = new Size(143, 20);
             label4.TabIndex = 5;
             label4.Text = "Powtórz nowy PIN:";
             // 
@@ -145,9 +137,9 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label3.Location = new Point(23, 82);
+            label3.Location = new Point(26, 109);
             label3.Name = "label3";
-            label3.Size = new Size(65, 15);
+            label3.Size = new Size(84, 20);
             label3.TabIndex = 6;
             label3.Text = "Nowy PIN:";
             // 
@@ -155,22 +147,22 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label2.Location = new Point(22, 29);
+            label2.Location = new Point(25, 39);
             label2.Name = "label2";
-            label2.Size = new Size(62, 15);
+            label2.Size = new Size(80, 20);
             label2.TabIndex = 7;
             label2.Text = "Stary PIN:";
             // 
             // OknoZmianyPinu
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(375, 338);
+            ClientSize = new Size(429, 451);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "OknoZmianyPinu";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Zmiana PIN";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

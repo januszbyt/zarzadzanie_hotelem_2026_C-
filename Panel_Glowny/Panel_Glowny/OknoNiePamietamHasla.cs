@@ -20,6 +20,7 @@ namespace Panele_Glowne
         public OknoNiePamietamHasla()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void OknoNiePamietamHasla_Load(object sender, EventArgs e)

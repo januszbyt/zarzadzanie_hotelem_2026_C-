@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Admin));
             panel2 = new Panel();
+            btnZarzadzajKontem = new Button();
             button1 = new Button();
             button6 = new Button();
             button2 = new Button();
@@ -50,30 +51,45 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ButtonFace;
+            panel2.Controls.Add(btnZarzadzajKontem);
             panel2.Controls.Add(button1);
             panel2.Controls.Add(button6);
             panel2.Controls.Add(button2);
             panel2.Controls.Add(button4);
-            panel2.Location = new Point(9, 118);
+            panel2.Location = new Point(10, 157);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(183, 433);
+            panel2.Size = new Size(209, 577);
             panel2.TabIndex = 4;
+            // 
+            // btnZarzadzajKontem
+            // 
+            btnZarzadzajKontem.Location = new Point(24, 467);
+            btnZarzadzajKontem.Margin = new Padding(3, 4, 3, 4);
+            btnZarzadzajKontem.Name = "btnZarzadzajKontem";
+            btnZarzadzajKontem.Size = new Size(154, 39);
+            btnZarzadzajKontem.TabIndex = 9;
+            btnZarzadzajKontem.Text = "Zarzadzaj kontem";
+            btnZarzadzajKontem.UseVisualStyleBackColor = true;
+            btnZarzadzajKontem.Click += btnZarzadzajKontem_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(34, 218);
+            button1.Location = new Point(39, 291);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(111, 66);
+            button1.Size = new Size(127, 88);
             button1.TabIndex = 8;
-            button1.Text = "Szczegóły aktualnych rezerwacji";
+            button1.Text = "Szczególy pokoi";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click_1;
             // 
             // button6
             // 
-            button6.Location = new Point(34, 123);
+            button6.Location = new Point(39, 164);
+            button6.Margin = new Padding(3, 4, 3, 4);
             button6.Name = "button6";
-            button6.Size = new Size(111, 66);
+            button6.Size = new Size(127, 88);
             button6.TabIndex = 7;
             button6.Text = "Zarządzaj gościami Hotelu";
             button6.UseVisualStyleBackColor = true;
@@ -81,9 +97,10 @@
             // 
             // button2
             // 
-            button2.Location = new Point(34, 28);
+            button2.Location = new Point(39, 37);
+            button2.Margin = new Padding(3, 4, 3, 4);
             button2.Name = "button2";
-            button2.Size = new Size(111, 66);
+            button2.Size = new Size(127, 88);
             button2.TabIndex = 4;
             button2.Text = "Zarządzaj Pracownikami";
             button2.UseVisualStyleBackColor = true;
@@ -92,9 +109,10 @@
             // button4
             // 
             button4.BackColor = Color.FromArgb(255, 128, 128);
-            button4.Location = new Point(34, 358);
+            button4.Location = new Point(39, 514);
+            button4.Margin = new Padding(3, 4, 3, 4);
             button4.Name = "button4";
-            button4.Size = new Size(111, 42);
+            button4.Size = new Size(127, 56);
             button4.TabIndex = 3;
             button4.Text = "Wyloguj sie";
             button4.UseVisualStyleBackColor = false;
@@ -105,18 +123,19 @@
             panel1.BackColor = SystemColors.ButtonFace;
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(9, 12);
+            panel1.Location = new Point(10, 16);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(183, 100);
+            panel1.Size = new Size(209, 133);
             panel1.TabIndex = 3;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label2.Location = new Point(65, 55);
+            label2.Location = new Point(74, 73);
             label2.Name = "label2";
-            label2.Size = new Size(52, 21);
+            label2.Size = new Size(65, 28);
             label2.TabIndex = 1;
             label2.Text = "label2";
             label2.Click += label2_Click;
@@ -125,9 +144,9 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label1.Location = new Point(56, 16);
+            label1.Location = new Point(64, 21);
             label1.Name = "label1";
-            label1.Size = new Size(74, 25);
+            label1.Size = new Size(96, 32);
             label1.TabIndex = 2;
             label1.Text = "Witaj ! ";
             // 
@@ -137,15 +156,17 @@
             panel3.Controls.Add(monthCalendar1);
             panel3.Controls.Add(label3);
             panel3.Controls.Add(pictureBox1);
-            panel3.Location = new Point(198, 12);
+            panel3.Location = new Point(226, 16);
+            panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(454, 539);
+            panel3.Size = new Size(519, 719);
             panel3.TabIndex = 5;
             // 
             // monthCalendar1
             // 
             monthCalendar1.CalendarDimensions = new Size(1, 2);
-            monthCalendar1.Location = new Point(84, 50);
+            monthCalendar1.Location = new Point(96, 67);
+            monthCalendar1.Margin = new Padding(10, 12, 10, 12);
             monthCalendar1.Name = "monthCalendar1";
             monthCalendar1.TabIndex = 6;
             // 
@@ -153,9 +174,9 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label3.Location = new Point(135, 21);
+            label3.Location = new Point(154, 28);
             label3.Name = "label3";
-            label3.Size = new Size(158, 20);
+            label3.Size = new Size(202, 25);
             label3.TabIndex = 5;
             label3.Text = "Witamy Administracje";
             // 
@@ -163,22 +184,24 @@
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.ImageLocation = "";
-            pictureBox1.Location = new Point(42, 376);
+            pictureBox1.Location = new Point(48, 501);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(352, 144);
+            pictureBox1.Size = new Size(402, 192);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 4;
             pictureBox1.TabStop = false;
             // 
             // Form_Admin
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(881, 586);
+            ClientSize = new Size(765, 781);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(panel3);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Form_Admin";
             Text = "Form_Admin";
             panel2.ResumeLayout(false);
@@ -204,5 +227,6 @@
         private MonthCalendar monthCalendar1;
         private Button button6;
         private Button button1;
+        private Button btnZarzadzajKontem;
     }
 }

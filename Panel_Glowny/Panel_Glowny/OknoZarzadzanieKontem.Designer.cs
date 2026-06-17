@@ -240,6 +240,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "OknoZarzadzanieKontem";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "OknoZarzadzanieKontem";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
