@@ -16,6 +16,7 @@ namespace Panele_Glowne
         int noc;
         int cena;
         private int? zalogowanyIdGoscia = null;
+        public int? NoweIdGoscia { get; private set; } = null;
 
         public Dodaj_rezerwacje()
         {
@@ -67,11 +68,12 @@ namespace Panele_Glowne
                                 telefon.Text = reader["Telefon"].ToString();
                                 dokument.Text = reader["DokumentTozsamosci"] != DBNull.Value ? reader["DokumentTozsamosci"].ToString() : "";
 
-                                imie.ReadOnly = true;
-                                nazwisko.ReadOnly = true;
-                                email.ReadOnly = true;
-                                telefon.ReadOnly = true;
-                                dokument.ReadOnly = true;
+
+                                imie.ReadOnly = !string.IsNullOrWhiteSpace(imie.Text);
+                                nazwisko.ReadOnly = !string.IsNullOrWhiteSpace(nazwisko.Text);
+                                email.ReadOnly = !string.IsNullOrWhiteSpace(email.Text);
+                                telefon.ReadOnly = !string.IsNullOrWhiteSpace(telefon.Text);
+                                dokument.ReadOnly = !string.IsNullOrWhiteSpace(dokument.Text);
                             }
                         }
                     }
@@ -225,19 +227,19 @@ namespace Panele_Glowne
                     conn.Open();
 
                     string findPokoj = @"
-                SELECT IdPokoju 
-                FROM Pokoje 
-                WHERE TypPokoju = @typ 
-                  AND Pojemnosc >= @osoby 
-                  AND IdPokoju NOT IN (
-                      SELECT IdPokoju 
-                      FROM Rezerwacje 
-                      WHERE StatusRezerwacji != 'Anulowana'
-                        AND DataPrzyjazdu < @wyjazd 
-                        AND DataWyjazdu > @przyjazd
-                  )
-                ORDER BY Pojemnosc ASC 
-                LIMIT 1;";
+                    SELECT IdPokoju 
+                    FROM Pokoje 
+                    WHERE TypPokoju = @typ 
+                      AND Pojemnosc >= @osoby 
+                      AND IdPokoju NOT IN (
+                          SELECT IdPokoju 
+                          FROM Rezerwacje 
+                          WHERE StatusRezerwacji != 'Anulowana'
+                            AND DataPrzyjazdu < @wyjazd 
+                            AND DataWyjazdu > @przyjazd
+                      )
+                    ORDER BY Pojemnosc ASC 
+                    LIMIT 1;";
 
                     MySqlCommand cmdPokoj = new MySqlCommand(findPokoj, conn);
                     cmdPokoj.Parameters.AddWithValue("@typ", typPokoju);
@@ -259,6 +261,18 @@ namespace Panele_Glowne
                     if (zalogowanyIdGoscia.HasValue)
                     {
                         idGoscia = zalogowanyIdGoscia.Value;
+
+                        string updateGosc = "UPDATE Goscie SET Imie = @imie, Nazwisko = @nazwisko, Telefon = @telefon, Email = @email, DokumentTozsamosci = @dokument WHERE IdGoscia = @id;";
+                        using (MySqlCommand cmdUpdateZalogowany = new MySqlCommand(updateGosc, conn))
+                        {
+                            cmdUpdateZalogowany.Parameters.AddWithValue("@imie", imieGo);
+                            cmdUpdateZalogowany.Parameters.AddWithValue("@nazwisko", nazwiskoGo);
+                            cmdUpdateZalogowany.Parameters.AddWithValue("@telefon", telefonGo);
+                            cmdUpdateZalogowany.Parameters.AddWithValue("@email", string.IsNullOrWhiteSpace(emailGo) ? DBNull.Value : (object)emailGo);
+                            cmdUpdateZalogowany.Parameters.AddWithValue("@dokument", string.IsNullOrWhiteSpace(dokumentGo) ? DBNull.Value : (object)dokumentGo);
+                            cmdUpdateZalogowany.Parameters.AddWithValue("@id", idGoscia);
+                            cmdUpdateZalogowany.ExecuteNonQuery();
+                        }
                     }
                     else
                     {
@@ -299,10 +313,11 @@ namespace Panele_Glowne
                                 }
                             }
                         }
+                        this.NoweIdGoscia = idGoscia;
                     }
 
                     string insertRezerwacja = @"INSERT INTO Rezerwacje (IdGoscia, IdPokoju, DataPrzyjazdu, DataWyjazdu, KwotaCalkowita, StatusRezerwacji, Uwagi) 
-                                        VALUES (@idGosc, @idPokoj, @przyjazd, @wyjazd, @kwota, 'Oczekujaca', @uwagi);";
+                                                VALUES (@idGosc, @idPokoj, @przyjazd, @wyjazd, @kwota, 'Oczekujaca', @uwagi);";
                     using (MySqlCommand cmdRez = new MySqlCommand(insertRezerwacja, conn))
                     {
                         cmdRez.Parameters.AddWithValue("@idGosc", idGoscia);

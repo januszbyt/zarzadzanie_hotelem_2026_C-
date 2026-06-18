@@ -15,7 +15,7 @@ namespace Panele_Glowne
 {
     public partial class Panel_Glowny_Klienta : Form
     {
-        public Panel_Glowny_Klienta(string ZalogowanyUzytkownik)
+        public Panel_Glowny_Klienta(string loginUzytkownika)
         {
             InitializeComponent();
             WczytajRezerwacje();
@@ -75,7 +75,7 @@ namespace Panele_Glowne
                             {
                                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                                 dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                                dataGridView1.Columns["IdRezerwacji"].Visible = false; 
+                                dataGridView1.Columns["IdRezerwacji"].Visible = false;
                             }
                         }
                     }
@@ -96,16 +96,48 @@ namespace Panele_Glowne
         // TWORZENIE REZERWACJI
         private void stworz_Click(object sender, EventArgs e)
         {
-            if (ZalogowanyUzytkownik.IdGoscia.HasValue)
+            if (ZalogowanyUzytkownik.IdGoscia.HasValue && ZalogowanyUzytkownik.IdGoscia.Value > 0)
             {
                 Dodaj_rezerwacje dodaj_Rezerwacje2 = new Dodaj_rezerwacje(ZalogowanyUzytkownik.IdGoscia.Value);
                 dodaj_Rezerwacje2.ShowDialog();
-
-                WczytajRezerwacje();
             }
             else
             {
-                MessageBox.Show("Błąd: Nie można zidentyfikować zalogowanego gościa.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Dodaj_rezerwacje dodaj_Rezerwacje2 = new Dodaj_rezerwacje();
+                dodaj_Rezerwacje2.ShowDialog();
+
+                if (dodaj_Rezerwacje2.NoweIdGoscia.HasValue)
+                {
+                    ZalogowanyUzytkownik.IdGoscia = dodaj_Rezerwacje2.NoweIdGoscia.Value;
+
+                    PodlaczGosciaDoKonta(dodaj_Rezerwacje2.NoweIdGoscia.Value);
+                }
+            }
+
+            WczytajRezerwacje();
+        }
+
+        // METODA PODŁĄCZAJĄCA NOWE DANE DO KONTA UŻYTKOWNIKA
+        private void PodlaczGosciaDoKonta(int noweIdGoscia)
+        {
+            HotelContext db = new HotelContext();
+            using (var conn = db.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "UPDATE Uzytkownicy SET IdGoscia = @idGoscia WHERE Login = @login";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@idGoscia", noweIdGoscia);
+                        cmd.Parameters.AddWithValue("@login", ZalogowanyUzytkownik.Login);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Wystąpił błąd podczas podłączania danych gościa do konta: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
