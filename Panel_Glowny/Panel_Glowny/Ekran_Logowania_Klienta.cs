@@ -70,6 +70,16 @@ public partial class Ekran_Logowania_Klienta : Form
 
                     if (haslo == hasloZBazy)
                     {
+                        // --- KLUCZOWA POPRAWKA ---
+                        // Czyścimy pamięć klasy statycznej ze starych wartości przed nadpisaniem,
+                        // aby nowi użytkownicy nie widzieli rezerwacji swoich poprzedników.
+                        ZalogowanyUzytkownik.IdGoscia = null;
+                        ZalogowanyUzytkownik.IdPracownika = null;
+                        ZalogowanyUzytkownik.Imie = null;
+                        ZalogowanyUzytkownik.Login = null;
+                        ZalogowanyUzytkownik.Rola = null;
+                        // -------------------------
+
                         ZalogowanyUzytkownik.Login = reader["Login"].ToString();
                         ZalogowanyUzytkownik.Rola = rola;
 
@@ -91,7 +101,7 @@ public partial class Ekran_Logowania_Klienta : Form
                             Ekran_Glowny_Pracownika recepcja = new Ekran_Glowny_Pracownika(login);
                             recepcja.Show();
                         }
-                        else if (rola == "Gosc" || rola=="Klient")
+                        else if (rola == "Gosc" || rola == "Klient")
                         {
                             ZalogowanyUzytkownik.Imie = reader["ImieGoscia"].ToString();
 

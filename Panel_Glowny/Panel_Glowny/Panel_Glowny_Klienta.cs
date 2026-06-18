@@ -38,7 +38,7 @@ namespace Panele_Glowne
                 {
                     conn.Open();
 
-                    int idGoscia = ZalogowanyUzytkownik.IdGoscia ?? 0;
+                    int idGoscia = ZalogowanyUzytkownik.IdGoscia ?? -1;
 
                     string query = @"
                 SELECT 
